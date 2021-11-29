@@ -1,11 +1,12 @@
 /**
  * 
- * Macaron Tree
- *
+ * Macaron Tree (주문제작 마카롱 사이트)
+ * html, css, javascript, jquery, Ajax, nodejs, mysql, mongodb로 제작 
  * MySQL 사용 : macarontree.sql 파일로 테이블 생성 가능
  *
+ * 패키지 모듈 없을시 패키지 설치 npm install 
  * 1. 웹서버 실행 : 명령프롬프트에서 node app.js 실행
- * 2. 웹페이지 열기 : 웹브라우저에서 http://13.125.26.112:3002 열기
+ * 2. 웹페이지 열기 : 웹브라우저에서 http://13.125.26.112:3002 (AWS) 또는 http://httlocalhost:3002 로 열기 
  */
 
 // Express 기본 모듈 불러오기
