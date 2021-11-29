@@ -1,0 +1,71 @@
+@charset "utf-8";
+
+
+/* 정보 수정 */
+.div-agree {
+    width: 500px; 
+    padding-top: 30px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.text {
+    width: 500px;
+    height:40px;
+    font-size: 18px;
+    text-align: left;
+    float: left;
+    padding-top: 10px;
+    color: #004771;
+}
+
+/* 입력하는 곳 */
+.inputValue {
+    width: 500px; 
+    height:40px; 
+    margin-bottom: 10px; 
+    font-size:12pt
+}
+
+#p-warning {
+    width: 500px;
+    text-align: left;
+    color: red;
+    line-height: 25px;
+    font-weight: bold;
+}
+
+/* 수정 버튼 */
+button {
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+}
+
+button:hover {
+    background: #555555;
+    border: 2px solid #555555;
+}
+
+#btn_update { 
+    width: 100%; 
+    height: auto !important;
+    background-color: #004771;
+    font-size: 18px;
+    padding: 15px 32px;
+    border: 2px solid #004771;
+}
+
+
+
+/* 테블릿 css */
+@media all and (max-width:768px) {
+       
+    #p-warning, .inputValue, .text, .inputValue, #btn_update, .div-agree {
+        width: 400px;
+    }
+
+    
+}

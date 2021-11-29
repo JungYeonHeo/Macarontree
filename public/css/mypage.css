@@ -1,0 +1,191 @@
+@charset "utf-8";
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.align {
+    width: 1400px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+.logo {
+    text-align: center; 
+    font-size: 20pt;
+    font-weight: bold; 
+    margin: 20px; 
+    color: #004771;
+}
+
+/* 왼쪽 메뉴*/
+.fL {
+    float: left;
+}
+
+div.myPageLeftMenu {
+    width: 200px;
+    margin: 50px 60px 0px 50px;
+    color: #010101;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.myPageSubMenu {
+    list-style: none;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+
+.mobilemenu {
+    display: none;
+}
+
+.order, .like, .user {
+    display: block;
+    height: 30px;
+    width: 130px;
+    padding: 14px 0 0 15px;
+    font-weight: bold;
+    background: #f9f9fa;
+    border: 1px solid #000;
+}
+
+
+
+/* 메뉴 */
+#order-list, #like-list, #user-update {
+    width: 900px;
+    display: block;
+    float: left;
+    text-align: center;
+}
+
+.div-sub {
+    margin-top: 50px;
+}
+
+
+
+/* 정보 수정 */
+.div-agree {
+    width: 500px; 
+    padding-top: 50px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+/* 입력하는 곳 */
+.inputValue {
+    width: 500px; 
+    height:40px; 
+    margin-bottom: 20px; 
+    font-size:12pt
+}
+
+#p-warning {
+    color: red;
+    line-height: 25px;
+    font-weight: bold;
+}
+
+
+
+
+/* 테블릿 css */
+@media all and (max-width:768px) {
+       
+    .div-sub {
+        width: 100%;
+    }
+
+    .myPageLeftMenu {
+        display: none;
+    }
+
+    .mobilemenu {
+        display: block;
+        width: 700px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .order, .like, .user {
+        display: block;
+        height: 30px;
+        text-align: center;
+        font-weight: normal;
+        background: #ffffff;
+        border: none;
+        float: left;
+        font-size: 12pt;
+        color: #bbb;
+    }
+
+    .order {
+        padding-left: 120px;
+    }
+
+    .user {
+        padding-right: 120px;
+    }
+
+    #order-list, #like-list, #user-update {
+        width: 700px;
+        display: block;
+        margin: 0;
+        float: none;
+    }
+
+    .align {
+        width: 700px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .fL {
+        float: none;
+    }
+
+    .mypage {
+        margin: 0 auto;
+    }
+
+
+}
+
+/* 모바일 */
+@media all and (max-width:500px) {
+       
+    .mobilemenu {
+        display: block;
+        width: 450px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    #order-list, #like-list, #user-update {
+        width: 450px;
+    }
+
+    .align {
+        width: 450px;
+    }
+
+    .order {
+        padding-left: 10px;
+    }
+
+    .user {
+        padding-right: 10px;
+    }
+
+}

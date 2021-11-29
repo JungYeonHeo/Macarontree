@@ -1,0 +1,69 @@
+@charset "utf-8";
+
+a:link			{ color:#000; text-decoration:none; }
+a:visited 		{ color:#000; text-decoration:none; }
+a:active 		{ color:#999; text-decoration:none; }
+a:hover 		{ color:#999; text-decoration:none;}
+
+.div-logo {
+    display: block; 
+    align-items: center; 
+    padding-top: 60px;
+}
+
+/* 로고 */
+.p-logo {
+    margin:10px 0 30px 0; color:#004771; 
+    font-size:40px; font-weight: bold;
+}
+
+/* 경고 메시지 */
+#p-warning {
+    color:red; 
+    font-size:12pt;
+    line-height:15px; 
+    display: none;
+    font-weight: bold;
+}
+
+/* 버튼 */
+button {
+    width:350px; height:60px; 
+    background-color: #004771; font-size: 18px; 
+    color:#ffffff; padding: 15px 32px;
+    border: 2px solid #004771;
+}
+
+/* 글자  */
+p {
+    font-size: 10pt;
+    line-height: 15px;
+}
+
+#p-warning {
+    width: 350px;
+    text-align: left;
+}
+
+/* 이미지 크기  */
+.img-logo, .img-naver, .img-face, .img-kakao {
+    width: 50px; height: 50px;
+}
+
+/* 입력하는 곳 */
+.inputValue {
+    width:350px; 
+    height:40px; 
+    margin-bottom: 20px; 
+    font-size:12pt
+}
+
+/* 정렬 */
+div {
+    text-align: center;
+}
+
+/* 선 */
+hr {
+    width:350px; align-items:center; color:e0e0e2; line-height: 30px;
+}
