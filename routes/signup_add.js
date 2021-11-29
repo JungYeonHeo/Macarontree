@@ -42,7 +42,7 @@ router.post('/', function(req, res, next) {
         console.log('데이터베이스 연결 스레드 아이디 : ' + conn.threadId);
 
         // 데이터를 객체로 만듦
-        var data = { "m_id": id, "m_pw": hashPassword, "m_name": name, "m_tel": tel, "m_addr": addr };
+        var data = { "m_id": id, "m_pw": hashPassword, "m_name": name, "m_tel": tel, "m_addr" : addr };
         
         // 회원가입 SQL 문을 실행함
         var inputUserData = conn.query('insert into member set ?', [data], function(err, result) {
@@ -58,7 +58,7 @@ router.post('/', function(req, res, next) {
             } else {
                 msg = "회원가입 성공";
                 console.log("성공");
-                res.send({result: 4, msg: msg});
+                res.send({result:4, msg:msg});
                 return;
             }
         });
