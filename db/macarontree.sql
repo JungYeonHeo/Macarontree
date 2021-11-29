@@ -1,10 +1,10 @@
 
 /* DB 생성 */
-CREATE SCHEMA macaron
+CREATE DATABASE Macaron
 default character set utf8
- collate utf8_general_ci;
+collate utf8_general_ci;
 
-USE macaron;
+USE Macaron;
 
 /* Member */
 CREATE TABLE Macaron.member (
@@ -16,7 +16,7 @@ CREATE TABLE Macaron.member (
     primary key(m_id)
 )Default charset=UTF8;
 
-INSERT INTO `member` VALUES ('admin','1111','이원희','01066235954','경기도 광명시');
+INSERT INTO `member` VALUES ('tree','keroro2424.','허정연','01052949601','서울특별시');
 
 /* Product */
 CREATE TABLE Macaron.product (
@@ -56,11 +56,13 @@ INSERT INTO `product` VALUES
 ('b24','m_strawberry.jpg','딸기','strawberry','B','#fff');
 
 /* Contest */
+
+-- mysql 5.6.5 이상 
 CREATE TABLE Macaron.contest (
     cont_id int not null auto_increment, 
     cont_img text, 
     cont_review text, 
-    cont_date datetime default now(), 
+    cont_date datetime default CURRENT_TIMESTAMP , 
     cont_title text, 
     m_id varchar(20), 
     primary key(cont_id), 
@@ -71,4 +73,27 @@ CREATE TABLE Macaron.contest (
     on update cascade)
 Default charset=utf8;
 
-INSERT INTO `contest` VALUES (1,'m_injeolmi1575707285846.jpg','마카롱 쟁여놓고 먹으려고 처음으로 온라인으로 구매했어요. 마카롱 크기도 크고 너무 맛있네요!','2019-12-07 17:28:05','인절미 마카롱','admin'),(2,'m_cranberry1575734826338.jpg','선물주려고 구매했다가 너무 예뻐서 이미 한 상자 다 비웠네요 ㅠㅠ 다시 주문했는데 예쁘고 깔끔하게 포장되어 와서 대만족이에요~','2019-12-08 01:07:06','크랜베리 마카롱','admin'),(3,'m_real_cheese1575734847935.jpg','세상에서 제일 맛있는 마카롱입니다!! 진짜 너무 맛있고 선물용으로 최고에요~!!','2019-12-08 01:07:27','리얼치즈 마카롱','admin'),(4,'m_mint_choco1575738659417.jpg','알록달록 눈도 입도 정말 즐겁네요~ 빵집에 파는 얇은 마카롱과는 비교불가입니당ㅎㅎ','2019-12-08 02:10:59','민트초코 마카롱','admin');
+-- mysql 5.6.5 미만
+CREATE TABLE Macaron.contest (
+    cont_id int not null auto_increment, 
+    cont_img text, 
+    cont_review text, 
+    cont_date datetime, 
+    cont_title text, 
+    m_id varchar(20), 
+    primary key(cont_id), 
+    constraint m_id 
+    foreign key (m_id)
+    References Macaron.member(m_id)
+    on delete cascade
+    on update cascade)
+Default charset=utf8;
+
+CREATE TRIGGER contest_date_insert BEFORE INSERT 
+ON contest FOR EACH ROW
+SET 
+NEW.cont_date = NOW()
+;
+
+
+INSERT INTO `contest` VALUES (1,'m_injeolmi1575707285846.jpg','마카롱 쟁여놓고 먹으려고 처음으로 온라인으로 구매했어요. 마카롱 크기도 크고 너무 맛있네요!','2019-12-07 17:28:05','인절미 마카롱','tree'),(2,'m_cranberry1575734826338.jpg','선물주려고 구매했다가 너무 예뻐서 이미 한 상자 다 비웠네요 ㅠㅠ 다시 주문했는데 예쁘고 깔끔하게 포장되어 와서 대만족이에요~','2019-12-08 01:07:06','크랜베리 마카롱','tree'),(3,'m_real_cheese1575734847935.jpg','세상에서 제일 맛있는 마카롱입니다!! 진짜 너무 맛있고 선물용으로 최고에요~!!','2019-12-08 01:07:27','리얼치즈 마카롱','tree'),(4,'m_mint_choco1575738659417.jpg','알록달록 눈도 입도 정말 즐겁네요~ 빵집에 파는 얇은 마카롱과는 비교불가입니당ㅎㅎ','2019-12-08 02:10:59','민트초코 마카롱','tree');
