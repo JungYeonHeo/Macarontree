@@ -1,0 +1,232 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+
+<head>
+    <%- include('head') %>
+    <title>Basic</title>
+    <link rel="stylesheet" type="text/css" href="/public/css/basic.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+    <!-- header -->
+    <%- include('header') %>
+    <!-- //header -->
+
+    <!-- CONTENTS -->
+    <div class="basic">
+        <div class="sign_text">
+            <div class="title">BASIC | PREMIUM</div>
+            <div class="text">
+                <br>
+                신선하고 맛있는 Macaron Tree의 제품을 만나보세요!
+            </div>
+        </div>
+
+        <!-- 메뉴 -->
+        <div class="selectmenu">
+            <div id="basic" class="selectitem">BASIC</div>
+            <div id="premium" class="noselectitem">PREMIUM</div>
+        </div>
+
+        <!-- 베이직 제품 목록 -->
+        <div class="align">
+            <div class="product_basic">
+                <%  
+                for (var data of product) { 
+                    if (data.prd_type == 'B') { 
+                        var exist = false; 
+                        for (var i = 0; i < likes.length; i++) {  // 찜한 상품 조회
+                            if (data.prd_id == likes[i].prd_like) { 
+                                exist = true;
+                                var prd_name = '' + likes[i].prd_like;
+                                var index = parseInt(prd_name.substr(1,2)) - 1 - 12; 
+                                console.log(index); %>
+                                <script>
+                                    icon['<%= index %>'] = true; 
+                                </script>
+
+                           <% } 
+                        }  
+                        if (exist) {  %>
+                            <div class="contents-item">
+                                <div class="contents-img">
+                                    <img src="<%= data.prd_img %>" class="image">
+                                    <div class="overlay">
+                                        <div id="icon" class="icon" name="icon" style="color: #ff0000;">
+                                            <i class="fa fa-heart"></i> 
+                                            <hr>
+                                            <p class="price" style="color: #fff;">2000원</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name-kor"><%= data.prd_kor %></div>
+                                <div class="name-eng"><%= data.prd_eng %></div>
+                            </div>
+                    <%  } else {  %> 
+                            <div class="contents-item">
+                                <div class="contents-img">
+                                    <img src="<%= data.prd_img %>" alt="" class="image">
+                                    <div class="overlay">
+                                        <div id="icon" class="icon" name="icon" style="color: #ffffff;">
+                                            <i class="fa fa-heart"></i> 
+                                            <hr>
+                                            <p class="price">2000원</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name-kor"><%= data.prd_kor %></div>
+                                <div class="name-eng"><%= data.prd_eng %></div>
+                            </div>
+                    <%  }
+                    }
+                } %>
+            </div>
+
+            <!-- 프리미엄 제품 목록 -->
+            <div class="product_premium" style="display: none;">
+                <%  
+                for (var data of product) { 
+                    if (data.prd_type == 'P') { 
+                        var exist = false; 
+                        for (var i = 0; i < likes.length; i++) {  // 찜한 상품 조회
+                            if (data.prd_id == likes[i].prd_like) { 
+                                exist = true;
+                                var prd_name = '' + likes[i].prd_like;
+                                var index = parseInt(prd_name.substr(1,2)) - 1 + 12; 
+                                console.log(index); %>
+                                <script>
+                                    icon['<%= index %>'] = true; 
+                                </script>
+                          <%  } 
+                        }  
+                        if (exist) {  %>
+                        <div class="contents-item">
+                            <div class="contents-img">
+                                <img src="<%= data.prd_img %>" alt="">
+                                <div class="overlay">
+                                    <div id="icon" class="icon" name="icon">
+                                        <i class="fa fa-heart" style="color: #ff0000;"></i> 
+                                        <hr>
+                                        <p class="price" style="color: #fff">3000원</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="name-kor"><%= data.prd_kor %></div>
+                            <div class="name-eng"><%= data.prd_eng %></div>
+                        </div>   
+                    <%  } else {  %> 
+                        <div class="contents-item">
+                            <div class="contents-img">
+                                <img src="<%= data.prd_img %>" alt="">
+                                <div class="overlay">
+                                    <div id="icon" class="icon" name="icon">
+                                        <i class="fa fa-heart"></i> 
+                                        <hr>
+                                        <p class="price" style="color: #fff">3000원</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="name-kor"><%= data.prd_kor %></div>
+                            <div class="name-eng"><%= data.prd_eng %></div>
+                        </div>   
+                <%  }
+                }
+            } %>
+            </div>
+        </div>
+
+    </div>
+    <!-- CONTENTS -->
+
+    <!-- Footer -->
+    <%- include ('../views/footer') %>
+    <!-- //Footer -->
+
+</body>
+
+<script>
+    // basic, premium 메뉴 선택에 따른 화면 변화
+    $("#basic").click(function () {
+        $("#basic").attr('class', 'selectitem');
+        $("#premium").attr('class', 'noselectitem');
+        $(".product_basic").css("display", "flex");
+        $(".product_premium").css("display", "none");
+    });
+
+    $("#premium").click(function () {
+        $("#basic").attr('class', 'noselectitem');
+        $("#premium").attr('class', 'selectitem');
+        $(".product_basic").css("display", "none");
+        $(".product_premium").css("display", "flex");
+    });  
+
+    // 찜(하트) 기능 눌렀을 때 동작
+//    $( document ).ready(function() {
+//     console.log( "ready!" );
+//     var icon = new Array(false);
+//     });
+    var icon = new Array(false);
+    var data = {};
+    var id = "";
+    $(".icon").click(function (event) {
+        // 존재하는 모든 버튼을 기준으로 index
+        var j = $(".icon").index(this);
+        console.log(j+1);
+        if (j > 11) {  //12-23 Premium b1~b12 (mysql key값)
+            if (j+1-12 < 10) {
+                id = "b0" + (j+1-12).toString();  
+            } else {
+                id = "b" + (j+1-12).toString();  
+            }
+        } else {  //Basic b13~b24
+            id = "b" + (j+1+12).toString();  
+        }
+        data = { "prd_id": id };   
+        
+        if (icon[j] == true ) { 
+            // 찜한 상품에서 삭제
+            $.ajax({
+                type: 'post',
+                url: '/like_delete',
+                datatype: 'json',
+                contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                data: data
+            })
+            .success(function (data) {
+                if (data.result == 0) {
+                    $(".icon:eq("+j+")").css("color","#ffffff");
+                    $(".price").css("color", "#ffffff");
+                    icon[j] = false;
+                    alert(data.msg);
+                    console.log("찜한 상품에서 삭제");
+                }
+            });
+        } else {  
+            // 찜한 상품에 추가 
+            $.ajax({
+                type: 'post',
+                url: '/like_add',
+                datatype: 'json',
+                contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                data: data
+            })
+            .success(function (data) {
+                if (data.result == 0) {
+                    $(".icon:eq("+j+")").css("color","#ff0000");
+                    $(".price").css("color", "#ffffff");
+                    icon[j] = true;
+                    alert(data.msg);
+                    console.log("찜한 상품으로 추가");
+                } else {
+                    alert(data.msg);
+                }
+            });
+        }
+    });
+
+
+</script>
+
+</html>

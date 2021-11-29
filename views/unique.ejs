@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <%- include ('../views/head') %>
+    <link type="text/css" rel="stylesheet" href="/public/css/unique.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <title>Unique</title>
+</head>
+
+<body>
+    <div id="wrap">
+
+        <!-- HEADER -->
+        <%- include ('../views/header') %>
+        <!-- //HEADER -->
+
+        <!-- CONTENTS -->
+        <div class="">
+            <!-- 소개 간판 -->
+            <div class="sign_text">
+                <div class="title">나만의 마카롱 주문하기</div>
+                <div class="text">
+                    나만의 특별한 마카롱을 주문하세요~<br>
+                    소중한 분에게 아름다운 선물을 드립니다
+                </div>
+            </div>
+            <!-- //소개 간판 -->
+            <!-- 커스텀 마카롱 주문 선택 사항 -->
+            <div class="contents-container">
+                <div class="custom-container" style="float:left">
+                    <div class="custom-top">
+                        <div class="custom-title"># 나만의 마카롱 레시피</div>
+                    </div>
+
+                    <div class="custom-contents">
+                        <form id="custom_form" method="post" enctype="multipart/form-data" action="/unique/custom">
+
+                            <div class="box-container">
+                                <div class="item-container">
+                                    <!-- 꼬끄 -->
+                                    <div class="title-container"><span class="list-title"> # 꼬끄 </span></div>
+                                    <div class="item-align">
+                                        <div><input type="radio" name="꼬끄모양" value="원" class="coque"><span
+                                                class="radio-text"> 원 모양</span>
+                                        </div>
+                                        <input type="text" name="꼬끄색" placeholder=" ex) 색상 - 파랑, #0000FF" value=""
+                                            class="coque coque-color">
+                                    </div>
+                                    <div class="item-align">
+                                        <div><input type="radio" name="꼬끄색" value="캐릭터" class="coque"><span
+                                                class="radio-text"> 캐릭터
+                                                모양</span></div>
+                                        <input type="file" name="첨부파일" class="coque coque-character">
+                                    </div>
+                                </div>
+                                <!-- 크림 -->
+                                <div class="item-container">
+                                    <div class="title-container"><span class="list-title"> # 크림 </span></div>
+                                    <div class="item-align">
+                                        <div class="cream-title"><span>색상</span></div>
+
+                                        <div><input type="text" name="크림색" placeholder=" ex) 파랑, #0000FF" value=""
+                                                class="cream cream-color"></div>
+                                    </div>
+                                    <div class="div"></div>
+
+                                    <div class="cream-title"><span>모양</span></div>
+                                    <div class="item-align">
+                                        <div><input type="radio" name="크림모양" value="단층" class="cream"><span
+                                                class="radio-text"> 단층</span></div>
+                                        <div><input type="radio" name="크림모양" value="이층" class="cream"><span
+                                                class="radio-text"> 이층</span></div>
+                                        <div><input type="radio" name="크림모양" value="회오리" class="cream"><span
+                                                class="radio-text"> 회오리</span></div>
+                                    </div>
+                                    <div class="div"></div>
+
+                                    <div class="cream-title"><span>잼</span></div>
+                                    <div class="item-align">
+                                        <div><input type="radio" name="잼" value="딸기" class="cream"><span
+                                                class="radio-text"> 딸기</span>
+                                        </div>
+                                        <div><input type="radio" name="잼" value="블루베리" class="cream"><span
+                                                class="radio-text"> 블루베리</span>
+                                        </div>
+                                        <div><input type="radio" name="잼" value="사과" class="cream"><span
+                                                class="radio-text"> 사과</span></div>
+                                        <div><input type="radio" name="잼" value="땅콩" class="cream"><span
+                                                class="radio-text"> 땅콩</span></div>
+                                        <div><input type="radio" name="잼" value="초코" class="cream"><span
+                                                class="radio-text"> 초코</span></div>
+                                        <div><input type="radio" name="잼" value="무화과" class="cream"><span
+                                                class="radio-text"> 무화과</span></div>
+                                        <div><input type="radio" name="잼" value="유자" class="cream"><span
+                                                class="radio-text"> 유자</span></div>
+                                        <div><input type="radio" name="잼" value="선택안함" class="cream"><span
+                                                class="radio-text"> 선택안함</span></div>
+                                    </div>
+                                    <div class="div"></div>
+                                </div>
+                            </div>
+
+                            <!-- 요청 사항 -->
+                            <div class="box-container item-container">
+                                <div class="title-container"><span class="list-title"> # 요청사항 </span></div>
+                                <input type="textarea" name="요청사항" value="" placeholder=" 요청 사항을 적어주세요"
+                                    class="textarea">
+                            </div>
+
+                            <button id="btn_option" type="button" value="옵션선택" class="submit">옵션선택완료</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- //커스텀 마카롱 주문 선택 사항 -->
+
+                <!-- 옵션 확인  -->
+                <div class="option">
+                <div class="option-contents">
+                    <div class="title"># 주문 내역서</div>
+                    <hr>
+                    <div class="option-item">
+                    <div class="option-list">
+                        <div id="option" class="no-option">- 선택된 옵션 없음- </div>
+                    </div>
+                    </div>
+                    <hr>
+                    <div class="price-text">총 상품 금액 <span id="sum_price" class="price-amount">0원</span></div>
+
+                    <input type="submit" id="btn_order" value="주문하기" class="order">
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- //CONTENTS -->
+
+        <!-- Footer -->
+        <%- include ('../views/footer') %>
+        <!-- //Footer -->
+    </div>
+</body>
+
+<script>
+// 입력 받은 데이터를 json 형태로 변수에 저장
+var data = new Array(); 
+var price = new Array(0); 
+var cnt = 0;
+var inputData = new Array();
+var sendData = new Object();
+var jsonData = new Object();
+var arrayData = new Array();
+var obj;
+var sumPrice = 0;
+
+// 옵션 추가하기 
+$("#btn_option").click(function(){
+    inputData = $("form").serializeArray();
+    obj = new Object();
+
+    for (var i = 0; i < inputData.length; i++) {
+        var param_name = inputData[i].name;
+        var param_value = inputData[i].value;
+
+        // 가격 책정
+        if ( i == 0 ) {
+            if (param_value == '원') {
+                price[cnt] = 2000;
+            } else {
+                price[cnt] = 3000;
+            }
+            //데이터 정렬
+            data[cnt] = param_name + ": " + param_value;
+        } else {
+            data[cnt] = data[cnt] + ",  "+ param_name + ": " + param_value; 
+        }
+    }
+
+    var addTag = "";
+    // 선택한 옵션 화면에 보여주기
+    $("#option").css("padding-top", "0px");
+    $("#option").html(""); // 기존 태그 초기화
+    for (var i = 0; i <= cnt; i++) {
+        addTag = addTag + "<div style='background: #e8e8e8;margin-bottom:35px'><div style='white-space:break-all;text-align:left'>" +  data[i] + "</div><div style='float:left;'><input id='num' type='number' value='1' min='1' max='10' style='width:100px;margin:4px'/></div><div id='option_price["+ cnt + "]' style='float:right;font-weight:bold'>" + price[i] +"원 </div> </div>";
+    }
+    $("#option").append(addTag); 
+
+    // 총 가격 설정
+    var sum = 0;
+    for (var i = 0; i <= cnt; i++) {
+        sum = sum + price[i];        
+    }
+    sumPrice = sum;
+    $("#sum_price").text(sum.toString() + "원");
+
+    obj = {
+        data : data[cnt],
+        num: 1,
+        price: price[cnt]
+    };
+    arrayData.push(obj);
+
+
+    // 선택한 옵션 초기화
+    $("form").each(function() {  
+        this.reset();  
+    });  
+    cnt = cnt + 1;
+});
+
+
+
+// 주문하기 
+$("#btn_order").click(function () {
+   if (cnt == 0 ) {
+       alert("옵션을 선택해주세요");
+   } else {
+       // 한 번에 여러번 클릭으로 값이 이중으로 들어가는 것 방지
+       $("#btn_order").css("disabled", true);
+       var sJson = JSON.stringify(arrayData);
+
+       jsonData = {
+            sumPrice : sumPrice,
+            product : sJson
+       };
+
+       $.ajax ({
+            type: 'post',
+            url: '/order',
+            dataType: 'json',
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            data: jsonData
+       })
+        .success(function (data) { 
+            // 주문 성공, 주문 완료 페이지로 이동
+            if (data.result == 0) {
+                // alert(data.msg);
+                location.href = '/order_done';
+            } else if (data.reset == 1){
+                // 주문하기전 로그인 여부 확인
+                alert(data.msg);
+            } else { 
+                // 주문 실패 
+                $("#btn_order").css("disabled", false);
+                alert(data.msg);
+            }
+        })
+    }
+});
+
+</script>
+</html>

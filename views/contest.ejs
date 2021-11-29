@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include ('../views/head') %> 
+    <link type="text/css" rel="stylesheet" href="/public/css/contest.css">
+    <title>Contest</title>
+</head>
+<body>
+    <div id="wrap">
+       
+       <!-- HEADER -->
+       <%- include ('../views/header') %>
+        <!-- //HEADER -->
+       
+       <!-- CONTENTS -->
+
+       <!-- 소개 간판 -->
+        <div class="sign_text">
+            <div class="title">Contest</div>
+            <div class="text">
+                여러분이 주문했던 나만의 마카롱을 자랑하는 마카롱 Contest! <br>
+                사진과 함께 후기를 적어주세요~
+            </div>
+        </div>
+        <!-- //소개 간판 -->
+        
+        <!-- 후기 등록 Form -->
+        <div class="review_upload">
+            <form id="contest_form" method="post" enctype="multipart/form-data">
+                <input type="text" name="title" placeholder=" 마카롱 이름을 지어주세요~" required class="title">
+                <input type="textarea" name="review" placeholder=" 나만의 마카롱을 자랑해 주세요~" required cols="20" wrap="hard" class="review" id="textarea">
+                <input type="file" name="photo" class="photo">
+                <input type="button" value="글쓰기" name="" class="submit" onclick="changeAction()">
+            </form>
+        </div>
+        <!-- //후기 등록 Form -->
+
+        <!-- 작성된 후기들 -->
+        <% for(var data of results) { %>
+        <div class="review-container">
+            <div class="review-top">
+                <div class="macaron-name"><%= data.cont_title %></div>
+                <div class="user_id"><%= data.m_id %></div>
+            </div>
+            <div class="review-contents">
+                <img src="<%= data.cont_img %>" alt="">
+                <div class="review"><%= data.cont_review %></div>
+            </div>
+        </div>
+        <% } %>
+        <!-- //작성된 후기들 -->
+        
+        <!-- //CONTENTS -->
+        
+        <!-- Footer -->
+        <%- include ('../views/footer') %>
+        <!-- //Footer -->
+    </div>
+</body>
+
+<script>
+    function changeAction() {
+        var isLogin = <%= isLogin %>;
+        if (!isLogin) {
+            // $('#contest_form').attr('method', 'get');
+            $('#contest_form').attr('action', '/login').submit();
+        } else {
+            // $('#contest_form').attr('method', 'post');
+            $('#contest_form').attr('action', '/contest/upload').submit();
+        }
+    }
+
+</script>
+</html>

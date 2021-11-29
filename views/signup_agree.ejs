@@ -1,0 +1,98 @@
+﻿<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+    <%- include('head') %>
+    <title>약관동의</title>
+    <link type = "text/css" rel="stylesheet" href="/public/css/signup_agree.css">
+</head>
+
+<body>
+    <!-- header -->
+    <%- include('header') %>
+  
+    <!-- 회원가입 절차 설명 -->
+    <div class="menu">
+        <div class="menu-bg">
+                <div style="width: 28%;float: left;">
+                    <p class="signtxt">회원가입</p>
+                </div>
+                <div style="width: 80%;">
+                    <p class="sign_num">
+                        <label class="point">1.</label>
+                        <label class="point2"> 약관동의</label>
+                        <label class="menu-txt"> > 2. 정보입력 > 3. 가입완료</label> 
+                    </p>
+                </div>
+        </div>
+    </div>
+        
+    <!-- 약관 동의 -->
+    <form>
+        <div class="div-align">
+            <div class="div-agree">
+                <div style="width: 100%; float: left;">
+                    <input type="checkbox" id="allchk" class="allchk" name="allchk"  style="float: left;" onclick="togchk(this, 'chk[]');">전체 동의
+                </div>
+                <hr style="width:100%; color:e0e0e2; display:inline-block;" />
+                <p class="ptxt1">필수 동의 항목</p>
+                <div style="width: 100%;">
+                    <input type="checkbox" id="ness" name="chk[]" style="float: left;">
+                    <label class="text" style="float: left;">(주) Macaron Tree 이용약관에 동의합니다.</label>
+                    <button class="btn-content">내용보기</button>
+                </div>
+
+                <div style="float: left; width: 100%;">
+                    <input type="checkbox" id="ness" name="chk[]">
+                    <label class="text">개인정보 수집 및 이용에 동의합니다.</label>
+                    <button class="btn-content">내용보기</button>
+                </div>
+
+                <div style="float: left; width: 100%;">
+                    <input type="checkbox" id="ness" name="chk[]">
+                    <label class="text">개인정보 제3자 제공에 동의합니다.</label>
+                    <button class="btn-content">내용보기</button>
+                </div>
+
+                <p class="ptxt1">선택 동의 항목</p>
+                <div text-align="left">
+                    <input type="checkbox" id ="chk[4]" name="chk[]">
+                    <label class="text">마케팅 이메일 수신</label>
+                </div>
+
+                <div text-align="left">
+                    <input type="checkbox" id ="chk[5]" name="chk[]">
+                    <label class="text">마케팅 SMS 수신</label>
+                </div>
+                <div style="margin-top: 10px;">
+                    <p class="ptxt2">- 할인 쿠폰, 특가상품 이벤트 정보를 받아보세요! </p>
+                    <p class="ptxt2">- 만 14세 이상만 가입이 가능합니다. </p>
+                    <p id="p-warning">약관 동의를  체크해주세요</p>
+                </div>
+            </form>
+                <!-- 확인 버튼  -->
+                <button id="btn_ok" type="button" style="margin: 30px 0;">확인</button>
+            </div>
+        </div>
+    </form>
+</body>
+
+<script>
+// 약관 동의 전체 체크
+function togchk(obj, elname) {
+    var f = obj.form;
+    for (var i = 0; i < f.elements.length; i++) {
+        var el = f.elements[i];
+        if (el.name == elname) el.checked = obj.checked;
+    }
+}
+
+// 사용자 약관 동의 체크 여부 확인
+$("#btn_ok").click(function(){
+    if ($("input:checkbox[name=allchk]").is(":checked") == true ) {
+        location.href ="/signup_input";
+    } else {
+        $("#p-warning").css("display", "block");
+    }
+});
+</script>
+</html>

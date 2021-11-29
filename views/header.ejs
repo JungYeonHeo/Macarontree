@@ -1,0 +1,95 @@
+
+<!-- HEADER -->
+<div id="headers">
+    
+    <!-- Top 영역 -->
+    <div id="header-top">
+        <div class="sns">
+            <img src="/public/images/icon_facebook.png" alt="">
+            <img src="/public/images/icon_instagram.png" alt="">
+            <img src="/public/images/icon_youtube.png" alt="">
+        </div>
+        
+        <div class="center"></div>
+        
+        <div class="users">
+            <% if (!isLogin) { %>
+                <a href="/login">로그인</a>
+                <a href="/signup_agree">회원가입</a>
+            <% } else { %>
+                <a href="/login_check/logout">로그아웃</a>
+                <a href="/order_list">마이페이지</a>
+            <% } %>
+        </div>
+    </div>
+    <!-- //Top 영역 -->
+    
+    <!-- MEMU -->
+    <div id="header-body">
+       <div id="header-contents">
+            <div class="logo">
+                <img src="/public/images/logo.png" alt="">
+                <a href="">Macaron Tree</a>
+            </div>
+            <hr>
+            <div class="menu-contents">
+                <a class="menu-item" href="/">HOME</a>
+                <a class="menu-item" href="/basic">BASIC</a>
+                <a class="menu-item" href="/unique">UNIQUE</a>
+                <a class="menu-item" href="/contest">CONTEST</a>
+                <a class="menu-item" href="/cooking">COOKING</a>
+                <a class="menu-item" href="/mind">MIND</a>
+            </div>
+       </div>
+    </div>
+    <!-- //MEMU -->
+    
+</div>
+<!-- //HEADER -->
+
+<!-- MOBILE HEADER - 햄버거 버튼 클릭 시 노출 -->
+<div id="mobile-headers" style="z-index: 1000">
+    <div class="mobile_menu">
+         <button type="button" class="menu-toggle" onclick="toggleMenu()">
+             <span class="sr-only"></span>
+         </button>
+     </div>
+     <div class="menu-collapse" id="sidebar">
+        <div class="menu-header">
+         <button type="button" class="menu-toggle" onclick="toggleMenu()">
+             <span class="sr-only"></span>
+         </button>
+        </div>
+        <div class="menu-contents">
+            <section class="menu-profile">
+                <div class="menu-mypage">
+                    <img src="/public/images/icon_user.png">
+                </div>
+                <div class="menu-user">
+                    <% if (!isLogin) { %>
+                    <a class="menu-login" href="/login">로그인</a>
+                    <a class="menu-register" href="/signup_agree">회원가입</a>
+                    <% } else { %>
+                    <a class="menu-login" href="/login_check/logout">로그아웃</a>
+                    <a class="menu-register" href="/order_list">마이페이지</a>
+                    <% } %>
+                </div>
+            </section>
+            <div class="menu-items">
+                <a class="menu-item" href="/">HOME</a>
+                <a class="menu-item" href="/basic">BASIC</a>
+                <a class="menu-item" href="/unique">UNIQUE</a>
+                <a class="menu-item" href="/contest">CONTEST</a>
+                <a class="menu-item" href="/cooking">COOKING</a>
+                <a class="menu-item" href="/mind">MIND</a>
+            </div>
+        </div>
+     </div>
+     <button type="button" class="menu-dim" onclick="toggleMenu()"></button>
+      
+    <div class="logo">
+        <img src="/public/images/logo.png" alt="">
+        <a href="">Macaron Tree</a>
+    </div>
+</div>
+<!-- //MOBILE HEADER -->

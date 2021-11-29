@@ -1,0 +1,99 @@
+﻿<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+    <%- include('head') %>
+    <title>마이페이지</title>
+    <link type = "text/css" rel="stylesheet" href="/public/css/mypage.css">
+    <link type = "text/css" rel="stylesheet" href="/public/css/like_list.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+    <!-- header -->
+    <%- include('header') %>
+  
+    <div class="mypage" style="display: inline;">
+
+        <!-- 마이페이지 로고 -->
+        <div class="logo"> 마이페이지 </div>
+        
+        <div class ="align">
+
+        <!-- 왼쪽 메뉴 -->
+        <div class="myPageLeftMenu fL">
+            <div class="myPageSubMenu">
+                <div class="order">
+                    주문 내역
+                </div>
+                <div class="like">
+                    찜한 상품
+                </div>
+                <div class="user">
+                    개인 정보
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="mobilemenu">
+            <div class="order">
+                주문내역
+            </div>
+            <div class="like">
+                찜한 상품
+            </div>
+            <div class="user" >
+                개인 정보
+            </div>
+        </div>
+        <br>
+
+        <!-- 오른 쪽 메뉴 -->
+        <!-- 찜한 상품 -->
+        <div id="like-list">
+            <!-- 어느 페이지인지 설명 -->
+            <div class="div-sub">
+                <div style="float:left; font-weight: bold; font-size: 20px;">찜한 상품</div>
+                <div style="float:right; font-size: 10pt; margin: 0;"> <img src="/public/images/home.png" style="width: 20px; height: 20px; padding-right: 10px;"> 메뉴 > 마이페이지 > 찜한 상품</div>
+                <div style="width:100%; height: 2px; background: #000000; display:inline-block; margin: 0;"> </div>
+            </div>
+
+            <!-- 찜한 목록 테이블 -->
+            <div id="table" style="margin-bottom: 90px;">
+                <div class="col">상품</div>
+                <div class="col">상품명(ko)</div>
+                <div class="col">상품명(en)</div>
+                <div class="col">가격</div>
+
+            <%  for (data of like) {  %>
+                <div class="" style="grid-column: 1/2;"><img src="/public/images/<%= data.prd_img %>" style="width:50px; height: 50px;"/></div>  
+                <div class="" style="grid-column: 2/3;"><%= data.prd_kor %></div>
+                <div class="" style="grid-column: 3/4;"><%= data.prd_eng %></div>
+            <% if (data.prd_type == 'B') { %> 
+                <div class="" style="grid-column: 4/5;">2000원</div>
+            <% } else { %>
+                <div class="" style="grid-column: 4/5;">3000원</div>
+            <% }
+            } %>
+            </div>
+        </div>
+        <!-- 찜한 상품 -->
+
+
+        </div>
+    </div>
+</body>
+
+<script> 
+
+// 왼쪽 메뉴에 따른 페이지 전환
+$(".order").click(function(){
+    location.href = '/order_list';
+});
+$(".like").click(function(){
+    location.href = '/like_list';
+});
+$(".user").click(function(){
+    location.href ='/user_update';
+});
+</script>
+</html>
