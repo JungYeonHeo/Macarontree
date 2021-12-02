@@ -44,6 +44,7 @@
                                 var index = parseInt(prd_name.substr(1,2)) - 1 - 12; 
                                 console.log(index); %>
                                 <script>
+                                    var icon = new Array(false);
                                     icon['<%= index %>'] = true; 
                                 </script>
 
@@ -163,11 +164,6 @@
     });  
 
     // 찜(하트) 기능 눌렀을 때 동작
-//    $( document ).ready(function() {
-//     console.log( "ready!" );
-//     var icon = new Array(false);
-//     });
-    var icon = new Array(false);
     var data = {};
     var id = "";
     $(".icon").click(function (event) {
