@@ -180,46 +180,33 @@
             id = "b" + (j+1+12).toString();  
         }
         data = { "prd_id": id };   
-        
-        if (icon[j] == true ) { 
-            // 찜한 상품에서 삭제
-            $.ajax({
-                type: 'post',
-                url: '/like_delete',
-                datatype: 'json',
-                contentType: "application/x-www-form-urlencoded; charset=utf-8",
-                data: data
-            })
-            .success(function (data) {
-                if (data.result == 0) {
-                    $(".icon:eq("+j+")").css("color","#ffffff");
-                    $(".price").css("color", "#ffffff");
-                    icon[j] = false;
-                    alert(data.msg);
-                    console.log("찜한 상품에서 삭제");
-                }
-            });
-        } else {  
-            // 찜한 상품에 추가 
-            $.ajax({
-                type: 'post',
-                url: '/like_add',
-                datatype: 'json',
-                contentType: "application/x-www-form-urlencoded; charset=utf-8",
-                data: data
-            })
-            .success(function (data) {
-                if (data.result == 0) {
-                    $(".icon:eq("+j+")").css("color","#ff0000");
-                    $(".price").css("color", "#ffffff");
-                    icon[j] = true;
-                    alert(data.msg);
-                    console.log("찜한 상품으로 추가");
-                } else {
-                    alert(data.msg);
-                }
-            });
-        }
+
+        // 찜한 상품 추가 및 삭제 
+        $.ajax({
+            type: 'post',
+            url: '/like_add_delete',
+            datatype: 'json',
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            data: data
+        })
+        .success(function (data) {
+            if (data.result == 0) { // 로그인 되어있지 않을 때 
+                alert(data.msg);
+                location.href="/login";
+            } else if (data.result == 1) { // 이미 등록되어 있어서 삭제 
+                $(".icon:eq("+j+")").css("color","#ffffff");
+                $(".price").css("color", "#ffffff");
+                icon[j] = false;
+                alert(data.msg); 
+                console.log("찜한 상품에서 삭제");
+            } else if (data.result == 2) { // 기존에 등록되어 있지 않아 추가 
+                $(".icon:eq("+j+")").css("color","#ff0000");
+                $(".price").css("color", "#ffffff");
+                icon[j] = true;
+                alert(data.msg);
+                console.log("찜한 상품으로 추가");
+            } 
+        });
     });
 
 

@@ -47,8 +47,7 @@ var contest = require('./routes/contest'); // contest 페이지
 var cooking = require('./routes/cooking'); // cooking 페이지
 var mind = require('./routes/mind'); // mind 페이지 
 var order = require('./routes/order'); // unique 페이지 주문처리 
-var like_add = require('./routes/like_add');  // Basic  상품 찜 추가 
-var like_delete = require('./routes/like_delete');  // Basic  상품 찜 삭제
+var like_add_delete = require('./routes/like_add_delete');  // Basic  상품 찜 추가 
 var login = require('./routes/login'); // 로그인 페이지 
 var login_check = require('./routes/login_check');  // 로그인 정보 체크
 var id_check = require('./routes/id_check'); // 회원가입 id 중복 체크
@@ -121,8 +120,7 @@ app.use('/contest', contest);
 app.use('/cooking', cooking);
 app.use('/mind', mind);
 app.use('/order', order);
-app.use('/like_add', like_add); 
-app.use('/like_delete', like_delete); 
+app.use('/like_add_delete', like_add_delete); 
 app.use('/login', login); 
 app.use('/id_check', id_check);
 app.use('/login_check', login_check);
