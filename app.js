@@ -103,10 +103,10 @@ app.use(cors());
 // 로그인 여부 확인
 app.use(function (req, res, next) {
   if (req.session.logined) {
-    console.log('>>res.locals.isLogin: yes');
+    console.log('### res.locals.isLogin: yes');
     res.locals.isLogin = true;
   } else {
-    console.log('>>res.locals.isLogin: no');
+    console.log('### res.locals.isLogin: no');
     res.locals.isLogin = false;
   }
   next();
@@ -146,6 +146,8 @@ app.use( errorHandler );
 
 
 // 웹서버 시작
-var server = http.createServer(app).listen(app.get('port'), function(){
-  console.log('웹 서버 시작됨 -> %s, %s', server.address().address, server.address().port);
+var server = app.listen(3456, "127.0.0.1", function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log('running at http://' + host + ':' + port)
 });
