@@ -146,8 +146,6 @@ app.use( errorHandler );
 
 
 // 웹서버 시작
-var server = app.listen(3456, "127.0.0.1", function () {
-    var host = server.address().address;
-    var port = server.address().port;
-    console.log('running at http://' + host + ':' + port)
+var server = http.createServer(app).listen(app.get('port'), function(){
+  console.log('### 웹 서버 시작됨 -> %s', server.address());
 });
