@@ -10,7 +10,7 @@ var connection = require('../db/db_conn')();
 var db_conn = connection.init();
 
 router.get('/', function(req, res, next) {
-    console.log("user_update 호출");
+    console.log("### user_update 호출");
 
     var id = req.session.user_id;
     console.log("req.session.user_id: " + id);
@@ -31,12 +31,11 @@ router.get('/', function(req, res, next) {
         var query = conn.query('select m_id, m_pw, m_name, m_tel, m_addr from member where m_id = ?', id, function(err, rows) {
         	
         	if (err) {
-        		console.log('SQL 실행 시 에러 발생함.');
-        		console.dir(err);
+                console.log(">>> SQL 실행 시 에러 발생함 - " +  err);
         		return;
             }
             
-            console.log('실행 대상 SQL : ' + query.sql);
+            console.log("실행 대상 SQL : " + query.sql);
             
             // 객체에 보여줄 데이터 추가
             send_data.user = rows;
@@ -44,8 +43,7 @@ router.get('/', function(req, res, next) {
         });
 
         conn.on('error', function(err) {      
-            console.log('데이터베이스 연결 시 에러 발생함.');
-            console.dir(err);
+            console.log(">>> 데이터베이스 연결 시 에러 발생함 - " +  err);
         });
     });
 });

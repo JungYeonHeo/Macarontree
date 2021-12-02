@@ -26,8 +26,7 @@ router.get('/', function(req, res, next) {
             conn.release();
             
         	if (err) {
-        		console.log('SQL 실행 시 에러 발생함.');
-        		console.dir(err);
+        		console.log(">>> SQL 실행 시 에러 발생함 - " + err);
         		return;
             }
             
@@ -49,8 +48,7 @@ router.get('/', function(req, res, next) {
         });
         
         conn.on('error', function(err) {      
-            console.log('데이터베이스 연결 시 에러 발생함.');
-            console.dir(err);
+            console.log(">>> 데이터베이스 연결 시 에러 발생함 - " + err);
         });
     });
 });
@@ -88,15 +86,15 @@ router.post('/upload', upload.single('photo'), function(req, res, next) {
     
     // html의 form 에서 받아온 데이터
     var title = req.body.title;
-    console.log('contest title: ' + title);
+    console.log("contest title: " + title);
 
     var review = req.body.review;
-    console.log('contest review: ' + review);
+    console.log("contest review: " + review);
 
      var file = req.file;
 
      var filename = file.filename;
-     console.log('contest file: ' + filename);
+     console.log("contest file: " + filename);
 
      // 데이터를 객체로 만듦
      var data = {cont_title:title, cont_review:review, cont_img:filename};
@@ -116,16 +114,14 @@ router.post('/upload', upload.single('photo'), function(req, res, next) {
         	console.log('SQL : ' + exec.sql);
         	
         	if (err) {
-        		console.log('SQL 실행 시 에러 발생함.');
-        		console.dir(err);
+        		console.log(">>> SQL 실행 시 에러 발생함 - " + err);
         		return;
         	}
         	
         });
         
         conn.on('error', function(err) {      
-            console.log('데이터베이스 연결 시 에러 발생함.');
-            console.dir(err);
+            console.log(">>> 데이터베이스 연결 시 에러 발생함 - " + err);
         });
     });
 

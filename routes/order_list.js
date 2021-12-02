@@ -15,7 +15,7 @@ var send_data = {};
 router.get('/', function(req, res, next) {
 
   MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
+    if (err) console.log(">>> MongoDB 접속 중 에러 발생함 - " +  err);
     var database = db.db("mongo");
     database.collection("order").find({ord_id: req.session.user_id}).toArray(function(err, result) {
       if (err) throw err;

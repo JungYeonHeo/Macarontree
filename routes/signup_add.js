@@ -34,12 +34,12 @@ router.post('/', function(req, res, next) {
         	if (conn) {
                 conn.release();
             }
-            msg = "사용자 로그인 중 에러  발생";
-            result = 0;
-			res.send({result: 0, msg: msg});
+            console.log(">>> DB 연결 중 에러 발생함 - " +  err);
+            // result = 0;
+			// res.send({result: 0, msg: msg});
 			return;          
         }   
-        console.log('데이터베이스 연결 스레드 아이디 : ' + conn.threadId);
+        console.log("데이터베이스 연결 스레드 아이디 : " + conn.threadId);
 
         // 데이터를 객체로 만듦
         var data = { "m_id": id, "m_pw": hashPassword, "m_name": name, "m_tel": tel, "m_addr" : addr };
@@ -47,17 +47,16 @@ router.post('/', function(req, res, next) {
         // 회원가입 SQL 문을 실행함
         var inputUserData = conn.query('insert into member set ?', [data], function(err, result) {
             conn.release();  
-            console.log('실행 대상 SQL : ' + inputUserData.sql);
+            console.log("### 실행 대상 SQL : " + inputUserData.sql);
             
             if (err) {
-                console.log('SQL 실행 시 에러 발생함.');
-                console.dir(err);
-                msg = "회원가입 중 에러  발생";
+                console.log(">>> 회원가입 중 에러 발생함 - " +  err);
+                msg = "회원가입 중 에러 발생";
                 res.json({result: 3, msg: msg});
                 return;          
             } else {
                 msg = "회원가입 성공";
-                console.log("성공");
+                console.log("### 회원 가입 성공");
                 res.send({result:4, msg:msg});
                 return;
             }

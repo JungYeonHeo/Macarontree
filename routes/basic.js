@@ -32,8 +32,7 @@
          conn.query('select prd_id, prd_img, prd_kor, prd_eng, prd_type from product', function(err, rows, columns) {
              
              if (err) {
-                 console.log('product SQL 실행 시 에러 발생함.');
-                 console.dir(err);
+                 console.log(">>> product SQL 실행 시 에러 발생함 - " + err);
                  return;
              }
              
@@ -46,6 +45,7 @@
                  }
              }
              send_data.product = rows;
+             console.log("### 상품 조회");
              console.log(rows);
  
              console.log(req.session.logined);
@@ -59,19 +59,19 @@
      });
 
      MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
+        if (err) console.log(">>> MongoDB 접속 중 에러 발생함 - " +  err);
         var dbo = db.db("mongo");
         dbo.collection("like").find({ prd_id: req.session.user_id }, {unique: true}).toArray(function (err, result) {
-            if (err) throw err;
-            console.log("mongo DB에 찜한 상품 조회");
+            if (err) console.log(">>> 찜한 상품 전체 조회 중 에러 발생함 - " +  err)
+            console.log("### 찜한 상품 전체 조회");
             console.log(result);  
             send_data.likes = result; //사용자가 찜한 상품 데이터 담기 (mysql에 product테이블의 key 값으로 저장되어 있음)
             db.close();
-            // basic.ejs 렌더링
+
+            // basic.html 렌더링
             res.render('../views/basic', send_data);
         });
     });
-
  });
  
  

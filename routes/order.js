@@ -20,7 +20,7 @@ console.log("현재시간: " + date);
 var msg = "";
 
 router.route('/').post(function(req, res) {
-    console.log('/order 호출됨.');
+    console.log("### order 호출됨.");
     console.log(req.body);
     
     if (req.session.user_id == undefined) {
@@ -29,10 +29,9 @@ router.route('/').post(function(req, res) {
         return;
     } else {
         MongoClient.connect(url, function(err, db) {
-            if (err) console.log("MongoDB에러");
+            if (err) console.log(">>> MongoDB 접속 중 에러 발생함 - " +  err);
 
             var database = db.db("mongo");
-            // console.log(req.body);
 
             // orderSchema Model
             var orderList = [
@@ -43,7 +42,7 @@ router.route('/').post(function(req, res) {
                 } 
             ];
             database.collection("order").insertMany(orderList, function(err, res) {
-                if (err)  throw err; 
+                if (err)  console.log(">>> 주문 데이터 값 삽입 중 에러 발생함 - " +  err);
                 db.close();
             });
 

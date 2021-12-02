@@ -45,7 +45,7 @@ router.get('/', function(req, res, next) {
                 }
 
                 // product SQL 문을 실행함
-                console.log("like_list mysql 조회중");
+                console.log("### like_list mysql 조회 중");
                 var selectProductData = conn.query('select * from product where prd_id in(' + str + ')', function(err, result) {
                     console.log('실행 대상 SQL : ' + selectProductData.sql);
                     

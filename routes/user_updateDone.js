@@ -16,7 +16,7 @@ var result;
 
 // 사용자를 등록하는 함수
 router.post('/', function(req, res, next) {
-    console.log('user_updateDone 호출됨');
+    console.log("### user_updateDone 호출됨");
     
     // 요청 파라미터 확인
     console.log(req.body);
@@ -34,12 +34,12 @@ router.post('/', function(req, res, next) {
         	if (conn) {
                 conn.release();
             }
-            msg = "정보 수정 중 에러  발생";
+            msg = "정보 수정 중 에러 발생";
             result = 0;
 			res.send({result: 0, msg: msg});
 			return;          
         }   
-        console.log('데이터베이스 연결 스레드 아이디 : ' + conn.threadId);
+        console.log("데이터베이스 연결 스레드 아이디 : " + conn.threadId);
 
         // 회원가입 SQL 문을 실행함
         var updateUserData = conn.query('update member set m_pw =?, m_name = ?, m_tel = ?, m_addr = ? where m_id = ?', [hashPassword, name, tel, addr, id], function(err, result) {
@@ -47,15 +47,14 @@ router.post('/', function(req, res, next) {
             console.log('실행 대상 SQL : ' + updateUserData.sql);
             
             if (err) {
-                console.log('SQL 실행 시 에러 발생함.');
-                console.dir(err);
-                msg = "정보 수정 중 에러  발생";
+                console.log(">>> 회원 정보 수정 중 에러 발생함 - " +  err);
+                msg = "회원 정보 수정 중 에러 발생";
                 res.json({result: 3, msg: msg});
                 return;          
             } else {
                 msg = "정보 수정 성공";
-                console.log("성공");
-                res.send({result:1, msg:msg});
+                console.log("### 회원 정보 수정 성공");
+                res.send({result: 1, msg: msg});
                 return;
             }
         });

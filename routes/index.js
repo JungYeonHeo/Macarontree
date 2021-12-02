@@ -27,8 +27,7 @@ router.get('/', function(req, res, next) {
         conn.query('select prd_img, prd_kor, prd_eng from product limit 4', function(err, rows, columns) {
         	
         	if (err) {
-        		console.log('product SQL 실행 시 에러 발생함.');
-        		console.dir(err);
+        		console.log(">>> product SQL 실행 시 에러 발생함 - " + err);
         		return;
             }
             
@@ -37,7 +36,7 @@ router.get('/', function(req, res, next) {
                 for (var keyNm in rows[i]) {
                     if (keyNm == "prd_img") {
                         rows[i][keyNm] = "/public/images/" + rows[i][keyNm];
-                        console.log('>>> img: '+rows[i][keyNm]);
+                        console.log("img: " + rows[i][keyNm]);
                     }
                 }
             }
@@ -54,8 +53,7 @@ router.get('/', function(req, res, next) {
             conn.release();
 
         	if (err) {
-        		console.log('SQL 실행 시 에러 발생함.');
-        		console.dir(err);
+        		console.log(">>> SQL 실행 시 에러 발생함 - " + err);
         		return;
             }
             
@@ -76,8 +74,7 @@ router.get('/', function(req, res, next) {
         });
 
         conn.on('error', function(err) {      
-            console.log('데이터베이스 연결 시 에러 발생함.');
-            console.dir(err);
+            console.log(">>> 데이터베이스 연결 시 에러 발생함 - " + err);
         });
     });
 });
