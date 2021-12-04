@@ -7,8 +7,9 @@
 
 var express = require('express');
 var router = express.Router();
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+
+// db connection
+var mongodb_connection = require('../db/mongodb_conn');
 
 // 현재 시간 구하기 
 var moment = require('moment');
@@ -26,12 +27,11 @@ router.route('/').post(function(req, res) {
     if (req.session.user_id == undefined) {
         msg = "로그인 후 이용해주세요";
         res.send({result: 1, msg: msg});
-        return;
     } else {
-        MongoClient.connect(url, function(err, db) {
+        mongodb_connection.connectToServer(function(err, client) {
             if (err) console.log(">>> MongoDB 접속 중 에러 발생함 - " +  err);
 
-            var database = db.db("mongo");
+            var mongodb = mongodb_connection.getDb();
 
             // orderSchema Model
             var orderList = [
@@ -41,15 +41,14 @@ router.route('/').post(function(req, res) {
                     ord_content: req.body
                 } 
             ];
-            database.collection("order").insertMany(orderList, function(err, res) {
-                if (err)  console.log(">>> 주문 데이터 값 삽입 중 에러 발생함 - " +  err);
-                db.close();
+            mongodb.collection("order").insertMany(orderList, function(err, res) {
+                if (err) console.log(">>> 주문 데이터 값 삽입 중 에러 발생함 - " +  err);
+
             });
 
             msg = "주문이 완료되었습니다.";
-            console.log(msg);
+            console.log("### " + msg);
             res.send({result: 0, msg: msg});
-            return;
         });
     }
 });

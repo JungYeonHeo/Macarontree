@@ -7,8 +7,9 @@
 
 var express = require('express');
 var router = express.Router();
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+
+// db connection
+var mongodb_connection = require('../db/mongodb_conn');
 
 var msg = "";
 router.route('/').post(function(req, res) {
@@ -19,9 +20,9 @@ router.route('/').post(function(req, res) {
         msg = "로그인 후 이용해주세요";
         res.send({result: 0, msg: msg});
     } else {
-        MongoClient.connect(url, function(err, db) {
+        mongodb_connection.connectToServer(function(err, client) {
             if (err) console.log(">>> MongoDB 연결 중 에러 - " + err);
-            var database = db.db("mongo");
+            var mongodb = mongodb_connection.getDb();
 
             var selectLike = { $and : [
                 {
@@ -37,25 +38,22 @@ router.route('/').post(function(req, res) {
                 }
             ];
 
-            database.collection("like").find(selectLike).toArray(function (err, result) {
+            mongodb.collection("like").find(selectLike).toArray(function (err, result) {
                 if (err) { 
-                    console.log("해당 상품 조회 중 에러 - " + err);
-                    db.close();
+                    console.log(">>> 해당 상품 조회 중 에러 - " + err);
                 } else if (result.length > 0) { // 이미 찜한 상품으로 등록이 되어 있는 경우 = 데이터 삭제 
-                    database.collection("like").deleteOne(selectLike, function(err, result) {
+                    mongodb.collection("like").deleteOne(selectLike, function(err, result) {
                         if (err) { 
                             console.log(">>> 해당 상품 삭제 중 에러 - " + err);
-                            db.close();
                         } else {
                             msg = "찜한 상품에서 삭제되었습니다.";
                             res.send({result: 1, msg: msg});
                         }
                     });
                 } else {  // 기존에 찜 한 상품으로 등록되어 있지 않은 경우 = 데이터 추가 
-                    database.collection("like").insert(likeList, {unique:true}, function(err, result) {
+                    mongodb.collection("like").insert(likeList, {unique:true}, function(err, result) {
                         if (err) {  
                             console.log(">>> 찜한 상품 추가 중 에러 - " + err);
-                            db.close();
                         } else {
                             msg = "찜한 상품에 추가되었습니다.";
                             res.send({result: 2, msg: msg});

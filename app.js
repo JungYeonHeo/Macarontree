@@ -47,7 +47,7 @@ var contest = require('./routes/contest'); // contest 페이지
 var cooking = require('./routes/cooking'); // cooking 페이지
 var mind = require('./routes/mind'); // mind 페이지 
 var order = require('./routes/order'); // unique 페이지 주문처리 
-var like_add_delete = require('./routes/like_add_delete');  // Basic  상품 찜 추가 
+var like_add_delete = require('./routes/like_add_delete');  // Basic 상품 찜 추가 
 var login = require('./routes/login'); // 로그인 페이지 
 var login_check = require('./routes/login_check');  // 로그인 정보 체크
 var id_check = require('./routes/id_check'); // 회원가입 id 중복 체크
@@ -83,7 +83,7 @@ app.use(session({
   secret: 'secret',
   resave: false,
   saveUninitialized: true,
-  store:new FileStore(), //sessions라는 디렉토리가 생김
+  store: new FileStore(), //sessions라는 디렉토리가 생김
   cookie: {
     maxAge: 24000 * 60 * 60 // 쿠키 유효기간 24시간
   }
@@ -133,19 +133,18 @@ app.use('/like_list', like_list);
 app.use('/user_update', user_update); 
 app.use('/user_updateDone', user_updateDone); 
 
-
 //404 에러 페이지 처리
 var errorHandler = expressErrorHandler({
-    static: {
+  static: {
   //    '404': './views/404.ejs'
-    }
+  }
 });
 
-app.use( expressErrorHandler.httpError(404) );
-app.use( errorHandler );
-
+app.use(expressErrorHandler.httpError(404));
+app.use(errorHandler);
 
 // 웹서버 시작
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('### 웹 서버 시작됨 -> %s', server.address());
 });
+

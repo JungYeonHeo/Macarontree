@@ -1,6 +1,7 @@
 //===== MySQL 데이터베이스를 사용할 수 있도록 하는 mysql 모듈 불러오기 =====//
 var mysql = require('mysql');
 
+// AWS RDS 접속 정보 
 //  var pool      =    mysql.createPool({
 //      host     : 'mysqldb.cim1xq4dugcp.us-east-2.rds.amazonaws.com',
 //      user     : 'tree',
@@ -28,9 +29,9 @@ module.exports = function() {
         open: function(conn) {
             conn.connect( function (err) {
                 if (err) {
-                    console.error('mysql connection error : ' + err);
+                    console.log(">>> mysql 연결 중 에러 발생함 - " + err);
                 } else {
-                    console.info('mysql is connect3ed successfully.');
+                    console.log("### mysql 연결 성공");
                 }
             })
         }

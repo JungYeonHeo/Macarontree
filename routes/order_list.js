@@ -4,26 +4,26 @@
  */
 var express = require('express');
 var router = express.Router();
-var session = require('express-session');
 
-
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+// db connection
+var mongodb_connection = require('../db/mongodb_conn');
 
 // 전달할 데이터 객체 생성
 var send_data = {};
 router.get('/', function(req, res, next) {
 
-  MongoClient.connect(url, function(err, db) {
+  mongodb_connection.connectToServer(function(err, client) {
     if (err) console.log(">>> MongoDB 접속 중 에러 발생함 - " +  err);
-    var database = db.db("mongo");
-    database.collection("order").find({ord_id: req.session.user_id}).toArray(function(err, result) {
-      if (err) throw err;
+
+    var mongodb = mongodb_connection.getDb();
+    mongodb.collection("order").find({ord_id: req.session.user_id}).toArray(function(err, result) {
+      if (err) console.log(">>> 주문 내역 조회 중 에러 발생함 - " +  err);
+
+      console.log("### 주문 내역 조회");
       console.log(result);
       send_data.order = result;
-      res.render('../views/order_list.ejs', send_data);
-      db.close();
 
+      res.render('../views/order_list.ejs', send_data);
     });
   });
 });
