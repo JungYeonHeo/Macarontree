@@ -73,8 +73,8 @@
                     <div class="col">가격</div>
                 <% for (var j = 0; j < obj.length; j++ ) { %>
                     <div class="" style="grid-column: 1/2;"><%= obj[j].data %></div>
-                    <div class="" style="grid-column: 2/3;"><%= obj[j].num %></div>
-                    <div class="" style="grid-column: 3/4;"><%= obj[j].price %>원</div>
+                    <div class="" style="grid-column: 2/3;"><%= obj[j].optionCount %></div>
+                    <div class="" style="grid-column: 3/4;"><%= obj[j].price * obj[j].optionCount %>원</div>
                 <% } %>
                 </div>
                 </div>
