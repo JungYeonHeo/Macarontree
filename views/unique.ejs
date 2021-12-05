@@ -5,8 +5,20 @@
     <%- include ('../views/head') %>
     <link type="text/css" rel="stylesheet" href="/public/css/unique.css">
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script> -->
     <title>Unique</title>
 </head>
+
+<style>
+    /* input type number 화살표 없애기 */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+</style>
 
 <body>
     <div id="wrap">
@@ -145,6 +157,7 @@
 var data = new Array(); 
 var price = new Array(0); 
 var cnt = 0;
+var optionCount = new Array(1);
 var inputData = new Array();
 var sendData = new Object();
 var jsonData = new Object();
@@ -168,72 +181,96 @@ $("#btn_option").click(function(){
             } else {
                 price[cnt] = 3000;
             }
-            //데이터 정렬
+
+            // 데이터 정렬
             data[cnt] = param_name + ": " + param_value;
         } else {
             data[cnt] = data[cnt] + ",  "+ param_name + ": " + param_value; 
         }
     }
 
+    optionCount[cnt] = 1;
+
     var addTag = "";
     // 선택한 옵션 화면에 보여주기
     $("#option").css("padding-top", "0px");
     $("#option").html(""); // 기존 태그 초기화
     for (var i = 0; i <= cnt; i++) {
-        addTag = addTag + "<div style='background: #e8e8e8;margin-bottom:35px'><div style='white-space:break-all;text-align:left'>" +  data[i] + "</div><div style='float:left;'><input id='num' type='number' value='1' min='1' max='10' style='width:100px;margin:4px'/></div><div id='option_price["+ cnt + "]' style='float:right;font-weight:bold'>" + price[i] +"원 </div> </div>";
+        var boolValue = "";
+        if (optionCount[i] == 1)
+            boolValue = "disabled";
+        addTag = addTag + "<div style='background: #e8e8e8;margin-bottom:35px'><div style='white-space:break-all;text-align:left'>" +  data[i] + "</div><div style='float:left;'><input class='option_minus' type='button' value='-'" + boolValue + "/><input class='option_count' type='number' value='" + optionCount[i] + "' min='1' max='10' style='width:50px;margin:4px'/><input class='option_plus' type='button' value='+'/></div><div class='option_price' style='float:right;font-weight:bold'>" + price[i] * optionCount[i] +"원 </div> </div>";
     }
     $("#option").append(addTag); 
-
-    // 총 가격 설정
-    var sum = 0;
-    for (var i = 0; i <= cnt; i++) {
-        sum = sum + price[i];        
-    }
-    sumPrice = sum;
-    $("#sum_price").text(sum.toString() + "원");
-
-    obj = {
-        data : data[cnt],
-        num: 1,
-        price: price[cnt]
-    };
-    arrayData.push(obj);
-
 
     // 선택한 옵션 초기화
     $("form").each(function() {  
         this.reset();  
     });  
+
     cnt = cnt + 1;
+
+    // 총 가격 설정
+    cal_sumPrice()
 });
 
+// 옵션 개수 변경
+$(document).on("click", ".option_minus", function(){ 
+    var num = $(".option_minus").index(this);
+    var count = optionCount[num] - 1;
+    $(".option_count").eq(num).val(count);
+    optionCount[num] = count;
+    $(".option_price").eq(num).text(price[num] * optionCount[num]);
+    cal_sumPrice()
+    if (count == 1) {
+        $(".option_minus").eq(num).prop("disabled", true);
+    }
+});     
 
+$(document).on("click", ".option_plus", function(){ 
+    var num = $(".option_plus").index(this); 
+    var count = optionCount[num] + 1;
+    $(".option_count").eq(num).val(count); 
+    optionCount[num] = count;
+    $(".option_price").eq(num).text(price[num] * optionCount[num]); // div, span, p 값 넣고 가져오기 - text 사용
+    cal_sumPrice()
+    $(".option_minus").eq(num).prop("disabled", false); // css 안됨, prop 사용
+});
 
 // 주문하기 
 $("#btn_order").click(function () {
-   if (cnt == 0 ) {
-       alert("옵션을 선택해주세요");
-   } else {
+    if (cnt == 0 ) {
+        alert("옵션을 선택해주세요");
+    } else {
        // 한 번에 여러번 클릭으로 값이 이중으로 들어가는 것 방지
-       $("#btn_order").css("disabled", true);
-       var sJson = JSON.stringify(arrayData);
+        $("#btn_order").css("disabled", true);
 
-       jsonData = {
+        for (var i = 0; i <= cnt; i++) {
+            obj = { 
+                data : data[cnt],
+                optionCount: optionCount[cnt],
+                price: price[cnt]
+            };
+            arrayData.push(obj);
+        }
+
+        var sJson = JSON.stringify(arrayData);
+
+        jsonData = {
             sumPrice : sumPrice,
             product : sJson
-       };
+        };
 
-       $.ajax ({
+        $.ajax ({
             type: 'post',
             url: '/order',
             dataType: 'json',
             contentType: "application/x-www-form-urlencoded; charset=utf-8",
             data: jsonData
-       })
+        })
         .success(function (data) { 
             // 주문 성공, 주문 완료 페이지로 이동
             if (data.result == 0) {
-                // alert(data.msg);
                 location.href = '/order_done';
             } else if (data.reset == 1){
                 // 주문하기전 로그인 여부 확인
@@ -246,6 +283,17 @@ $("#btn_order").click(function () {
         })
     }
 });
+
+// 총 가격 계산 함수 
+function cal_sumPrice() { 
+    var sum = 0;
+    for (var i = 0; i < cnt; i++) {
+        sum = sum + (price[i] * optionCount[i]);        
+    }
+    sumPrice = sum;
+    $("#sum_price").text(sumPrice.toString() + "원");
+};
+
 
 </script>
 </html>
