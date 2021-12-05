@@ -5,9 +5,6 @@
     <%- include ('../views/head') %>
     <link type="text/css" rel="stylesheet" href="/public/css/unique.css">
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.0.js"></script> -->
     <title>Unique</title>
 </head>
 
@@ -232,9 +229,9 @@ $(document).on("click", ".option_plus", function(){
     var count = optionCount[num] + 1;
     $(".option_count").eq(num).val(count); 
     optionCount[num] = count;
-    $(".option_price").eq(num).text(price[num] * optionCount[num]); // div, span, p 값 넣고 가져오기 - text 사용
+    $(".option_price").eq(num).text(price[num] * optionCount[num]); 
     cal_sumPrice()
-    $(".option_minus").eq(num).prop("disabled", false); // css 안됨, prop 사용
+    $(".option_minus").eq(num).prop("disabled", false); 
 });
 
 // 주문하기 
@@ -243,13 +240,13 @@ $("#btn_order").click(function () {
         alert("옵션을 선택해주세요");
     } else {
        // 한 번에 여러번 클릭으로 값이 이중으로 들어가는 것 방지
-        $("#btn_order").css("disabled", true);
+        $("#btn_order").prop("disabled", true);
 
-        for (var i = 0; i <= cnt; i++) {
+        for (var i = 0; i < cnt; i++) {
             obj = { 
-                data : data[cnt],
-                optionCount: optionCount[cnt],
-                price: price[cnt]
+                data : data[i],
+                optionCount: optionCount[i],
+                price: price[i]
             };
             arrayData.push(obj);
         }
@@ -277,7 +274,7 @@ $("#btn_order").click(function () {
                 alert(data.msg);
             } else { 
                 // 주문 실패 
-                $("#btn_order").css("disabled", false);
+                $("#btn_order").prop("disabled", false);
                 alert(data.msg);
             }
         })
