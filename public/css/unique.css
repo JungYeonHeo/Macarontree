@@ -243,6 +243,12 @@
     font-size: 30px;
 }
 
+.option-data-box :after {
+    content: "";
+    display:block;
+    clear: both;
+}
+
 @media screen and (max-width:1280px) {
 
     .option {

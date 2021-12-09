@@ -336,13 +336,13 @@ function option_reload() {
             boolValue = "disabled";
 
         if (data[i] != null) {
-            addTag += "<div style='display:block;overflow:visible;min-height:105px;height:auto;background:#ffffff;margin:5px 0 5px 0;border-radius:5px;border:2px solid #e8e8e8'>"
+            addTag += "<div class='option-data-box' style='overflow:visible;min-height:105px;height:auto;background:#ffffff;margin:5px 0 5px 0;border-radius:5px;border:2px solid #e8e8e8'>"
                 + "<div style='display:block;position:relative'>"
                 + "<div style='float:left'><input class='option_checkbox' type='checkbox' style='float:left;'/></div>"
                 + "<div style='float:right;padding:5px'><input class='option_delete' type='button' value='X' style='float:right;border-radius:5px;background:#ffffff;color:#484848;'/></div>"
                 + "</div>"
-                + "<div style='display:block;border-radius:5px;margin:5px 5px 0 5px;position:relative;top:25px;left:0px;text-align:left;font-weight:bold;background:#f5f5f5;word-break:break-all'>" + data[i] + "</div>"
-                + "<div style='position:relative;top:30px;left:0px;padding:0 5px 0 5px;'>"
+                + "<div style='display:block;border-radius:5px;margin:0 5px 5px 5px;position:relative;left:0px;padding:5px;text-align:left;font-weight:bold;background:#f5f5f5;word-break:break-all'>" + data[i] + "</div>"
+                + "<div style='position:relative;left:0px;margin-bottom:5px;padding:0 5px 0 5px;'>"
                 + "<div style='float:left;'>"
                 + "<input class='option_minus' type='button' value='-'" + boolValue + " style='background:#90a2b0;color:#ffffff;border-radius:5px 0 0 5px;'/>"
                 + "<input class='option_count' type='number' value='" + optionCount[i] + "' min='1' max='10' style='width:30px;text-align:center;'/>"
