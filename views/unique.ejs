@@ -12,9 +12,13 @@
     /* input type number 화살표 없애기 */
     input[type="number"]::-webkit-outer-spin-button,
     input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=checkbox] {
+        zoom: 1.5;
+    }
 </style>
 
 <body>
@@ -50,14 +54,14 @@
                                     <!-- 꼬끄 -->
                                     <div class="title-container"><span class="list-title"> # 꼬끄 </span></div>
                                     <div class="item-align">
-                                        <div><input type="radio" name="꼬끄모양" value="원" class="coque"><span
+                                        <div><input type="radio" name="꼬끄모양" value="원" class="coque" id="shape_circle"><span
                                                 class="radio-text"> 원 모양</span>
                                         </div>
                                         <input type="text" name="꼬끄색" placeholder=" ex) 색상 - 파랑, #0000FF" value=""
                                             class="coque coque-color">
                                     </div>
                                     <div class="item-align">
-                                        <div><input type="radio" name="꼬끄색" value="캐릭터" class="coque"><span
+                                        <div><input type="radio" name="꼬끄모양" value="캐릭터" class="coque" id="shape_etc"><span
                                                 class="radio-text"> 캐릭터
                                                 모양</span></div>
                                         <input type="file" name="첨부파일" class="coque coque-character">
@@ -127,14 +131,12 @@
                 <div class="option">
                 <div class="option-contents">
                     <div class="title"># 주문 내역서</div>
-                    <hr>
                     <div class="option-item">
                     <div class="option-list">
-                        <div id="option" class="no-option">- 선택된 옵션 없음- </div>
+                        <div id="option" class="no-option">- 선택된 옵션 없음-</div>
                     </div>
                     </div>
-                    <hr>
-                    <div class="price-text">총 상품 금액 <span id="sum_price" class="price-amount">0원</span></div>
+                    <div class="price-text">총 옵션 금액 <span id="sum_price" class="price-amount">0원</span></div>
 
                     <input type="submit" id="btn_order" value="주문하기" class="order">
                 </div>
@@ -154,6 +156,7 @@
 var data = new Array(); 
 var price = new Array(0); 
 var cnt = 0;
+var count = 0; // 실제 옵션 개수 
 var optionCount = new Array(1);
 var inputData = new Array();
 var sendData = new Object();
@@ -161,6 +164,17 @@ var jsonData = new Object();
 var arrayData = new Array();
 var obj;
 var sumPrice = 0;
+
+// 꼬끄 모양 택 1
+$("#shape_circle").click(function () {
+    $("#shape_etc").prop("checked", false);
+    $(".coque-character").prop("disabled", true);
+});
+
+$("#shape_etc").click(function () {
+    $("#shape_circle").prop("checked", false);
+    $(".coque-character").prop("disabled", false);
+});
 
 // 옵션 추가하기 
 $("#btn_option").click(function(){
@@ -188,39 +202,47 @@ $("#btn_option").click(function(){
 
     optionCount[cnt] = 1;
 
-    var addTag = "";
-    // 선택한 옵션 화면에 보여주기
-    $("#option").css("padding-top", "0px");
-    $("#option").html(""); // 기존 태그 초기화
-    for (var i = 0; i <= cnt; i++) {
-        var boolValue = "";
-        if (optionCount[i] == 1)
-            boolValue = "disabled";
-        addTag = addTag + "<div style='background: #e8e8e8;margin-bottom:35px'><div style='white-space:break-all;text-align:left'>" +  data[i] + "</div><div style='float:left;'><input class='option_minus' type='button' value='-'" + boolValue + "/><input class='option_count' type='number' value='" + optionCount[i] + "' min='1' max='10' style='width:50px;margin:4px'/><input class='option_plus' type='button' value='+'/></div><div class='option_price' style='float:right;font-weight:bold'>" + price[i] * optionCount[i] +"원 </div> </div>";
-    }
-    $("#option").append(addTag); 
+    option_reload() // 옵션 리로드
 
     // 선택한 옵션 초기화
     $("form").each(function() {  
         this.reset();  
     });  
 
-    cnt = cnt + 1;
+    cnt = cnt + 1; // index
+    count = count + 1; // 개수 
 
     // 총 가격 설정
     cal_sumPrice()
 });
 
+// 옵션 삭제하기 (X 버튼)
+$(document).on("click", ".option_delete", function(){ 
+    var num = $(".option_delete").index(this); 
+    data[num] = null;
+    price[num] = null;
+    optionCount[num] = null;
+    option_reload()
+    cal_sumPrice()
+    count = count - 1;
+    if (count == 0) { 
+        $("#option").text("- 선택된 옵션 없음 -");
+        $("#option").css("padding-top", "50px");
+    }
+});
+
 // 옵션 개수 변경
 $(document).on("click", ".option_minus", function(){ 
     var num = $(".option_minus").index(this);
+    // alert(num); // 옵션을 삭제하면 번호가 줄어들어서 에러남 
     var count = optionCount[num] - 1;
     $(".option_count").eq(num).val(count);
     optionCount[num] = count;
-    $(".option_price").eq(num).text(price[num] * optionCount[num]);
+    $(".option_price").eq(num).text(price[num] * optionCount[num]) + "원";
     cal_sumPrice()
     if (count == 1) {
         $(".option_minus").eq(num).prop("disabled", true);
+        // $(".option_minus").eq(num).css("background", "#e8e8e8");
     }
 });     
 
@@ -229,7 +251,7 @@ $(document).on("click", ".option_plus", function(){
     var count = optionCount[num] + 1;
     $(".option_count").eq(num).val(count); 
     optionCount[num] = count;
-    $(".option_price").eq(num).text(price[num] * optionCount[num]); 
+    $(".option_price").eq(num).text(price[num] * optionCount[num] + "원"); 
     cal_sumPrice()
     $(".option_minus").eq(num).prop("disabled", false); 
 });
@@ -243,12 +265,14 @@ $("#btn_order").click(function () {
         $("#btn_order").prop("disabled", true);
 
         for (var i = 0; i < cnt; i++) {
-            obj = { 
-                data : data[i],
-                optionCount: optionCount[i],
-                price: price[i]
-            };
-            arrayData.push(obj);
+            if (data[i] != null) {
+                obj = { 
+                    data : data[i],
+                    optionCount: optionCount[i],
+                    price: price[i]
+                };
+                arrayData.push(obj);
+            }
         }
 
         var sJson = JSON.stringify(arrayData);
@@ -291,6 +315,39 @@ function cal_sumPrice() {
     $("#sum_price").text(sumPrice.toString() + "원");
 };
 
+// 옵션 리로드
+function option_reload() {
+    var addTag = "";
+    // 선택한 옵션 화면에 보여주기
+    $("#option").css("padding-top", "0px");
+    $("#option").html(""); // 기존 태그 초기화
+    for (var i = 0; i <= cnt; i++) {
+        var boolValue = "";
 
-</script>
+        if (optionCount[i] == 1)
+            boolValue = "disabled";
+
+        if (data[i] != null) {
+            addTag += "<div style='display:block;overflow:visible;min-height:105px;height:auto;background:#ffffff;margin-bottom:10px;border-radius:5px;border:2px solid #e8e8e8'>"
+                + "<div style='display:block;position:relative'>"
+                + "<div style='float:left'><input class='option_checkbox' type='checkbox' style='float:left;'/></div>"
+                + "<div style='float:right;padding:5px'><input class='option_delete' type='button' value='X' style='float:right;border-radius:5px;background:#ffffff;color:#484848;'/></div>"
+                + "</div>"
+                + "<div style='display:block;border-radius:5px;margin:5px 5px 0 5px;position:relative;top:25px;left:0px;text-align:left;font-weight:bold;background:#f5f5f5;word-break:break-all'>" + data[i] + "</div>"
+                + "<div style='position:relative;top:30px;left:0px;padding:0 5px 0 5px;'>"
+                + "<div style='float:left;'>"
+                + "<input class='option_minus' type='button' value='-'" + boolValue + " style='background:#90a2b0;color:#ffffff;border-radius:5px 0 0 5px;'/>"
+                + "<input class='option_count' type='number' value='" + optionCount[i] + "' min='1' max='10' style='width:30px;text-align:center;'/>"
+                + "<input class='option_plus' type='button' value='+' style='background:#90a2b0;color:#ffffff;border-radius:0 5px 5px 0;'/>"
+                + "</div>"
+                + "<div class='option_price' style='float:right;display:block;font-weight:bold'>" + price[i] * optionCount[i] +"원 </div>"
+                + "</div>"
+                + "</div>";
+        }
+    }
+    $("#option").append(addTag); 
+};
+
+
+</script> 
 </html>

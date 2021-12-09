@@ -212,14 +212,14 @@
 }
 
 .option-contents .option-list {
-    min-height: 100px;
+    min-height: 120px;
     padding: 6px;
 }
 
 .option-contents .no-option {
     font-size: 20pt; 
     font-weight: bold; 
-    padding-top: 30px;
+    padding-top: 50px;
     height: auto;
 }
 
@@ -229,7 +229,7 @@
 }
 
 .option-contents .price-amount {
-    font-size: 30pt; 
+    font-size: 25pt; 
     font-weight: bold;
 }
 
