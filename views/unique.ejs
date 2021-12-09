@@ -156,7 +156,6 @@
 var data = new Array(); 
 var price = new Array(0); 
 var cnt = 0;
-var count = 0; // 실제 옵션 개수 
 var optionCount = new Array(1);
 var inputData = new Array();
 var sendData = new Object();
@@ -210,7 +209,6 @@ $("#btn_option").click(function(){
     });  
 
     cnt = cnt + 1; // index
-    count = count + 1; // 개수 
 
     // 총 가격 설정
     cal_sumPrice()
@@ -222,19 +220,30 @@ $(document).on("click", ".option_delete", function(){
     data[num] = null;
     price[num] = null;
     optionCount[num] = null;
+
+    for (var i = num; i < cnt; i++) {
+        data[num] = data[num+1];
+        price[num] = price[num+1];
+        optionCount[num] = optionCount[num+1];
+    }
+
+    data[cnt-1] = null;
+    price[cnt-1] = null;
+    optionCount[cnt-1] = null;
+
     option_reload()
     cal_sumPrice()
-    count = count - 1;
-    if (count == 0) { 
+    cnt = cnt - 1;
+    if (cnt == 0) { 
         $("#option").text("- 선택된 옵션 없음 -");
         $("#option").css("padding-top", "50px");
+        $("#sum_price").text("0원");
     }
 });
 
 // 옵션 개수 변경
 $(document).on("click", ".option_minus", function(){ 
     var num = $(".option_minus").index(this);
-    // alert(num); // 옵션을 삭제하면 번호가 줄어들어서 에러남 
     var count = optionCount[num] - 1;
     $(".option_count").eq(num).val(count);
     optionCount[num] = count;
@@ -242,7 +251,6 @@ $(document).on("click", ".option_minus", function(){
     cal_sumPrice()
     if (count == 1) {
         $(".option_minus").eq(num).prop("disabled", true);
-        // $(".option_minus").eq(num).css("background", "#e8e8e8");
     }
 });     
 
@@ -328,7 +336,7 @@ function option_reload() {
             boolValue = "disabled";
 
         if (data[i] != null) {
-            addTag += "<div style='display:block;overflow:visible;min-height:105px;height:auto;background:#ffffff;margin-bottom:10px;border-radius:5px;border:2px solid #e8e8e8'>"
+            addTag += "<div style='display:block;overflow:visible;min-height:105px;height:auto;background:#ffffff;margin:5px 0 5px 0;border-radius:5px;border:2px solid #e8e8e8'>"
                 + "<div style='display:block;position:relative'>"
                 + "<div style='float:left'><input class='option_checkbox' type='checkbox' style='float:left;'/></div>"
                 + "<div style='float:right;padding:5px'><input class='option_delete' type='button' value='X' style='float:right;border-radius:5px;background:#ffffff;color:#484848;'/></div>"
