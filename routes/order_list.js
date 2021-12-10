@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
     if (err) console.log(">>> MongoDB 접속 중 에러 발생함 - " +  err);
 
     var mongodb = mongodb_connection.getDb();
-    mongodb.collection("order").find({ord_id: req.session.user_id}).toArray(function(err, result) {
+    mongodb.collection("order").find({ord_id: req.session.user_id}).sort({'ord_date': -1}).toArray(function(err, result) {
       if (err) console.log(">>> 주문 내역 조회 중 에러 발생함 - " +  err);
 
       console.log("### 주문 내역 조회");
