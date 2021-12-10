@@ -58,7 +58,10 @@ button:hover {
     border: 2px solid #004771;
 }
 
-
+.user {
+    background-color: #555555;
+    color: #ffffff;
+}
 
 /* 테블릿 css */
 @media all and (max-width:768px) {

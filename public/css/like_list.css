@@ -25,7 +25,10 @@
     border-right: 1px solid #ccc;
 }
 
-
+.like {
+    background-color: #555555;
+    color: #ffffff;
+}
 
 /* 테블릿 css */
 @media all and (max-width:768px) {

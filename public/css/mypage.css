@@ -43,7 +43,6 @@ div.myPageLeftMenu {
     padding-inline-start: 40px;
 }
 
-
 .mobilemenu {
     display: none;
 }
@@ -55,9 +54,7 @@ div.myPageLeftMenu {
     padding: 14px 0 0 15px;
     font-weight: bold;
     background: #f9f9fa;
-    border: 1px solid #000;
 }
-
 
 
 /* 메뉴 */
@@ -97,7 +94,13 @@ div.myPageLeftMenu {
     font-weight: bold;
 }
 
-
+.mypage-home-image {
+    position: relative;
+    top: 5px;
+    width: 20px;
+    height:20px;
+    padding-right: 10px;
+}
 
 
 /* 테블릿 css */

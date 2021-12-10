@@ -10,8 +10,7 @@
     /* background-color: #ccc; */
 }
 
-.col 
-{ 
+.col { 
     background-color: #e8e8e8; 
     font-weight: bolder; 
     vertical-align: middle; 
@@ -25,7 +24,10 @@
     /* border-right: 1px solid #ccc; */
 }
   
-
+.order {
+    background-color: #555555;
+    color: #ffffff;
+}
 
 /* 테블릿 css */
 @media all and (max-width:768px) {
