@@ -363,16 +363,26 @@ $("#btn_order").click(function () {
        // 한 번에 여러번 클릭으로 값이 이중으로 들어가는 것 방지
         $("#btn_order").prop("disabled", true);
 
-        for (var i = 0; i < cnt; i++) {
-            if (data[i] != null) {
-                obj = { 
-                    data : data[i],
-                    optionCount: optionCount[i],
-                    price: price[i]
-                };
-                arrayData.push(obj);
+        // 주문할 때 선택한 옵션만 주문
+        var is_checked = false;
+        var count = 0;
+        
+        $(".option-list .option-checkbox").each(function(){
+            is_checked = $(this).is(":checked");
+    
+            if (is_checked) {
+                if (data[count] != null) { 
+                 
+                    obj = { 
+                        data : data[count],
+                        optionCount: optionCount[count],
+                        price: price[count]
+                    };
+                    arrayData.push(obj);
+                }
             }
-        }
+            count += 1;
+        });
 
         var sJson = JSON.stringify(arrayData);
 
