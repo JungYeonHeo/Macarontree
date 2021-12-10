@@ -131,6 +131,12 @@
                 <div class="option">
                 <div class="option-contents">
                     <div class="title"># 주문 내역서</div>
+                    <div class="option-all">
+                        <div style='float:left'>
+                            <input class='option-all-checkbox' type='checkbox' value='모두 선택' checked/><label for="option-all-checkbox">모두 선택</label>
+                        </div>
+                        <input type='button' class='option-check-delete' value="선택 삭제"/>
+                    </div>
                     <div class="option-item">
                     <div class="option-list">
                         <div id="option" class="no-option">- 선택된 옵션 없음-</div>
@@ -212,6 +218,91 @@ $("#btn_option").click(function(){
 
     // 총 가격 설정
     cal_sumPrice()
+});
+
+// 모두선택 
+$(document).on("click", ".option-all-checkbox", function () {
+    var checked = $(".option-all-checkbox").is(":checked");
+  
+    if (checked){
+        $(".option-checkbox").prop("checked", true);
+        cal_sumPrice()
+    } else {
+        $(".option-checkbox").prop("checked", false);
+    }
+
+    cal_sumPrice()
+});
+
+// 옵션 하나를 체크 해제하면 모두 선택 체크박스도 선택 해제
+$(document).on("click", ".option-checkbox", function() {
+    var is_checked = true;
+    
+    $(".option-list .option-checkbox").each(function(){
+        is_checked = is_checked && $(this).is(":checked");
+    });
+    
+    $(".option-all-checkbox").prop("checked", is_checked);
+
+    cal_sumPrice()
+});
+
+// 선택삭제 
+$(document).on("click", ".option-check-delete", function () {
+    var userResponse = confirm('선택한 제품을 모두 삭제하시겠습니까?');
+    var checked = $(".option-all-checkbox").is(":checked");
+  
+    if (cnt == 0) {
+        alert("삭제할 제품이 없습니다.");
+    } else if (userResponse != null) {
+        if (checked){
+            // 모두 삭제 
+            for (var i = 0; i < cnt; i++) {
+                data[i] = null;
+                price[i] = null;
+                optionCount[i] = null;
+            }
+            option_reload()
+            cnt = 0
+            $("#option").text("- 선택된 옵션 없음 -");
+            $("#option").css("padding-top", "50px");
+            $("#sum_price").text("0원");
+        } else {
+            // 선택 삭제 
+            var is_checked = true;
+            var count = 0;
+            $(".option-list .option-checkbox").each(function(){
+                is_checked = is_checked && $(this).is(":checked");
+
+                if (is_checked) {
+                    data[count] = null;
+                    price[count] = null;
+                    optionCount[count] = null;
+
+                    data[count] = data[count+1];
+                    price[count] = price[count+1];
+                    optionCount[count] = optionCount[count+1];
+
+                    data[count+1] = null;
+                    price[count+1] = null;
+                    optionCount[count+1] = null;
+
+                    option_reload()
+                    cal_sumPrice()
+                    cnt = cnt - 1;
+                    count = count + 1;
+                }
+            });
+
+            var is_checked = true;
+
+            $(".option-list .option-checkbox").each(function(){
+                is_checked = is_checked && $(this).is(":checked");
+            });
+            
+            $(".option-all-checkbox").prop("checked", is_checked);
+        }
+    }
 });
 
 // 옵션 삭제하기 (X 버튼)
@@ -316,9 +407,18 @@ $("#btn_order").click(function () {
 // 총 가격 계산 함수 
 function cal_sumPrice() { 
     var sum = 0;
-    for (var i = 0; i < cnt; i++) {
-        sum = sum + (price[i] * optionCount[i]);        
-    }
+    var is_checked = false;
+    var count = 0;
+    
+    $(".option-list .option-checkbox").each(function(){
+        is_checked = $(this).is(":checked");
+
+        if (is_checked) {
+            sum = sum + (price[count] * optionCount[count]); 
+        }
+        count += 1;
+    });
+
     sumPrice = sum;
     $("#sum_price").text(sumPrice.toString() + "원");
 };
@@ -338,11 +438,11 @@ function option_reload() {
         if (data[i] != null) {
             addTag += "<div class='option-data-box' style='overflow:visible;min-height:105px;height:auto;background:#ffffff;margin:5px 0 5px 0;border-radius:5px;border:2px solid #e8e8e8'>"
                 + "<div style='display:block;position:relative'>"
-                + "<div style='float:left'><input class='option_checkbox' type='checkbox' style='float:left;'/></div>"
-                + "<div style='float:right;padding:5px'><input class='option_delete' type='button' value='X' style='float:right;border-radius:5px;background:#ffffff;color:#484848;'/></div>"
+                + "<div style='float:left'><input class='option-checkbox' type='checkbox' checked/></div>"
+                + "<div style='float:right;padding:5px'><input class='option_delete' type='button' value='X' style='border-radius:5px;background:#ffffff;color:#484848;'/></div>"
                 + "</div>"
                 + "<div style='display:block;border-radius:5px;margin:0 5px 5px 5px;position:relative;left:0px;padding:5px;text-align:left;font-weight:bold;background:#f5f5f5;word-break:break-all'>" + data[i] + "</div>"
-                + "<div style='position:relative;left:0px;margin-bottom:5px;padding:0 5px 0 5px;'>"
+                + "<div style='position:relative;margin-bottom:5px;padding:0 5px 0 5px;'>"
                 + "<div style='float:left;'>"
                 + "<input class='option_minus' type='button' value='-'" + boolValue + " style='background:#90a2b0;color:#ffffff;border-radius:5px 0 0 5px;'/>"
                 + "<input class='option_count' type='number' value='" + optionCount[i] + "' min='1' max='10' style='width:30px;text-align:center;'/>"

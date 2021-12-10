@@ -202,7 +202,25 @@
 .option-contents .title {
     font-size: 40px; 
     font-weight: bold; 
-    margin: 40px;
+    margin: 30px;
+}
+
+.option-all {
+    margin-bottom: 62px;
+}
+
+input[class='option-all-checkbox'] {
+    position: relative;
+    top: 4px;
+}
+
+.option-check-delete {
+    float: right;
+    padding: 10px 0 10px 0;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+
 }
 
 .option-contents .option-item {
@@ -234,12 +252,11 @@
 }
 
 .option-contents .order {
-    width:100%; 
+    width: 100%; 
     background: red; 
     border-radius: 5px;
     height: 80px; 
     color: #fff; 
-    margin-top:10px; 
     font-size: 30px;
 }
 
