@@ -173,9 +173,9 @@ $(".icon").click(function (event) {
     console.log(j + 1);
     if (j > 11) {  // 12-23 Premium b1~b12 (mysql key값)
         if (j + 1 - 12 < 10) {
-            id = "b0" + (j+1-12).toString();  
+            id = "b0" + (j + 1 - 12).toString();  
         } else {
-            id = "b" + (j+1-12).toString();  
+            id = "b" + (j + 1 - 12).toString();  
         }
     } else {  // Basic b13~b24
         id = "b" + (j + 1 + 12).toString();  
@@ -195,7 +195,7 @@ $(".icon").click(function (event) {
             alert(data.msg);
             location.href = "/login";
         } else if (data.result == 1) { // 이미 등록되어 있어서 삭제 
-            $(".icon:eq("+j+")").css("color","#ffffff");
+            $(".icon:eq(" + j + ")").css("color","#ffffff");
             $(".price").css("color", "#ffffff");
             icon[j] = false;
             alert(data.msg); 
