@@ -26,15 +26,15 @@ router.route('/').post(function(req, res) {
 
             var selectLike = { $and : [
                 {
-                    prd_id: req.session.user_id,
-                    prd_like: req.body.prd_id
+                    m_id: req.session.user_id,
+                    prd_id: req.body.prd_id
                 }
             ]};
 
             var likeList = [
                 {
-                    prd_id: req.session.user_id,
-                    prd_like: req.body.prd_id
+                    m_id: req.session.user_id,
+                    prd_id: req.body.prd_id
                 }
             ];
 

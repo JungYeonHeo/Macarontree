@@ -38,9 +38,9 @@
                     if (data.prd_type == 'B') { 
                         var exist = false; 
                         for (var i = 0; i < likes.length; i++) {  // 찜한 상품 조회
-                            if (data.prd_id == likes[i].prd_like) { 
+                            if (data.prd_id == likes[i].prd_id) { 
                                 exist = true;
-                                var prd_name = '' + likes[i].prd_like;
+                                var prd_name = '' + likes[i].prd_id;
                                 var index = parseInt(prd_name.substr(1,2)) - 1 - 12; 
                                 console.log(index); %>
                                 <script>
@@ -92,9 +92,9 @@
                     if (data.prd_type == 'P') { 
                         var exist = false; 
                         for (var i = 0; i < likes.length; i++) {  // 찜한 상품 조회
-                            if (data.prd_id == likes[i].prd_like) { 
+                            if (data.prd_id == likes[i].prd_id) { 
                                 exist = true;
-                                var prd_name = '' + likes[i].prd_like;
+                                var prd_name = '' + likes[i].prd_id;
                                 var index = parseInt(prd_name.substr(1,2)) - 1 + 12; 
                                 console.log(index); %>
                                 <script>

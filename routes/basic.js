@@ -59,7 +59,7 @@ router.get('/', function(req, res, next) {
         if (err) return console.log(">>> mongodb 연결 중 에러 발생함 - " + err);
 
         var mongodb = mongodb_connection.getDb();
-        mongodb.collection("like").find({ prd_id: req.session.user_id }, {unique: true}).toArray(function (err, result) {
+        mongodb.collection("like").find({ m_id: req.session.user_id }, {unique: true}).toArray(function (err, result) {
             if (err) console.log(">>> 찜한 상품 전체 조회 중 에러 발생함 - " +  err)
             console.log("### 찜한 상품 전체 조회");
             console.log(result);  
