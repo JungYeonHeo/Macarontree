@@ -3,11 +3,9 @@
 #table {
     display: grid;  
     width: 100%; 
-    grid-template-columns: 30% 25% 25% 20%; 
-    border: 1px solid #ccc;
+    grid-template-columns: 10% 20% 25% 25% 20%; 
     border-top: 1px solid #ccc;
     border-left: 1px solid #ccc;
-    /* background-color: #ccc; */
 }
 
 .col 
@@ -20,7 +18,6 @@
 
 #table > div {
     padding: 15px;
-    /* background-color: #fff; */
     border-bottom: 1px solid #ccc;
     border-right: 1px solid #ccc;
 }
@@ -28,6 +25,26 @@
 .like {
     background-color: #555555;
     color: #ffffff;
+}
+
+.btn-list-delete {
+    background-color: #555555;
+    color: #ffffff;
+    padding: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    width: 150px;
+    height: 50px;
+}
+
+.btn-list-cart {
+    background-color: #004771;
+    color: #ffffff;
+    padding: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    width: 150px;
+    height: 50px;
 }
 
 /* 테블릿 css */

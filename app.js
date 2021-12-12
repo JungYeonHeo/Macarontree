@@ -57,6 +57,7 @@ var signup_add = require('./routes/signup_add'); // 사용자 추가
 var order_done = require('./routes/order_done'); // 주문 완료 페이지 
 var order_list = require('./routes/order_list'); // 주문 목록 (마이페이지)
 var like_list = require('./routes/like_list'); // 찜한 목록 (마이페이지)
+var like_list_delete = require('./routes/like_list_delete'); // 찜한 목록 삭제 (마이페이지)
 var user_update = require('./routes/user_update'); // 정보 수정 (마이페이지)
 var user_updateDone = require('./routes/user_updateDone'); // 정보 수정을 처리 (마이페이지)
 
@@ -130,6 +131,7 @@ app.use('/signup_add', signup_add);
 app.use('/order_done', order_done); 
 app.use('/order_list', order_list); 
 app.use('/like_list', like_list); 
+app.use('/like_list_delete', like_list_delete); 
 app.use('/user_update', user_update); 
 app.use('/user_updateDone', user_updateDone); 
 
