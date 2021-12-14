@@ -8,103 +8,101 @@
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
-<style>
-    input[type=checkbox] {
-        zoom: 1.5;
-    }
-</style>
-
 <body>
-    <!-- header -->
-    <%- include('header') %>
-  
-    <div class="mypage" style="display: inline;">
-
-        <!-- 마이페이지 로고 -->
-        <div class="logo"> 마이페이지 </div>
+    <div id="wrap">
+        <!-- header -->
+        <%- include('header') %>
+        <!-- //header -->
         
-        <div class ="align">
-
-        <!-- 왼쪽 메뉴 -->
-        <div class="myPageLeftMenu fL">
-            <div class="myPageSubMenu">
-                <div class="order">
-                    주문 내역
-                </div>
-                <div class="like">
-                    찜한 상품
-                </div>
-                <div class="user">
-                    개인 정보
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="mobilemenu">
-            <div class="order">
-                주문내역
-            </div>
-            <div class="like">
-                찜한 상품
-            </div>
-            <div class="user" >
-                개인 정보
-            </div>
-        </div>
-        <br>
-
-        <!-- 오른 쪽 메뉴 -->
-        <!-- 찜한 상품 -->
-        <div id="like-list">
-            <!-- 어느 페이지인지 설명 -->
-            <div class="div-sub">
-                <div style="float:left;font-weight:bold;font-size:20px;">찜한 상품</div>
-                <div style="float:right;font-size:10pt;margin:0;"><img src="/public/images/home.png" class="mypage-home-image"> 메뉴  >  마이페이지  >  찜한 상품</div>
-                <div style="width:100%;height:2px;background:#000000; display:inline-block; margin: 0;"> </div>
-            </div>
-
-            <!-- 찜한 목록 테이블 -->
-            <% if (like != null) { %>
-            <div id="table" style="margin-bottom: 30px;">
-                <div class="col"><input class='option-all-checkbox' type='checkbox' value='모두 선택'/></div>
-                <div class="col">상품</div>
-                <div class="col">상품명(ko)</div>
-                <div class="col">상품명(en)</div>
-                <div class="col">가격</div>
-
-                <script>
-                    var likes = new Array(0);
-                </script>
-                <% for (data of like) {  %>
-                    <script>
-                        likes.push('<%= data.prd_id %>');
-                    </script> 
-                    <div class="value" style="grid-column: 1/2;"><input class='option-checkbox' type='checkbox'/></div>
-                    <div class="value" style="grid-column: 2/3;"><img src="/public/images/<%= data.prd_img %>" style="width:50px;height:50px;"/></div>  
-                    <div class="value" style="grid-column: 3/4;"><%= data.prd_kor %></div>
-                    <div class="value" style="grid-column: 4/5;"><%= data.prd_eng %></div>
-                <% if (data.prd_type == 'B') { %> 
-                    <div class="value" style="grid-column: 5/6;">2000원</div>
-                <% } else { %>
-                    <div class="value" style="grid-column: 5/6">3000원</div>
-                <% }
-                } %>
-            </div>
-            <input type="submit" class="btn-list-delete" value="선택 삭제">
-            <input type="submit" class="btn-list-cart" value="장바구니">
-            <% } else { %>
-                <div style="text-align:center;background-color:#ECE6CC;padding:10px;margin-top:30px;">
-                    <div style="font-weight:bold;font-size:30pt;margin-top:50px;margin-bottom:50px;">
-                        "찜한 상품이 없습니다."
+        <!-- CONTENTS -->
+        <div class="mypage">
+            <!-- 마이페이지 로고 -->
+            <div class="logo-mypage"> 마이페이지 </div>
+            <div class ="align">
+                <!-- 왼쪽 메뉴 -->
+                <div class="myPageLeftMenu fL">
+                    <div class="myPageSubMenu">
+                        <div class="order">
+                            주문 내역
+                        </div>
+                        <div class="like">
+                            찜한 상품
+                        </div>
+                        <div class="user">
+                            개인 정보
+                        </div>
                     </div>
-                    <button id="btn_basic" type="button" style="width:300px;height:50px;background:#004771;color:#fff;border:2px solid #004771;margin-bottom:30px;">MacaronTree 기본 상품 보기</button>
                 </div>
-            <% } %>
-        </div>
-        <!-- 찜한 상품 -->
+                <br>
+                <div class="mobilemenu">
+                    <div class="order">
+                        주문내역
+                    </div>
+                    <div class="like">
+                        찜한 상품
+                    </div>
+                    <div class="user" >
+                        개인 정보
+                    </div>
+                </div>
+                <br>
 
+                <!-- 오른 쪽 메뉴 -->
+                <!-- 찜한 상품 -->
+                <div id="like-list">
+                    <!-- 어느 페이지인지 설명 -->
+                    <div class="div-sub">
+                        <div class="page-name">찜한 상품</div>
+                        <div class="page-location"><img src="/public/images/home.png" class="mypage-home-image"> 메뉴  >  마이페이지  >  찜한 상품</div>
+                        <div class="line"></div>
+                    </div>
 
+                    <!-- 찜한 목록 테이블 -->
+                    <% if (like != null) { %>
+                        <div id="table">
+                            <div class="col"><input class='option-all-checkbox' type='checkbox' value='모두 선택'/></div>
+                            <div class="col">상품</div>
+                            <div class="col">상품명(ko)</div>
+                            <div class="col">상품명(en)</div>
+                            <div class="col">가격</div>
+                            <script>
+                                var likes = new Array(0);
+                            </script>
+                            <% for (data of like) {  %>
+                                <script>
+                                    likes.push('<%= data.prd_id %>');
+                                </script> 
+                                <div class="value" style="grid-column: 1/2;"><input class='option-checkbox' type='checkbox'/></div>
+                                <div class="value" style="grid-column: 2/3;"><img class="like-list-image" src="/public/images/<%= data.prd_img %>"/></div>  
+                                <div class="value" style="grid-column: 3/4;"><%= data.prd_kor %></div>
+                                <div class="value" style="grid-column: 4/5;"><%= data.prd_eng %></div>
+                            <% if (data.prd_type == 'B') { %> 
+                                <div class="value" style="grid-column: 5/6;">2000원</div>
+                            <% } else { %>
+                                <div class="value" style="grid-column: 5/6">3000원</div>
+                            <% }
+                            } %>
+                        </div>
+                        <div class="buttons">
+                            <input type="submit" class="btn-list-delete" value="선택 삭제">
+                            <input type="submit" class="btn-list-cart" value="장바구니">
+                        </div>
+                    <% } else { %>
+                        <div class="like-list-empty-box">
+                            <div class="like-list-empty-message">
+                                "찜한 상품이 없습니다."
+                            </div>
+                            <button id="btn_basic" type="button">MacaronTree 기본 상품 보기</button>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
         </div>
+        <!-- //CONTENTS -->
+
+        <!-- Footer -->
+        <%- include ('../views/footer') %>
+        <!-- //Footer -->
     </div>
 </body>
 

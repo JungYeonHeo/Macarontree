@@ -3,9 +3,10 @@
 #table {
     display: grid;  
     width: 100%; 
-    grid-template-columns: 10% 20% 25% 25% 20%; 
+    grid-template-columns: 12% 20% 24% 24% 20%; 
     border-top: 1px solid #ccc;
     border-left: 1px solid #ccc;
+    margin-bottom: 50px;
 }
 
 .col 
@@ -25,6 +26,19 @@
 .like {
     background-color: #555555;
     color: #ffffff;
+}
+
+input[type=checkbox] {
+    zoom: 1.5;
+}
+
+.like-list-image {
+    width: 50px;
+    height: 50px;
+}
+
+.buttons {
+    margin-bottom: 120px;
 }
 
 .btn-list-delete {
@@ -47,8 +61,82 @@
     height: 50px;
 }
 
-/* 테블릿 css */
-@media all and (max-width:768px) {
+.like-list-empty-box {
+    text-align: center;
+    background-color: #ECE6CC;
+    padding: 10px;
+    margin-top: 30px;
+    margin-bottom: 120px;
+}
 
+.like-list-empty-message {
+    font-weight: bold;
+    font-size: 30pt;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#btn_basic {
+    width: 300px;
+    height: 50px;
+    background: #004771;
+    color: #fff;
+    border: 2px solid #004771;
+    margin-bottom: 30px;
+}
+
+/* 테블릿 css */
+@media all and (max-width:500px) {
+
+    .like-list-image {
+        width: 40px;
+        height: 40px;
+    }
+
+    .btn-list-delete {
+        width: 100px;
+        height: 40px;
+    }
+    
+    .btn-list-cart {
+        width: 100px;
+        height: 40px;
+    }
+
+    .like-list-empty-message {
+        font-weight: bold;
+        font-size: 12pt;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    #btn_basic {
+        width: 200px;
+        height: 40px;
+        font-size: 10pt;
+        background: #004771;
+        color: #fff;
+        border: 2px solid #004771;
+        margin-bottom: 30px;
+    }
 
 }
+
+/* 갤럭시 폴드같이 가로 280인 경우를 위해 */
+@media all and (max-width:300px) {
+
+    .like-list-image {
+        width: 30px;
+        height: 30px;
+    }
+
+    #table > div {
+        padding: 5px 0 5px 0;
+    }
+
+    input[type=checkbox] {
+        zoom: 1.0;
+    }
+
+}
+

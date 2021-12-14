@@ -5,19 +5,35 @@
     padding: 0px;
 }
 
-
-.align {
-    width: 1400px;
-    margin: 0 auto;
-    padding-bottom: 40px;
+#wrap {
+    width: 100%; 
+    height: 100%; 
+    position: relative; 
+    display: flex; 
+    flex-flow: column nowrap;
 }
 
-.logo {
+.mypage {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.logo-mypage {
     text-align: center; 
-    font-size: 20pt;
+    font-size: 25pt;
     font-weight: bold; 
-    margin: 20px; 
+    margin: 30px; 
     color: #004771;
+}
+
+.align {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
 }
 
 /* 왼쪽 메뉴*/
@@ -27,10 +43,9 @@
 
 div.myPageLeftMenu {
     width: 200px;
-    margin: 50px 60px 0px 50px;
+    margin: 50px 60px 0 0;
     color: #010101;
     font-size: 14px;
-    overflow: hidden;
 }
 
 .myPageSubMenu {
@@ -51,47 +66,42 @@ div.myPageLeftMenu {
     display: block;
     height: 30px;
     width: 130px;
-    padding: 14px 0 0 15px;
+    padding: 15px 0 10px 0;
     font-weight: bold;
     background: #f9f9fa;
 }
 
-
 /* 메뉴 */
 #order-list, #like-list, #user-update {
-    width: 900px;
+    width: 70%;
     display: block;
     float: left;
     text-align: center;
+    margin-bottom: 50px;
 }
 
 .div-sub {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
-
-
-/* 정보 수정 */
-.div-agree {
-    width: 500px; 
-    padding-top: 50px;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%);
+.page-name {
+    float: left;
+    font-weight: bold; 
+    font-size: 20px;
 }
 
-/* 입력하는 곳 */
-.inputValue {
-    width: 500px; 
-    height:40px; 
-    margin-bottom: 20px; 
-    font-size:12pt
+.page-location {
+    float: right;
+    font-size: 10pt; 
+    margin: 0;
 }
 
-#p-warning {
-    color: red;
-    line-height: 25px;
-    font-weight: bold;
+.line {
+    width: 100%;
+    height: 2px; 
+    background: #000000; 
+    display: inline-block; 
+    margin: 0;
 }
 
 .mypage-home-image {
@@ -104,91 +114,69 @@ div.myPageLeftMenu {
 
 
 /* 테블릿 css */
-@media all and (max-width:768px) {
-       
-    .div-sub {
-        width: 100%;
+@media all and (max-width:1200px) {
+
+    .mypage {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .align {
+        width: 90%;
+        margin: 0 auto;
+        text-align: center;
+        display: block;
     }
 
     .myPageLeftMenu {
         display: none;
     }
 
+    .fL {
+        float: none;
+    }
+
     .mobilemenu {
         display: block;
-        width: 700px;
+        width: auto;
         margin: 0 auto;
         text-align: center;
     }
 
     .order, .like, .user {
-        display: block;
+        display: inline-block;
         height: 30px;
         text-align: center;
-        font-weight: normal;
+        font-weight: bold;
         background: #ffffff;
         border: none;
-        float: left;
-        font-size: 12pt;
+        font-size: 10pt;
         color: #bbb;
-    }
-
-    .order {
-        padding-left: 120px;
-    }
-
-    .user {
-        padding-right: 120px;
+        padding: 12px 0 4px 0;
     }
 
     #order-list, #like-list, #user-update {
-        width: 700px;
+        width: 100%;
         display: block;
-        margin: 0;
-        float: none;
-    }
-
-    .align {
-        width: 700px;
         margin: 0 auto;
+        float: none;
         text-align: center;
     }
-
-    .fL {
-        float: none;
-    }
-
-    .mypage {
-        margin: 0 auto;
-    }
-
 
 }
 
 /* 모바일 */
 @media all and (max-width:500px) {
-       
-    .mobilemenu {
-        display: block;
-        width: 450px;
-        margin: 0 auto;
-        text-align: center;
+
+    .order, .like, .user {
+        width: 30%;
+        height: 20px;
+        padding: 10px 0 10px 0;
     }
 
-    #order-list, #like-list, #user-update {
-        width: 450px;
-    }
-
-    .align {
-        width: 450px;
-    }
-
-    .order {
-        padding-left: 10px;
-    }
-
-    .user {
-        padding-right: 10px;
+    .logo-mypage {
+        font-size: 20pt;
     }
 
 }

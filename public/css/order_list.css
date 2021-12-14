@@ -4,10 +4,6 @@
     display: grid;  
     width: 100%; 
     grid-template-columns: 60% 20% 20%; 
-    /* border: 1px solid #ccc; */
-    /* border-top: 1px solid #ccc; */
-    /* border-bottom: 1px solid #ccc; */
-    /* background-color: #ccc; */
 }
 
 .col { 
@@ -19,9 +15,7 @@
 
 #table > div {
     padding: 15px;
-    /* background-color: #fff; */
     border-bottom: 1px solid #ccc;
-    /* border-right: 1px solid #ccc; */
 }
   
 .order {

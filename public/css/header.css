@@ -205,7 +205,6 @@
         visibility: visible;
     }
     
-    
     menu-collapse .menu-contents {
         display: flex;
         align-items: center;
@@ -242,7 +241,6 @@
         color: #FDB7A0;
     }
     .menu-collapse .menu-contents .menu-profile .menu-user .menu-register {
-/*        border-left: 1px solid #000;*/
         margin-left: 20px;
         border: none;
         cursor: pointer;
@@ -262,5 +260,18 @@
         display: block;
         margin-bottom: 40px;
         cursor: pointer;
+    }
+}
+
+@media all and (max-width:300px) {
+
+    #mobile-headers .logo img {
+        width: 15px;
+        height: 15px;
+        margin-right: 10px;
+    }
+
+    #mobile-headers .logo a {
+        font-size: 20px;
     }
 }
