@@ -5,6 +5,7 @@
 ## 개발도구
 
  * html, css, javascript, jquery, ajax, nodejs, mysql, mongodb 
+ * 반응형 웹으로 제작 
 
 ## 사용법
 
