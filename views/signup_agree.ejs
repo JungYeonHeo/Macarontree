@@ -31,42 +31,44 @@
         <div class="div-align">
             <div class="div-agree">
                 <div style="width: 100%; float: left;">
-                    <input type="checkbox" id="allchk" class="allchk" name="allchk"  style="float: left;" onclick="togchk(this, 'chk[]');">전체 동의
+                    <input type="checkbox" class="option-all-checkbox" style="float: left;">전체 동의
                 </div>
-                <hr style="width:100%; color:e0e0e2; display:inline-block;" />
-                <p class="ptxt1">필수 동의 항목</p>
-                <div style="width: 100%;">
-                    <input type="checkbox" id="ness" name="chk[]" style="float: left;">
-                    <label class="text" style="float: left;">(주) Macaron Tree 이용약관에 동의합니다.</label>
-                    <button class="btn-content">내용보기</button>
-                </div>
+                <div class="option-list">
+                    <hr style="width:100%; color:e0e0e2; display:inline-block;" />
+                    <p class="ptxt1">필수 동의 항목</p>
+                    <div style="width: 100%;">
+                        <input type="checkbox" class="option-checkbox" id="ness" style="float: left;">
+                        <label class="text" style="float: left;">(주) Macaron Tree 이용약관에 동의합니다.</label>
+                        <button class="btn-content">내용보기</button>
+                    </div>
 
-                <div style="float: left; width: 100%;">
-                    <input type="checkbox" id="ness" name="chk[]">
-                    <label class="text">개인정보 수집 및 이용에 동의합니다.</label>
-                    <button class="btn-content">내용보기</button>
-                </div>
+                    <div style="float: left; width: 100%;">
+                        <input type="checkbox" class="option-checkbox" id="ness">
+                        <label class="text">개인정보 수집 및 이용에 동의합니다.</label>
+                        <button class="btn-content">내용보기</button>
+                    </div>
 
-                <div style="float: left; width: 100%;">
-                    <input type="checkbox" id="ness" name="chk[]">
-                    <label class="text">개인정보 제3자 제공에 동의합니다.</label>
-                    <button class="btn-content">내용보기</button>
-                </div>
+                    <div style="float: left; width: 100%;">
+                        <input type="checkbox" class="option-checkbox" id="ness">
+                        <label class="text">개인정보 제3자 제공에 동의합니다.</label>
+                        <button class="btn-content">내용보기</button>
+                    </div>
 
-                <p class="ptxt1">선택 동의 항목</p>
-                <div text-align="left">
-                    <input type="checkbox" id ="chk[4]" name="chk[]">
-                    <label class="text">마케팅 이메일 수신</label>
-                </div>
+                    <p class="ptxt1">선택 동의 항목</p>
+                    <div text-align="left">
+                        <input type="checkbox" class="option-checkbox">
+                        <label class="text">마케팅 이메일 수신</label>
+                    </div>
 
-                <div text-align="left">
-                    <input type="checkbox" id ="chk[5]" name="chk[]">
-                    <label class="text">마케팅 SMS 수신</label>
-                </div>
-                <div style="margin-top: 10px;">
-                    <p class="ptxt2">- 할인 쿠폰, 특가상품 이벤트 정보를 받아보세요! </p>
-                    <p class="ptxt2">- 만 14세 이상만 가입이 가능합니다. </p>
-                    <p id="p-warning">약관 동의를  체크해주세요</p>
+                    <div text-align="left">
+                        <input type="checkbox" class="option-checkbox">
+                        <label class="text">마케팅 SMS 수신</label>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <p class="ptxt2">- 할인 쿠폰, 특가상품 이벤트 정보를 받아보세요! </p>
+                        <p class="ptxt2">- 만 14세 이상만 가입이 가능합니다. </p>
+                        <p id="p-warning">약관 동의를  체크해주세요</p>
+                    </div>
                 </div>
             </form>
                 <!-- 확인 버튼  -->
@@ -77,22 +79,52 @@
 </body>
 
 <script>
-// 약관 동의 전체 체크
-function togchk(obj, elname) {
-    var f = obj.form;
-    for (var i = 0; i < f.elements.length; i++) {
-        var el = f.elements[i];
-        if (el.name == elname) el.checked = obj.checked;
+var nessBool = false;
+
+// 전체 동의  
+$(document).on("click", ".option-all-checkbox", function () {
+    var checked = $(".option-all-checkbox").is(":checked");
+  
+    if (checked){
+        $(".option-checkbox").prop("checked", true);
+        cal_sumPrice()
+    } else {
+        $(".option-checkbox").prop("checked", false);
     }
-}
+});
+
+// 체크박스 옵션 하나라도 체크 해제하면 전체 동의 체크박스도 선택 해제
+$(document).on("click", ".option-checkbox", function() {
+    var is_checked = true;
+    
+    $(".option-list .option-checkbox").each(function(){
+        is_checked = is_checked && $(this).is(":checked");
+    });
+    
+    $(".option-all-checkbox").prop("checked", is_checked);
+});
+
+// 필수 동의 항목 3개 동의 여부
+$(document).on("click", ".option-checkbox", function() {
+    var is_checked = true;
+    
+    $(".option-list #ness").each(function(){
+        is_checked = is_checked && $(this).is(":checked");
+    });
+    
+    nessBool = is_checked;
+});
 
 // 사용자 약관 동의 체크 여부 확인
 $("#btn_ok").click(function(){
-    if ($("input:checkbox[name=allchk]").is(":checked") == true ) {
+    if ($(".option-all-checkbox").is(":checked") == true ) {
+        location.href ="/signup_input";
+    } else if (nessBool) { // 필수 옵션 3개 선택  
         location.href ="/signup_input";
     } else {
         $("#p-warning").css("display", "block");
     }
 });
+
 </script>
 </html>
