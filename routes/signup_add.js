@@ -16,7 +16,7 @@ var result;
 
 // 사용자를 등록하는 함수
 router.post('/', function(req, res, next) {
-    console.log('signup_add 호출됨');
+    console.log("signup_add 호출됨");
     
     // 요청 파라미터 확인
     console.log(req.body);
@@ -35,8 +35,8 @@ router.post('/', function(req, res, next) {
                 conn.release();
             }
             console.log(">>> DB 연결 중 에러 발생함 - " +  err);
-            // result = 0;
-			// res.send({result: 0, msg: msg});
+            msg = "DB 연결 중 에러 발생함";
+			res.send({result: 0, msg: msg});
 			return;          
         }   
         console.log("데이터베이스 연결 스레드 아이디 : " + conn.threadId);
@@ -52,13 +52,12 @@ router.post('/', function(req, res, next) {
             if (err) {
                 console.log(">>> 회원가입 중 에러 발생함 - " +  err);
                 msg = "회원가입 중 에러 발생";
-                res.json({result: 3, msg: msg});
-                return;          
+                res.send({result: 3, msg: msg});      
+                return;  
             } else {
                 msg = "회원가입 성공";
-                console.log("### 회원 가입 성공");
-                res.send({result:4, msg:msg});
-                return;
+                res.send({result: 4, msg: msg});
+                return; 
             }
         });
     });

@@ -3,7 +3,6 @@
  * 개인 정보를 수정을 처리
  */
 
-var http = require('http');
 var crypto = require('crypto');
 var express = require('express');
 var router = express.Router();
@@ -44,12 +43,12 @@ router.post('/', function(req, res, next) {
         // 회원가입 SQL 문을 실행함
         var updateUserData = conn.query('update member set m_pw =?, m_name = ?, m_tel = ?, m_addr = ? where m_id = ?', [hashPassword, name, tel, addr, id], function(err, result) {
             conn.release();  
-            console.log('실행 대상 SQL : ' + updateUserData.sql);
+            console.log("실행 대상 SQL : " + updateUserData.sql);
             
             if (err) {
                 console.log(">>> 회원 정보 수정 중 에러 발생함 - " +  err);
                 msg = "회원 정보 수정 중 에러 발생";
-                res.json({result: 3, msg: msg});
+                res.send({result: 3, msg: msg});
                 return;          
             } else {
                 msg = "정보 수정 성공";
