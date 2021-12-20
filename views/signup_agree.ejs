@@ -118,13 +118,21 @@ $(document).on("click", ".option-checkbox", function() {
 // 사용자 약관 동의 체크 여부 확인
 $("#btn_ok").click(function(){
     if ($(".option-all-checkbox").is(":checked") == true ) {
-        location.href ="/signup_input";
+        move_signup_input()
     } else if (nessBool) { // 필수 옵션 3개 선택  
-        location.href ="/signup_input";
+        move_signup_input()
     } else {
         $("#p-warning").css("display", "block");
     }
 });
 
+
+function move_signup_input() { 
+    var form = document.createElement("form"); 
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "/signup_input"); 
+    document.body.appendChild(form);
+    form.submit();
+};
 </script>
 </html>
