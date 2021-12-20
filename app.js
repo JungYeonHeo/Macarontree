@@ -23,7 +23,7 @@ var expressErrorHandler = require('express-error-handler');
 // 파일 처리
 var fs = require('fs');
 
-//클라이언트에서 ajax로 요청 시 CORS(다중 서버 접속) 지원
+// 클라이언트에서 ajax로 요청 시 CORS(다중 서버 접속) 지원
 var cors = require('cors');
 
 // mime 모듈
@@ -91,14 +91,14 @@ app.use(session({
 }));
 
 // body-parser 설정
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 // public 폴더를 static으로 오픈
 app.use('/public', static(path.join(__dirname, 'public')));
 app.use('/uploads', static(path.join(__dirname, 'uploads')));
 
-//클라이언트에서 ajax로 요청 시 CORS(다중 서버 접속) 지원
+// 클라이언트에서 ajax로 요청 시 CORS(다중 서버 접속) 지원
 app.use(cors());
 
 // 로그인 여부 확인
@@ -138,7 +138,7 @@ app.use('/user_updateDone', user_updateDone);
 // 404 에러 페이지 처리
 var errorHandler = expressErrorHandler({
 	static: {
-		//    '404': './views/404.ejs'
+		'404': './views/404.ejs'
 	}
 });
 
