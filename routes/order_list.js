@@ -21,8 +21,12 @@ router.get('/', function (req, res, next) {
 
 			console.log("### 주문 내역 조회");
 			console.log(result);
-			send_data.order = result;
 
+			if (result.length > 0) {
+				send_data.order = result;
+			} else {
+				send_data.order = null;
+			}
 			res.render('../views/order_list.ejs', send_data);
 		});
 	});
