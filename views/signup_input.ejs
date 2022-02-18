@@ -75,13 +75,13 @@
 	var tel_type = false;
 
 	$("#btn_signup").click(function () {
-		var id = $.trim($("#input_email").val());
-		var pw = $.trim($("#input_pw").val());
-		var pw2 = $.trim($("#input_pw2").val());
-		var name = $.trim($("#input_name").val());
-		var tel = $.trim($("#input_tel").val());
-		var addr = $.trim($("#input_addr").val());
-		var addr_detail = $.trim($("#input_addr_detail").val());
+		var id = $("#input_email").val().trim();
+		var pw = $("#input_pw").val().trim();
+		var pw2 = $("#input_pw2").val().trim();
+		var name = $("#input_name").val().trim();
+		var tel = $("#input_tel").val().trim();
+		var addr = $("#input_addr").val().trim();
+		var addr_detail = $("#input_addr_detail").val().trim();
 
 		if (id == "" || pw == "" || pw2 == "" || name == "" || tel == "" || addr == "" || addr_detail == "" 
 		|| !id_duplication || !id_email_type || !pw_type  || !pw_equal || !tel_type) {
@@ -194,12 +194,12 @@
 	$(document).on("click", "input[name=input]", function(){ 
 		var num = $("input[name=input]").index(this); 
 
-		var id = $.trim($("#input_email").val());
-		var pw = $.trim($("#input_pw").val());
-		var pw2 = $.trim($("#input_pw2").val());
-		var name = $.trim($("#input_name").val());
-		var tel = $.trim($("#input_tel").val());
-		var addr_detail = $.trim($("#input_addr_detail").val());
+		var id = $("#input_email").val().trim();
+		var pw = $("#input_pw").val().trim();
+		var pw2 = $("#input_pw2").val().trim();
+		var name = $("#input_name").val().trim();
+		var tel = $("#input_tel").val().trim();
+		var addr_detail = $("#input_addr_detail").val().trim();
 
 		if (num == 0 && id == "") {
 			$("#warning_email").css("display", "block");
@@ -233,7 +233,7 @@
 		var num = $("input[name=input]").index(this); 
 
 		if (num == 0) {
-			var id = $.trim($("#input_email").val());
+			var id = $("#input_email").val().trim();
 			var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 			if (regEmail.test(id)) {
 				$("#warning_email").text("이메일 중복을 확인해주세요.");
@@ -251,7 +251,7 @@
 				id_email_type = false;
 			}
 		} else if (num == 1) {
-			var pw = $.trim($("#input_pw").val());
+			var pw = $("#input_pw").val().trim();
 			var regPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,12}$/;
 			if (regPw.test(pw)) {
 				$("#warning_pw").text("비밀번호 형식: 적합");
@@ -263,8 +263,8 @@
 				pw_type = false;
 			}
 		} else if (num == 2) {
-			var pw = $.trim($("#input_pw").val());
-			var pw2 = $.trim($("#input_pw2").val());
+			var pw = $("#input_pw").val().trim();
+			var pw2 = $("#input_pw2").val().trim();
 			if (pw == pw2) {
 				$("#warning_pw2").text("비밀번호: 일치");
 				$("#warning_pw2").css("color", "green");
@@ -275,14 +275,14 @@
 				pw_equal = false;
 			}
 		} else if (num == 3) {
-			var name = $.trim($("#input_name").val());
+			var name = $("#input_name").val().trim();
 			if (name !== "") {
 				$("#warning_name").text("");
 			} else {
 				$("#warning_name").text("이름을 입력해주세요.");
 			}
 		} else if (num == 4) {
-			var tel = $.trim($("#input_tel").val());
+			var tel = $("#input_tel").val().trim();
 			var regtel = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 			if (regtel.test(tel)) {
 				$("#warning_tel").text("핸드폰번호 형식: 적합");
@@ -294,7 +294,7 @@
 				tel_type = false;
 			}
 		} else if (num == 6) {
-			var addr_detail = $.trim($("#input_addr_detail").val());
+			var addr_detail = $("#input_addr_detail").val().trim();
 			if (addr_detail != "") {
 				$("#warning_addr").text("");
 			} else {
@@ -305,7 +305,7 @@
 
 	// 중복체크 버튼
 	$("#btn_id_check").click(function () {
-		var id = $.trim($("#input_email").val());
+		var id = $("#input_email").val().trim();
 
 		$("#btn_id_check").attr("disabled", true);
 		data = { "id": id };
@@ -334,7 +334,7 @@
 	});
 
 	$("#input_tel").focusout(function() {
-		var tel = $.trim($("#input_tel").val());
+		var tel = $("#input_tel").val().trim();
 		var regNumber = /[^0-9]/g;
 		tel = tel.replace(regNumber, "");
 		$("#input_tel").val(tel);
