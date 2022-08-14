@@ -402,9 +402,10 @@ $("#btn_order").click(function () {
             // 주문 성공, 주문 완료 페이지로 이동
             if (data.result == 0) {
                 location.href = '/order_done';
-            } else if (data.reset == 1){
+            } else if (data.result == 1){
                 // 주문하기전 로그인 여부 확인
                 alert(data.msg);
+                location.href = '/login'; 
             } else { 
                 // 주문 실패 
                 $("#btn_order").prop("disabled", false);

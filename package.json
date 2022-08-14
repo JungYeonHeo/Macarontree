@@ -27,13 +27,13 @@
   },
   "devDependencies": {
     "ejs-lint": "^0.3.0",
-    "nodemon": "^2.0.1"
+    "nodemon": "^2.0.19"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js"
   },
-  "author": "",
+  "author": "golgol22",
   "license": "ISC",
   "description": ""
 }
