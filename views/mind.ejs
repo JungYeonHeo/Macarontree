@@ -1,37 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <%- include ('../views/head') %>
-    <link type="text/css" rel="stylesheet" href="/public/css/mind.css">
+  <head>
+    <%- include ("head") %>
+    <link type="text/css" rel="stylesheet" href="/public/css/mind.css" />
     <title>Mind</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="wrap">
-       
-        <!-- HEADER -->
-        <%- include ('../views/header') %>
-        <!-- //HEADER -->
-        
-        <!-- CONTENTS -->
-        <div class="mind">
-           <div class="sign_text">
-                <div class="title">내 마음의 작은 선물</div>
-                <div class="text">
-                    Macaron Tree의 마카롱은 따뜻한 마음을 전합니다 <br>
-                    저희의 마음을 담은 작은 선물이 소중한 추억이 되기를 소원합니다
-                </div>
-            </div>
-            <img src="/public/images/mind1.png" alt="">
-            <img src="/public/images/mind2.png" alt="">
-            <img src="/public/images/mind3.png" alt="">
-            <img src="/public/images/mind4.png" alt="">
-            <img src="/public/images/mind5.png" alt="">
+      <%- include ("header") %>
+      <div class="mind">
+        <div class="sign_text">
+          <div class="title">내 마음의 작은 선물</div>
+          <div class="text">
+            Macaron Tree의 마카롱은 따뜻한 마음을 전합니다 <br />
+            저희의 마음을 담은 작은 선물이 소중한 추억이 되기를 소원합니다
+          </div>
         </div>
-        <!-- //CONTENTS -->
-        
-        <!-- Footer -->
-        <%- include ('../views/footer') %>
-        <!-- //Footer -->
+        <img src="/public/images/mind1.png" alt="" />
+        <img src="/public/images/mind2.png" alt="" />
+        <img src="/public/images/mind3.png" alt="" />
+        <img src="/public/images/mind4.png" alt="" />
+        <img src="/public/images/mind5.png" alt="" />
+      </div>
+      <%- include ("footer") %>
     </div>
-</body>
+  </body>
 </html>

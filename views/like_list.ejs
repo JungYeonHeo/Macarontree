@@ -1,231 +1,190 @@
-﻿<!DOCTYPE HTML>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
-    <%- include('head') %>
+  <head>
+    <%- include("head") %>
     <title>마이페이지</title>
-    <link type = "text/css" rel="stylesheet" href="/public/css/mypage.css">
-    <link type = "text/css" rel="stylesheet" href="/public/css/like_list.css">
-    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-</head>
-
-<body>
+    <link type="text/css" rel="stylesheet" href="/public/css/mypage.css" />
+    <link type="text/css" rel="stylesheet" href="/public/css/like_list.css" />
+  </head>
+  <body>
     <div id="wrap">
-        <!-- header -->
-        <%- include('header') %>
-        <!-- //header -->
-        
-        <!-- CONTENTS -->
-        <div class="mypage">
-            <!-- 마이페이지 로고 -->
-            <div class="logo-mypage"> 마이페이지 </div>
-            <div class ="align">
-                <!-- 왼쪽 메뉴 -->
-                <div class="myPageLeftMenu fL">
-                    <div class="myPageSubMenu">
-                        <div class="order">
-                            주문 내역
-                        </div>
-                        <div class="like">
-                            찜한 상품
-                        </div>
-                        <div class="user">
-                            개인 정보
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="mobilemenu">
-                    <div class="order">
-                        주문내역
-                    </div>
-                    <div class="like">
-                        찜한 상품
-                    </div>
-                    <div class="user" >
-                        개인 정보
-                    </div>
-                </div>
-                <br>
-
-                <!-- 오른 쪽 메뉴 -->
-                <!-- 찜한 상품 -->
-                <div id="like-list">
-                    <!-- 어느 페이지인지 설명 -->
-                    <div class="div-sub">
-                        <div class="page-name">찜한 상품</div>
-                        <div class="page-location"><img src="/public/images/home.png" class="mypage-home-image"> 메뉴  >  마이페이지  >  찜한 상품</div>
-                        <div class="line"></div>
-                    </div>
-
-                    <!-- 찜한 목록 테이블 -->
-                    <% if (like != null) { %>
-                        <div id="table">
-                            <div class="col"><input class='option-all-checkbox' type='checkbox' value='모두 선택'/></div>
-                            <div class="col">상품</div>
-                            <div class="col">상품명(ko)</div>
-                            <div class="col">상품명(en)</div>
-                            <div class="col">가격</div>
-                            <script>
-                                var likes = new Array(0);
-                            </script>
-                            <% for (data of like) {  %>
-                                <script>
-                                    likes.push('<%= data.prd_id %>');
-                                </script> 
-                                <div class="value" style="grid-column: 1/2;"><input class='option-checkbox' type='checkbox'/></div>
-                                <div class="value" style="grid-column: 2/3;"><img class="like-list-image" src="/public/images/<%= data.prd_img %>"/></div>  
-                                <div class="value" style="grid-column: 3/4;"><%= data.prd_kor %></div>
-                                <div class="value" style="grid-column: 4/5;"><%= data.prd_eng %></div>
-                            <% if (data.prd_type == 'B') { %> 
-                                <div class="value" style="grid-column: 5/6;">2000원</div>
-                            <% } else { %>
-                                <div class="value" style="grid-column: 5/6">3000원</div>
-                            <% }
-                            } %>
-                        </div>
-                        <div class="buttons">
-                            <input type="submit" class="btn-list-delete" value="선택 삭제">
-                            <input type="submit" class="btn-list-cart" value="장바구니">
-                        </div>
-                    <% } else { %>
-                        <div class="like-list-empty-box">
-                            <div class="like-list-empty-message">
-                                "찜한 상품이 없습니다."
-                            </div>
-                            <button id="btn_basic" type="button">MacaronTree 기본 상품 보기</button>
-                        </div>
-                    <% } %>
-                </div>
+      <%- include("header") %>
+      <div class="mypage">
+        <div class="logo-mypage">마이페이지</div>
+        <div class="align">
+          <div class="myPageLeftMenu fL">
+            <div class="myPageSubMenu">
+              <div class="order">주문 내역</div>
+              <div class="like">찜한 상품</div>
+              <div class="user">개인 정보</div>
             </div>
+          </div>
+          <br />
+          <div class="mobilemenu">
+            <div class="order">주문내역</div>
+            <div class="like">찜한 상품</div>
+            <div class="user">개인 정보</div>
+          </div>
+          <br />
+          <div id="like-list">
+            <div class="div-sub">
+              <div class="page-name">찜한 상품</div>
+              <div class="page-location"><img src="/public/images/home.png" class="mypage-home-image" /> 메뉴 > 마이페이지 > 찜한 상품</div>
+              <div class="line"></div>
+            </div>
+            <% if (like != null) { %>
+            <div id="table">
+              <div class="col"><input class="option-all-checkbox" type="checkbox" value="모두 선택" /></div>
+              <div class="col">상품</div>
+              <div class="col">상품명(ko)</div>
+              <div class="col">상품명(en)</div>
+              <div class="col">가격</div>
+              <script>
+                var likes = new Array(0);
+              </script>
+              <% for (data of like) { %>
+              <script>
+                likes.push("<%= data.prd_id %>");
+              </script>
+              <div class="value" style="grid-column: 1/2"><input class="option-checkbox" type="checkbox" /></div>
+              <div class="value" style="grid-column: 2/3"><img class="like-list-image" src="/public/images/<%= data.prd_img %>" /></div>
+              <div class="value" style="grid-column: 3/4"><%= data.prd_kor %></div>
+              <div class="value" style="grid-column: 4/5"><%= data.prd_eng %></div>
+              <% if (data.prd_type == 'B') { %>
+              <div class="value" style="grid-column: 5/6">2000원</div>
+              <% } else { %>
+              <div class="value" style="grid-column: 5/6">3000원</div>
+              <% } } %>
+            </div>
+            <div class="buttons">
+              <input type="submit" class="btn-list-delete" value="선택 삭제" />
+              <input type="submit" class="btn-list-cart" value="장바구니" />
+            </div>
+            <% } else { %>
+            <div class="like-list-empty-box">
+              <div class="like-list-empty-message">"찜한 상품이 없습니다."</div>
+              <button id="btn_basic" type="button">MacaronTree 기본 상품 보기</button>
+            </div>
+            <% } %>
+          </div>
         </div>
-        <!-- //CONTENTS -->
-
-        <!-- Footer -->
-        <%- include ('../views/footer') %>
-        <!-- //Footer -->
+      </div>
+      <%- include ("footer") %>
     </div>
-</body>
-
-<script> 
-
-// 왼쪽 메뉴에 따른 페이지 전환
-$(".order").click(function(){
-    location.href = '/order_list';
-});
-$(".like").click(function(){
-    location.href = '/like_list';
-});
-$(".user").click(function(){
-    location.href ='/user_update';
-});
-
-// 찜한 상품이 없을 때 basic 페이지로 이동
-$("#btn_basic").click(function(){
-    location.href = "/basic";
-});
-
-
-// 모두 선택 체크 박스 
-$(document).on("click", ".option-all-checkbox", function () {
-    var checked = $(".option-all-checkbox").is(":checked");
-  
-    if (checked){
-        $(".option-checkbox").prop("checked", true);
-    } else {
-        $(".option-checkbox").prop("checked", false);
-    }
-});
-
-// 옵션 하나를 체크 해제하면 모두 선택 체크박스도 선택 해제
-$(document).on("click", ".option-checkbox", function() {
-    var is_checked = true;
-    
-    $("#table .option-checkbox").each(function(){
-        is_checked = is_checked && $(this).is(":checked");
+  </body>
+  <script>
+    // 왼쪽 메뉴에 따른 페이지 전환
+    $(".order").click(function () {
+      location.href = "/order_list";
     });
-    
-    $(".option-all-checkbox").prop("checked", is_checked);
-});
+    $(".like").click(function () {
+      location.href = "/like_list";
+    });
+    $(".user").click(function () {
+      location.href = "/user_update";
+    });
 
-// 선택 삭제 버튼
-$(document).on("click", ".btn-list-delete", function () {
-    $(".btn-list-delete").prop("disabled", true);
+    // 찜한 상품이 없을 때 basic 페이지로 이동
+    $("#btn_basic").click(function () {
+      location.href = "/basic";
+    });
 
-    var userResponse = confirm('선택한 제품을 모두 삭제하시겠습니까?');
-    var checked = $(".option-all-checkbox").is(":checked");
+    // 모두 선택 체크 박스
+    $(document).on("click", ".option-all-checkbox", function () {
+      var checked = $(".option-all-checkbox").is(":checked");
 
-    if (userResponse != null) {
-        if (checked){
-            // 모두 삭제 
-            var allBool = "Yes";
-            var deleteListJson = { 
-                "all" : allBool
-            };
+      if (checked) {
+        $(".option-checkbox").prop("checked", true);
+      } else {
+        $(".option-checkbox").prop("checked", false);
+      }
+    });
 
-            $.ajax ({
-                type: 'post',
-                url: '/like_list_delete',
-                dataType: 'json',
-                contentType: "application/x-www-form-urlencoded; charset=utf-8",
-                data: deleteListJson
-            })
-            .success(function (data) { 
-                if (data.result == 0) {
-                    // 삭제 성공 
-                    $(".btn-list-delete").prop("disabled", false);
-                    alert(data.msg);
-                    location.reload();
-                } else if (data.result == 1) { 
-                    // 삭제 실패 
-                    $(".btn-list-delete").prop("disabled", false);
-                    alert(data.msg);
-                }
-            })
+    // 옵션 하나를 체크 해제하면 모두 선택 체크박스도 선택 해제
+    $(document).on("click", ".option-checkbox", function () {
+      var is_checked = true;
 
+      $("#table .option-checkbox").each(function () {
+        is_checked = is_checked && $(this).is(":checked");
+      });
+
+      $(".option-all-checkbox").prop("checked", is_checked);
+    });
+
+    // 선택 삭제 버튼
+    $(document).on("click", ".btn-list-delete", function () {
+      $(".btn-list-delete").prop("disabled", true);
+
+      var userResponse = confirm("선택한 제품을 모두 삭제하시겠습니까?");
+      var checked = $(".option-all-checkbox").is(":checked");
+
+      if (userResponse != null) {
+        if (checked) {
+          // 모두 삭제
+          var allBool = "Yes";
+          var deleteListJson = {
+            all: allBool,
+          };
+
+          $.ajax({
+            type: "post",
+            url: "/like_list_delete",
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            data: deleteListJson,
+          }).success(function (data) {
+            if (data.result == 0) {
+              // 삭제 성공
+              $(".btn-list-delete").prop("disabled", false);
+              alert(data.msg);
+              location.reload();
+            } else if (data.result == 1) {
+              // 삭제 실패
+              $(".btn-list-delete").prop("disabled", false);
+              alert(data.msg);
+            }
+          });
         } else {
-            // 선택 삭제
-            var is_checked = true;
-            var deleteList = new Array(0); 
-            var count = 0;
-            $("#table .option-checkbox").each(function(){
-                is_checked = $(this).is(":checked");
+          // 선택 삭제
+          var is_checked = true;
+          var deleteList = new Array(0);
+          var count = 0;
+          $("#table .option-checkbox").each(function () {
+            is_checked = $(this).is(":checked");
 
-                if (is_checked) {
-                    deleteList.push(likes[count]);
-                }
-                count += 1;
-            });
+            if (is_checked) {
+              deleteList.push(likes[count]);
+            }
+            count += 1;
+          });
 
-            var sJson = JSON.stringify(deleteList);
+          var sJson = JSON.stringify(deleteList);
+          var allBool = "No";
+          var deleteListJson = {
+            all: allBool,
+            deleteList: sJson,
+          };
 
-            var allBool = "No";
-            var deleteListJson = { 
-                "all" : allBool,
-                "deleteList" : sJson 
-            };
-
-            $.ajax ({
-                type: 'post',
-                url: '/like_list_delete',
-                dataType: 'json',
-                contentType: "application/x-www-form-urlencoded; charset=utf-8",
-                data: deleteListJson
-            })
-            .success(function (data) { 
-                if (data.result == 0) {
-                    // 삭제 성공 
-                    $(".btn-list-delete").prop("disabled", false);
-                    alert(data.msg);
-                    location.reload();
-                } else if (data.result == 1) { 
-                    // 삭제 실패 
-                    $(".btn-list-delete").prop("disabled", false);
-                    alert(data.msg);
-                }
-            })
-
+          $.ajax({
+            type: "post",
+            url: "/like_list_delete",
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            data: deleteListJson,
+          }).success(function (data) {
+            if (data.result == 0) {
+              // 삭제 성공
+              $(".btn-list-delete").prop("disabled", false);
+              alert(data.msg);
+              location.reload();
+            } else if (data.result == 1) {
+              // 삭제 실패
+              $(".btn-list-delete").prop("disabled", false);
+              alert(data.msg);
+            }
+          });
         }
-    }
-});
-</script>
+      }
+    });
+  </script>
 </html>

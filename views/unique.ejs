@@ -1,472 +1,439 @@
 <!DOCTYPE html>
 <html lang="ko">
-
-<head>
-    <%- include ('../views/head') %>
-    <link type="text/css" rel="stylesheet" href="/public/css/unique.css">
+  <head>
+    <%- include ("head") %>
+    <link type="text/css" rel="stylesheet" href="/public/css/unique.css" />
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <title>Unique</title>
-</head>
-
-<style>
+  </head>
+  <style>
     /* input type number 화살표 없애기 */
     input[type="number"]::-webkit-outer-spin-button,
     input[type="number"]::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
+      -webkit-appearance: none;
+      margin: 0;
     }
-
-    input[type=checkbox] {
-        zoom: 1.5;
+    input[type="checkbox"] {
+      zoom: 1.5;
     }
-</style>
-
-<body>
+  </style>
+  <body>
     <div id="wrap">
-
-        <!-- HEADER -->
-        <%- include ('../views/header') %>
-        <!-- //HEADER -->
-
-        <!-- CONTENTS -->
-        <div class="">
-            <!-- 소개 간판 -->
-            <div class="sign_text">
-                <div class="title">나만의 마카롱 주문하기</div>
-                <div class="text">
-                    나만의 특별한 마카롱을 주문하세요~<br>
-                    소중한 분에게 아름다운 선물을 드립니다
-                </div>
-            </div>
-            <!-- //소개 간판 -->
-            <!-- 커스텀 마카롱 주문 선택 사항 -->
-            <div class="contents-container">
-                <div class="custom-container" style="float:left">
-                    <div class="custom-top">
-                        <div class="custom-title"># 나만의 마카롱 레시피</div>
-                    </div>
-
-                    <div class="custom-contents">
-                        <form id="custom_form" method="post" enctype="multipart/form-data" action="/unique/custom">
-
-                            <div class="box-container">
-                                <div class="item-container">
-                                    <!-- 꼬끄 -->
-                                    <div class="title-container"><span class="list-title"> # 꼬끄 </span></div>
-                                    <div class="item-align">
-                                        <div><input type="radio" name="꼬끄모양" value="원" class="coque" id="shape_circle"><span
-                                                class="radio-text"> 원 모양</span>
-                                        </div>
-                                        <input type="text" name="꼬끄색" placeholder=" ex) 색상 - 파랑, #0000FF" value=""
-                                            class="coque coque-color">
-                                    </div>
-                                    <div class="item-align">
-                                        <div><input type="radio" name="꼬끄모양" value="캐릭터" class="coque" id="shape_etc"><span
-                                                class="radio-text"> 캐릭터
-                                                모양</span></div>
-                                        <input type="file" name="첨부파일" class="coque coque-character">
-                                    </div>
-                                </div>
-                                <!-- 크림 -->
-                                <div class="item-container">
-                                    <div class="title-container"><span class="list-title"> # 크림 </span></div>
-                                    <div class="item-align">
-                                        <div class="cream-title"><span>색상</span></div>
-
-                                        <div><input type="text" name="크림색" placeholder=" ex) 파랑, #0000FF" value=""
-                                                class="cream cream-color"></div>
-                                    </div>
-                                    <div class="div"></div>
-
-                                    <div class="cream-title"><span>모양</span></div>
-                                    <div class="item-align">
-                                        <div><input type="radio" name="크림모양" value="단층" class="cream"><span
-                                                class="radio-text"> 단층</span></div>
-                                        <div><input type="radio" name="크림모양" value="이층" class="cream"><span
-                                                class="radio-text"> 이층</span></div>
-                                        <div><input type="radio" name="크림모양" value="회오리" class="cream"><span
-                                                class="radio-text"> 회오리</span></div>
-                                    </div>
-                                    <div class="div"></div>
-
-                                    <div class="cream-title"><span>잼</span></div>
-                                    <div class="item-align">
-                                        <div><input type="radio" name="잼" value="딸기" class="cream"><span
-                                                class="radio-text"> 딸기</span>
-                                        </div>
-                                        <div><input type="radio" name="잼" value="블루베리" class="cream"><span
-                                                class="radio-text"> 블루베리</span>
-                                        </div>
-                                        <div><input type="radio" name="잼" value="사과" class="cream"><span
-                                                class="radio-text"> 사과</span></div>
-                                        <div><input type="radio" name="잼" value="땅콩" class="cream"><span
-                                                class="radio-text"> 땅콩</span></div>
-                                        <div><input type="radio" name="잼" value="초코" class="cream"><span
-                                                class="radio-text"> 초코</span></div>
-                                        <div><input type="radio" name="잼" value="무화과" class="cream"><span
-                                                class="radio-text"> 무화과</span></div>
-                                        <div><input type="radio" name="잼" value="유자" class="cream"><span
-                                                class="radio-text"> 유자</span></div>
-                                        <div><input type="radio" name="잼" value="선택안함" class="cream"><span
-                                                class="radio-text"> 선택안함</span></div>
-                                    </div>
-                                    <div class="div"></div>
-                                </div>
-                            </div>
-
-                            <!-- 요청 사항 -->
-                            <div class="box-container item-container">
-                                <div class="title-container"><span class="list-title"> # 요청사항 </span></div>
-                                <input type="textarea" name="요청사항" value="" placeholder=" 요청 사항을 적어주세요"
-                                    class="textarea">
-                            </div>
-
-                            <button id="btn_option" type="button" value="옵션선택" class="submit">옵션선택완료</button>
-                        </form>
-                    </div>
-                </div>
-                <!-- //커스텀 마카롱 주문 선택 사항 -->
-
-                <!-- 옵션 확인  -->
-                <div class="option">
-                <div class="option-contents">
-                    <div class="title"># 주문 내역서</div>
-                    <div class="option-all">
-                        <div style='float:left'>
-                            <input class='option-all-checkbox' type='checkbox' value='모두 선택' checked/><label for="option-all-checkbox">모두 선택</label>
-                        </div>
-                        <input type='button' class='option-check-delete' value="선택 삭제"/>
-                    </div>
-                    <div class="option-item">
-                    <div class="option-list">
-                        <div id="option" class="no-option">- 선택된 옵션 없음-</div>
-                    </div>
-                    </div>
-                    <div class="price-text">총 옵션 금액 <span id="sum_price" class="price-amount">0원</span></div>
-
-                    <input type="submit" id="btn_order" value="주문하기" class="order">
-                </div>
-            </div>
-            </div>
+      <%- include ("header") %>
+      <div class="">
+        <div class="sign_text">
+          <div class="title">나만의 마카롱 주문하기</div>
+          <div class="text">
+            나만의 특별한 마카롱을 주문하세요~<br />
+            소중한 분에게 아름다운 선물을 드립니다
+          </div>
         </div>
-        <!-- //CONTENTS -->
+        <div class="contents-container">
+          <div class="custom-container" style="float: left">
+            <div class="custom-top">
+              <div class="custom-title"># 나만의 마카롱 레시피</div>
+            </div>
+            <div class="custom-contents">
+              <form id="custom_form" method="post" enctype="multipart/form-data" action="/unique/custom">
+                <div class="box-container">
+                  <div class="item-container">
+                    <!-- 꼬끄 -->
+                    <div class="title-container"><span class="list-title"> # 꼬끄 </span></div>
+                    <div class="item-align">
+                      <div><input type="radio" name="꼬끄모양" value="원" class="coque" id="shape_circle" /><span class="radio-text"> 원 모양</span></div>
+                      <input type="text" name="꼬끄색" placeholder=" ex) 색상 - 파랑, #0000FF" value="" class="coque coque-color" />
+                    </div>
+                    <div class="item-align">
+                      <div><input type="radio" name="꼬끄모양" value="캐릭터" class="coque" id="shape_etc" /><span class="radio-text"> 캐릭터 모양</span></div>
+                      <input type="file" name="첨부파일" class="coque coque-character" />
+                    </div>
+                  </div>
+                  <!-- 크림 -->
+                  <div class="item-container">
+                    <div class="title-container"><span class="list-title"> # 크림 </span></div>
+                    <div class="item-align">
+                      <div class="cream-title"><span>색상</span></div>
 
-        <!-- Footer -->
-        <%- include ('../views/footer') %>
-        <!-- //Footer -->
+                      <div><input type="text" name="크림색" placeholder=" ex) 파랑, #0000FF" value="" class="cream cream-color" /></div>
+                    </div>
+                    <div class="div"></div>
+
+                    <div class="cream-title"><span>모양</span></div>
+                    <div class="item-align">
+                      <div><input type="radio" name="크림모양" value="단층" class="cream" /><span class="radio-text"> 단층</span></div>
+                      <div><input type="radio" name="크림모양" value="이층" class="cream" /><span class="radio-text"> 이층</span></div>
+                      <div><input type="radio" name="크림모양" value="회오리" class="cream" /><span class="radio-text"> 회오리</span></div>
+                    </div>
+                    <div class="div"></div>
+
+                    <div class="cream-title"><span>잼</span></div>
+                    <div class="item-align">
+                      <div><input type="radio" name="잼" value="딸기" class="cream" /><span class="radio-text"> 딸기</span></div>
+                      <div><input type="radio" name="잼" value="블루베리" class="cream" /><span class="radio-text"> 블루베리</span></div>
+                      <div><input type="radio" name="잼" value="사과" class="cream" /><span class="radio-text"> 사과</span></div>
+                      <div><input type="radio" name="잼" value="땅콩" class="cream" /><span class="radio-text"> 땅콩</span></div>
+                      <div><input type="radio" name="잼" value="초코" class="cream" /><span class="radio-text"> 초코</span></div>
+                      <div><input type="radio" name="잼" value="무화과" class="cream" /><span class="radio-text"> 무화과</span></div>
+                      <div><input type="radio" name="잼" value="유자" class="cream" /><span class="radio-text"> 유자</span></div>
+                      <div><input type="radio" name="잼" value="선택안함" class="cream" /><span class="radio-text"> 선택안함</span></div>
+                    </div>
+                    <div class="div"></div>
+                  </div>
+                </div>
+                <!-- 요청 사항 -->
+                <div class="box-container item-container">
+                  <div class="title-container"><span class="list-title"> # 요청사항 </span></div>
+                  <input type="textarea" name="요청사항" value="" placeholder=" 요청 사항을 적어주세요" class="textarea" />
+                </div>
+                <button id="btn_option" type="button" value="옵션선택" class="submit">옵션선택완료</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- 옵션 확인  -->
+          <div class="option">
+            <div class="option-contents">
+              <div class="title"># 주문 내역서</div>
+              <div class="option-all">
+                <div style="float: left">
+                  <input class="option-all-checkbox" type="checkbox" value="모두 선택" checked /><label for="option-all-checkbox">모두 선택</label>
+                </div>
+                <input type="button" class="option-check-delete" value="선택 삭제" />
+              </div>
+              <div class="option-item">
+                <div class="option-list">
+                  <div id="option" class="no-option">- 선택된 옵션 없음-</div>
+                </div>
+              </div>
+              <div class="price-text">총 옵션 금액 <span id="sum_price" class="price-amount">0원</span></div>
+
+              <input type="submit" id="btn_order" value="주문하기" class="order" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <%- include ("footer") %>
     </div>
-</body>
+  </body>
 
-<script>
-// 입력 받은 데이터를 json 형태로 변수에 저장
-var data = new Array(); 
-var price = new Array(0); 
-var cnt = 0;
-var optionCount = new Array(1);
-var inputData = new Array();
-var sendData = new Object();
-var jsonData = new Object();
-var arrayData = new Array();
-var obj;
-var sumPrice = 0;
+  <script>
+    // 입력 받은 데이터를 json 형태로 변수에 저장
+    var data = new Array();
+    var price = new Array(0);
+    var cnt = 0;
+    var optionCount = new Array(1);
+    var inputData = new Array();
+    var sendData = new Object();
+    var jsonData = new Object();
+    var arrayData = new Array();
+    var obj;
+    var sumPrice = 0;
 
-// 꼬끄 모양 택 1
-$("#shape_circle").click(function () {
-    $("#shape_etc").prop("checked", false);
-    $(".coque-character").prop("disabled", true);
-});
+    // 꼬끄 모양 택 1
+    $("#shape_circle").click(function () {
+      $("#shape_etc").prop("checked", false);
+      $(".coque-character").prop("disabled", true);
+    });
 
-$("#shape_etc").click(function () {
-    $("#shape_circle").prop("checked", false);
-    $(".coque-character").prop("disabled", false);
-});
+    $("#shape_etc").click(function () {
+      $("#shape_circle").prop("checked", false);
+      $(".coque-character").prop("disabled", false);
+    });
 
-// 옵션 추가하기 
-$("#btn_option").click(function(){
-    inputData = $("form").serializeArray();
-    obj = new Object();
+    // 옵션 추가하기
+    $("#btn_option").click(function () {
+      inputData = $("form").serializeArray();
+      obj = new Object();
 
-    for (var i = 0; i < inputData.length; i++) {
+      for (var i = 0; i < inputData.length; i++) {
         var param_name = inputData[i].name;
         var param_value = inputData[i].value;
 
         // 가격 책정
-        if ( i == 0 ) {
-            if (param_value == '원') {
-                price[cnt] = 2000;
-            } else {
-                price[cnt] = 3000;
-            }
+        if (i == 0) {
+          if (param_value == "원") {
+            price[cnt] = 2000;
+          } else {
+            price[cnt] = 3000;
+          }
 
-            // 데이터 정렬
-            data[cnt] = param_name + ": " + param_value;
+          // 데이터 정렬
+          data[cnt] = param_name + ": " + param_value;
         } else {
-            data[cnt] = data[cnt] + ",  "+ param_name + ": " + param_value; 
+          data[cnt] = data[cnt] + ",  " + param_name + ": " + param_value;
         }
-    }
+      }
 
-    optionCount[cnt] = 1;
+      optionCount[cnt] = 1;
 
-    option_reload() // 옵션 리로드
+      option_reload(); // 옵션 리로드
 
-    // 선택한 옵션 초기화
-    $("form").each(function() {  
-        this.reset();  
-    });  
+      // 선택한 옵션 초기화
+      $("form").each(function () {
+        this.reset();
+      });
 
-    cnt = cnt + 1; // index
+      cnt = cnt + 1; // index
 
-    // 총 가격 설정
-    cal_sumPrice()
-});
-
-// 모두선택 
-$(document).on("click", ".option-all-checkbox", function () {
-    var checked = $(".option-all-checkbox").is(":checked");
-  
-    if (checked){
-        $(".option-checkbox").prop("checked", true);
-        cal_sumPrice()
-    } else {
-        $(".option-checkbox").prop("checked", false);
-    }
-
-    cal_sumPrice()
-});
-
-// 옵션 하나를 체크 해제하면 모두 선택 체크박스도 선택 해제
-$(document).on("click", ".option-checkbox", function() {
-    var is_checked = true;
-    
-    $(".option-list .option-checkbox").each(function(){
-        is_checked = is_checked && $(this).is(":checked");
+      // 총 가격 설정
+      cal_sumPrice();
     });
-    
-    $(".option-all-checkbox").prop("checked", is_checked);
 
-    cal_sumPrice()
-});
+    // 모두선택
+    $(document).on("click", ".option-all-checkbox", function () {
+      var checked = $(".option-all-checkbox").is(":checked");
 
-// 선택삭제 
-$(document).on("click", ".option-check-delete", function () {
-    var userResponse = confirm('선택한 제품을 모두 삭제하시겠습니까?');
-    var checked = $(".option-all-checkbox").is(":checked");
-  
-    if (cnt == 0) {
+      if (checked) {
+        $(".option-checkbox").prop("checked", true);
+        cal_sumPrice();
+      } else {
+        $(".option-checkbox").prop("checked", false);
+      }
+
+      cal_sumPrice();
+    });
+
+    // 옵션 하나를 체크 해제하면 모두 선택 체크박스도 선택 해제
+    $(document).on("click", ".option-checkbox", function () {
+      var is_checked = true;
+
+      $(".option-list .option-checkbox").each(function () {
+        is_checked = is_checked && $(this).is(":checked");
+      });
+
+      $(".option-all-checkbox").prop("checked", is_checked);
+
+      cal_sumPrice();
+    });
+
+    // 선택삭제
+    $(document).on("click", ".option-check-delete", function () {
+      var userResponse = confirm("선택한 제품을 모두 삭제하시겠습니까?");
+      var checked = $(".option-all-checkbox").is(":checked");
+
+      if (cnt == 0) {
         alert("삭제할 제품이 없습니다.");
-    } else if (userResponse != null) {
-        if (checked){
-            // 모두 삭제 
-            for (var i = 0; i < cnt; i++) {
-                data[i] = null;
-                price[i] = null;
-                optionCount[i] = null;
-            }
-            option_reload()
-            cnt = 0
-            $("#option").text("- 선택된 옵션 없음 -");
-            $("#option").css("padding-top", "50px");
-            $("#sum_price").text("0원");
+      } else if (userResponse != null) {
+        if (checked) {
+          // 모두 삭제
+          for (var i = 0; i < cnt; i++) {
+            data[i] = null;
+            price[i] = null;
+            optionCount[i] = null;
+          }
+          option_reload();
+          cnt = 0;
+          $("#option").text("- 선택된 옵션 없음 -");
+          $("#option").css("padding-top", "50px");
+          $("#sum_price").text("0원");
         } else {
-            // 선택 삭제 
-            var is_checked = true;
-            var count = 0;
-            $(".option-list .option-checkbox").each(function(){
-                is_checked = is_checked && $(this).is(":checked");
+          // 선택 삭제
+          var is_checked = true;
+          var count = 0;
+          $(".option-list .option-checkbox").each(function () {
+            is_checked = is_checked && $(this).is(":checked");
 
-                if (is_checked) {
-                    data[count] = null;
-                    price[count] = null;
-                    optionCount[count] = null;
+            if (is_checked) {
+              data[count] = null;
+              price[count] = null;
+              optionCount[count] = null;
 
-                    data[count] = data[count+1];
-                    price[count] = price[count+1];
-                    optionCount[count] = optionCount[count+1];
+              data[count] = data[count + 1];
+              price[count] = price[count + 1];
+              optionCount[count] = optionCount[count + 1];
 
-                    data[count+1] = null;
-                    price[count+1] = null;
-                    optionCount[count+1] = null;
+              data[count + 1] = null;
+              price[count + 1] = null;
+              optionCount[count + 1] = null;
 
-                    option_reload()
-                    cal_sumPrice()
-                    cnt = cnt - 1;
-                    count = count + 1;
-                }
-            });
+              option_reload();
+              cal_sumPrice();
+              cnt = cnt - 1;
+              count = count + 1;
+            }
+          });
 
-            var is_checked = true;
+          var is_checked = true;
 
-            $(".option-list .option-checkbox").each(function(){
-                is_checked = is_checked && $(this).is(":checked");
-            });
-            
-            $(".option-all-checkbox").prop("checked", is_checked);
+          $(".option-list .option-checkbox").each(function () {
+            is_checked = is_checked && $(this).is(":checked");
+          });
+
+          $(".option-all-checkbox").prop("checked", is_checked);
         }
-    }
-});
+      }
+    });
 
-// 옵션 삭제하기 (X 버튼)
-$(document).on("click", ".option_delete", function(){ 
-    var num = $(".option_delete").index(this); 
-    data[num] = null;
-    price[num] = null;
-    optionCount[num] = null;
+    // 옵션 삭제하기 (X 버튼)
+    $(document).on("click", ".option_delete", function () {
+      var num = $(".option_delete").index(this);
+      data[num] = null;
+      price[num] = null;
+      optionCount[num] = null;
 
-    for (var i = num; i < cnt; i++) {
-        data[num] = data[num+1];
-        price[num] = price[num+1];
-        optionCount[num] = optionCount[num+1];
-    }
+      for (var i = num; i < cnt; i++) {
+        data[num] = data[num + 1];
+        price[num] = price[num + 1];
+        optionCount[num] = optionCount[num + 1];
+      }
 
-    data[cnt-1] = null;
-    price[cnt-1] = null;
-    optionCount[cnt-1] = null;
+      data[cnt - 1] = null;
+      price[cnt - 1] = null;
+      optionCount[cnt - 1] = null;
 
-    option_reload()
-    cal_sumPrice()
-    cnt = cnt - 1;
-    if (cnt == 0) { 
+      option_reload();
+      cal_sumPrice();
+      cnt = cnt - 1;
+      if (cnt == 0) {
         $("#option").text("- 선택된 옵션 없음 -");
         $("#option").css("padding-top", "50px");
         $("#sum_price").text("0원");
-    }
-});
+      }
+    });
 
-// 옵션 개수 변경
-$(document).on("click", ".option_minus", function(){ 
-    var num = $(".option_minus").index(this);
-    var count = optionCount[num] - 1;
-    $(".option_count").eq(num).val(count);
-    optionCount[num] = count;
-    $(".option_price").eq(num).text(price[num] * optionCount[num]) + "원";
-    cal_sumPrice()
-    if (count == 1) {
+    // 옵션 개수 변경
+    $(document).on("click", ".option_minus", function () {
+      var num = $(".option_minus").index(this);
+      var count = optionCount[num] - 1;
+      $(".option_count").eq(num).val(count);
+      optionCount[num] = count;
+      $(".option_price")
+        .eq(num)
+        .text(price[num] * optionCount[num]) + "원";
+      cal_sumPrice();
+      if (count == 1) {
         $(".option_minus").eq(num).prop("disabled", true);
-    }
-});     
+      }
+    });
 
-$(document).on("click", ".option_plus", function(){ 
-    var num = $(".option_plus").index(this); 
-    var count = optionCount[num] + 1;
-    $(".option_count").eq(num).val(count); 
-    optionCount[num] = count;
-    $(".option_price").eq(num).text(price[num] * optionCount[num] + "원"); 
-    cal_sumPrice()
-    $(".option_minus").eq(num).prop("disabled", false); 
-});
+    $(document).on("click", ".option_plus", function () {
+      var num = $(".option_plus").index(this);
+      var count = optionCount[num] + 1;
+      $(".option_count").eq(num).val(count);
+      optionCount[num] = count;
+      $(".option_price")
+        .eq(num)
+        .text(price[num] * optionCount[num] + "원");
+      cal_sumPrice();
+      $(".option_minus").eq(num).prop("disabled", false);
+    });
 
-// 주문하기 
-$("#btn_order").click(function () {
-    if (cnt == 0 ) {
+    // 주문하기
+    $("#btn_order").click(function () {
+      if (cnt == 0) {
         alert("옵션을 선택해주세요");
-    } else {
-       // 한 번에 여러번 클릭으로 값이 이중으로 들어가는 것 방지
+      } else {
+        // 한 번에 여러번 클릭으로 값이 이중으로 들어가는 것 방지
         $("#btn_order").prop("disabled", true);
 
         // 주문할 때 선택한 옵션만 주문
         var is_checked = false;
         var count = 0;
-        
-        $(".option-list .option-checkbox").each(function(){
-            is_checked = $(this).is(":checked");
-    
-            if (is_checked) {
-                if (data[count] != null) { 
-                 
-                    obj = { 
-                        data : data[count],
-                        optionCount: optionCount[count],
-                        price: price[count]
-                    };
-                    arrayData.push(obj);
-                }
+
+        $(".option-list .option-checkbox").each(function () {
+          is_checked = $(this).is(":checked");
+
+          if (is_checked) {
+            if (data[count] != null) {
+              obj = {
+                data: data[count],
+                optionCount: optionCount[count],
+                price: price[count],
+              };
+              arrayData.push(obj);
             }
-            count += 1;
+          }
+          count += 1;
         });
 
         var sJson = JSON.stringify(arrayData);
 
         jsonData = {
-            sumPrice : sumPrice,
-            product : sJson
+          sumPrice: sumPrice,
+          product: sJson,
         };
 
-        $.ajax ({
-            type: 'post',
-            url: '/order',
-            dataType: 'json',
-            contentType: "application/x-www-form-urlencoded; charset=utf-8",
-            data: jsonData
-        })
-        .success(function (data) { 
-            // 주문 성공, 주문 완료 페이지로 이동
-            if (data.result == 0) {
-                location.href = '/order_done';
-            } else if (data.result == 1){
-                // 주문하기전 로그인 여부 확인
-                alert(data.msg);
-                location.href = '/login'; 
-            } else { 
-                // 주문 실패 
-                $("#btn_order").prop("disabled", false);
-                alert(data.msg);
-            }
-        })
-    }
-});
+        $.ajax({
+          type: "post",
+          url: "/order",
+          dataType: "json",
+          contentType: "application/x-www-form-urlencoded; charset=utf-8",
+          data: jsonData,
+        }).success(function (data) {
+          // 주문 성공, 주문 완료 페이지로 이동
+          if (data.result == 0) {
+            location.href = "/order_done";
+          } else if (data.result == 1) {
+            // 주문하기전 로그인 여부 확인
+            alert(data.msg);
+            location.href = "/login";
+          } else {
+            // 주문 실패
+            $("#btn_order").prop("disabled", false);
+            alert(data.msg);
+          }
+        });
+      }
+    });
 
-// 총 가격 계산 함수 
-function cal_sumPrice() { 
-    var sum = 0;
-    var is_checked = false;
-    var count = 0;
-    
-    $(".option-list .option-checkbox").each(function(){
+    // 총 가격 계산 함수
+    function cal_sumPrice() {
+      var sum = 0;
+      var is_checked = false;
+      var count = 0;
+
+      $(".option-list .option-checkbox").each(function () {
         is_checked = $(this).is(":checked");
 
         if (is_checked) {
-            sum = sum + (price[count] * optionCount[count]); 
+          sum = sum + price[count] * optionCount[count];
         }
         count += 1;
-    });
+      });
 
-    sumPrice = sum;
-    $("#sum_price").text(sumPrice.toString() + "원");
-};
+      sumPrice = sum;
+      $("#sum_price").text(sumPrice.toString() + "원");
+    }
 
-// 옵션 리로드
-function option_reload() {
-    var addTag = "";
-    // 선택한 옵션 화면에 보여주기
-    $("#option").css("padding-top", "0px");
-    $("#option").html(""); // 기존 태그 초기화
-    for (var i = 0; i <= cnt; i++) {
+    // 옵션 리로드
+    function option_reload() {
+      var addTag = "";
+      // 선택한 옵션 화면에 보여주기
+      $("#option").css("padding-top", "0px");
+      $("#option").html(""); // 기존 태그 초기화
+      for (var i = 0; i <= cnt; i++) {
         var boolValue = "";
 
-        if (optionCount[i] == 1)
-            boolValue = "disabled";
+        if (optionCount[i] == 1) boolValue = "disabled";
 
         if (data[i] != null) {
-            addTag += "<div class='option-data-box' style='overflow:visible;min-height:105px;height:auto;background:#ffffff;margin:5px 0 5px 0;border-radius:5px;border:2px solid #e8e8e8'>"
-                + "<div style='display:block;position:relative'>"
-                + "<div style='float:left'><input class='option-checkbox' type='checkbox' checked/></div>"
-                + "<div style='float:right;padding:5px'><input class='option_delete' type='button' value='X' style='border-radius:5px;background:#ffffff;color:#484848;'/></div>"
-                + "</div>"
-                + "<div style='display:block;border-radius:5px;margin:0 5px 5px 5px;position:relative;left:0px;padding:5px;text-align:left;font-weight:bold;background:#f5f5f5;word-break:break-all'>" + data[i] + "</div>"
-                + "<div style='position:relative;margin-bottom:5px;padding:0 5px 0 5px;'>"
-                + "<div style='float:left;'>"
-                + "<input class='option_minus' type='button' value='-'" + boolValue + " style='background:#90a2b0;color:#ffffff;border-radius:5px 0 0 5px;'/>"
-                + "<input class='option_count' type='number' value='" + optionCount[i] + "' min='1' max='10' style='width:30px;text-align:center;'/>"
-                + "<input class='option_plus' type='button' value='+' style='background:#90a2b0;color:#ffffff;border-radius:0 5px 5px 0;'/>"
-                + "</div>"
-                + "<div class='option_price' style='float:right;display:block;font-weight:bold'>" + price[i] * optionCount[i] +"원 </div>"
-                + "</div>"
-                + "</div>";
+          addTag +=
+            "<div class='option-data-box' style='overflow:visible;min-height:105px;height:auto;background:#ffffff;margin:5px 0 5px 0;border-radius:5px;border:2px solid #e8e8e8'>" +
+            "<div style='display:block;position:relative'>" +
+            "<div style='float:left'><input class='option-checkbox' type='checkbox' checked/></div>" +
+            "<div style='float:right;padding:5px'><input class='option_delete' type='button' value='X' style='border-radius:5px;background:#ffffff;color:#484848;'/></div>" +
+            "</div>" +
+            "<div style='display:block;border-radius:5px;margin:0 5px 5px 5px;position:relative;left:0px;padding:5px;text-align:left;font-weight:bold;background:#f5f5f5;word-break:break-all'>" +
+            data[i] +
+            "</div>" +
+            "<div style='position:relative;margin-bottom:5px;padding:0 5px 0 5px;'>" +
+            "<div style='float:left;'>" +
+            "<input class='option_minus' type='button' value='-'" +
+            boolValue +
+            " style='background:#90a2b0;color:#ffffff;border-radius:5px 0 0 5px;'/>" +
+            "<input class='option_count' type='number' value='" +
+            optionCount[i] +
+            "' min='1' max='10' style='width:30px;text-align:center;'/>" +
+            "<input class='option_plus' type='button' value='+' style='background:#90a2b0;color:#ffffff;border-radius:0 5px 5px 0;'/>" +
+            "</div>" +
+            "<div class='option_price' style='float:right;display:block;font-weight:bold'>" +
+            price[i] * optionCount[i] +
+            "원 </div>" +
+            "</div>" +
+            "</div>";
         }
+      }
+      $("#option").append(addTag);
     }
-    $("#option").append(addTag); 
-};
-
-
-</script> 
+  </script>
 </html>

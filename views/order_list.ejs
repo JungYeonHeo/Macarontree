@@ -1,117 +1,87 @@
-﻿<!DOCTYPE HTML>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
-    <%- include('head') %>
+  <head>
+    <%- include("head") %>
     <title>마이페이지</title>
-    <link type = "text/css" rel="stylesheet" href="/public/css/mypage.css">
-    <link type = "text/css" rel="stylesheet" href="/public/css/order_list.css">
-    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-</head>
-
-<body>
+    <link type="text/css" rel="stylesheet" href="/public/css/mypage.css" />
+    <link type="text/css" rel="stylesheet" href="/public/css/order_list.css" />
+  </head>
+  <body>
     <div id="wrap">
-        <!-- header -->
-        <%- include('header') %>
-        <!-- //header -->
-
-        <div class="mypage">
-            <!-- 마이페이지 로고 -->
-            <div class="logo-mypage"> 마이페이지 </div>
-            <div class ="align">
-                <!-- 왼쪽 메뉴 -->
-                <div class="myPageLeftMenu fL">
-                    <div class="myPageSubMenu">
-                        <div class="order">
-                            주문 내역
-                        </div>
-                        <div class="like">
-                            찜한 상품
-                        </div>
-                        <div class="user">
-                            개인 정보
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="mobilemenu">
-                    <div class="order">
-                        주문내역
-                    </div>
-                    <div class="like">
-                        찜한 상품
-                    </div>
-                    <div class="user" >
-                        개인 정보
-                    </div>
-                </div>
-                <br>
-
-                <!-- 오른 쪽 메뉴 -->
-                <!-- 주문내역 -->
-                <div id="order-list">
-                    <!-- 어느 페이지인지 설명 -->
-                    <div class="div-sub">
-                        <div class="page-name">주문 내역</div>
-                        <div class="page-location"><img src="/public/images/home.png" class="mypage-home-image"/> 메뉴  >  마이페이지  >  주문 내역</div>
-                        <div class="line"></div>
-                    </div>
-
-                    <!-- 주문 내역 테이블 -->
-                    <% if (order != null) { %>
-                        <div style="padding-bottom: 50px; margin-top: 20px;">
-                            <% for (var i = 0; i < order.length; i++) { 
-                                var obj = JSON.parse(order[i].ord_content.product); %>
-                            <div style="margin-bottom:20px">
-                                <div>            
-                                    <div style="float:left;font-size:12pt;font-weight:bold;"> <%= order[i].ord_date %> </div>     
-                                    <div style="float:right;font-size:12pt;font-weight:bold;"> 총가격: <%= order[i].ord_content.sumPrice %> 원</div>     
-                                </div>            
-                                <div id="table">
-                                    <div class="col">상품</div>
-                                    <div class="col">수량</div>
-                                    <div class="col">가격</div>
-                                <% for (var j = 0; j < obj.length; j++ ) { %>
-                                    <div class="" style="grid-column: 1/2;"><%= obj[j].data %></div>
-                                    <div class="" style="grid-column: 2/3;"><%= obj[j].optionCount %></div>
-                                    <div class="" style="grid-column: 3/4;"><%= obj[j].price * obj[j].optionCount %>원</div>
-                                <% } %>
-                                </div>
-                            </div>
-                            <% } %>
-                        </div> 
-                    <% } else { %>
-                        <div class="order-list-empty-box">
-                            <div class="order-list-empty-message">
-                                "주문내역이 없습니다."
-                            </div>
-                            <button id="btn_basic" type="button">MacaronTree 기본 상품 보기</button>
-                        </div>
-                    <% } %>
-                </div>
+      <%- include("header") %>
+      <div class="mypage">
+        <!-- 마이페이지 로고 -->
+        <div class="logo-mypage">마이페이지</div>
+        <div class="align">
+          <!-- 왼쪽 메뉴 -->
+          <div class="myPageLeftMenu fL">
+            <div class="myPageSubMenu">
+              <div class="order">주문 내역</div>
+              <div class="like">찜한 상품</div>
+              <div class="user">개인 정보</div>
             </div>
+          </div>
+          <br />
+          <div class="mobilemenu">
+            <div class="order">주문내역</div>
+            <div class="like">찜한 상품</div>
+            <div class="user">개인 정보</div>
+          </div>
+          <br />
+          <div id="order-list">
+            <div class="div-sub">
+              <div class="page-name">주문 내역</div>
+              <div class="page-location"><img src="/public/images/home.png" class="mypage-home-image" /> 메뉴 > 마이페이지 > 주문 내역</div>
+              <div class="line"></div>
+            </div>
+            <% if (order != null) { %>
+            <div style="padding-bottom: 50px; margin-top: 20px">
+              <% for (var i = 0; i < order.length; i++) { var obj = JSON.parse(order[i].ord_content.product); %>
+              <div style="margin-bottom: 20px">
+                <div>
+                  <div style="float: left; font-size: 12pt; font-weight: bold"><%= order[i].ord_date %></div>
+                  <div style="float: right; font-size: 12pt; font-weight: bold">총가격: <%= order[i].ord_content.sumPrice %> 원</div>
+                </div>
+                <div id="table">
+                  <div class="col">상품</div>
+                  <div class="col">수량</div>
+                  <div class="col">가격</div>
+                  <% for (var j = 0; j < obj.length; j++ ) { %>
+                  <div class="" style="grid-column: 1/2"><%= obj[j].data %></div>
+                  <div class="" style="grid-column: 2/3"><%= obj[j].optionCount %></div>
+                  <div class="" style="grid-column: 3/4"><%= obj[j].price * obj[j].optionCount %>원</div>
+                  <% } %>
+                </div>
+              </div>
+              <% } %>
+            </div>
+            <% } else { %>
+            <div class="order-list-empty-box">
+              <div class="order-list-empty-message">"주문내역이 없습니다."</div>
+              <button id="btn_basic" type="button">MacaronTree 기본 상품 보기</button>
+            </div>
+            <% } %>
+          </div>
         </div>
-        <!-- Footer -->
-        <%- include ('../views/footer') %>
-        <!-- //Footer -->
+      </div>
+      <%- include ("footer") %>
     </div>
-</body>
+  </body>
+  <script>
+    // 왼쪽 메뉴에 따른 페이지 전환
+    $(".order").click(function () {
+      location.href = "/order_list";
+    });
+    $(".like").click(function () {
+      location.href = "/like_list";
+    });
+    $(".user").click(function () {
+      location.href = "/user_update";
+    });
 
-<script> 
-// 왼쪽 메뉴에 따른 페이지 전환
-$(".order").click(function(){
-    location.href = '/order_list';
-});
-$(".like").click(function(){
-    location.href = '/like_list';
-});
-$(".user").click(function(){
-    location.href ='/user_update';
-});
-
-// 주문 상품이 없을 때 basic 페이지로 이동
-$("#btn_basic").click(function(){
-    location.href = "/basic";
-});
-
-</script>
+    // 주문 상품이 없을 때 basic 페이지로 이동
+    $("#btn_basic").click(function () {
+      location.href = "/basic";
+    });
+  </script>
 </html>

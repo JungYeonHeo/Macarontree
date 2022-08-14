@@ -1,32 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko">
-
-<head>
-    <%- include ('../views/head') %>
+  <head>
+    <%- include ("head") %>
     <title>주문 완료</title>
-</head>
-
-<body>
-    <!-- HEADER -->
-    <%- include ('../views/header') %>
-    <!-- //HEADER -->
-
-    <!-- CONTENT -->
-    <div style="text-align:center;background-color: #ECE6CC;padding: 10px; margin-top: 30px;">
-        <div style="font-weight: bold; font-size: 30pt; margin-top: 50px; margin-bottom: 50px;">
-            "주문이 완료되었습니다."
-        </div>
-        <button id="btn_order" type="button" style="width: 200px; height: 50px; background: #004771; color: #fff; border: 2px solid #004771;margin-bottom: 30px;">주문확인하기</button>
+  </head>
+  <body>
+    <%- include ("header") %>
+    <div style="text-align: center; background-color: #ece6cc; padding: 10px; margin-top: 30px">
+      <div style="font-weight: bold; font-size: 30pt; margin-top: 50px; margin-bottom: 50px">"주문이 완료되었습니다."</div>
+      <button id="btn_order" type="button" style="width: 200px; height: 50px; background: #004771; color: #fff; border: 2px solid #004771; margin-bottom: 30px">
+        주문확인하기
+      </button>
     </div>
-    <!-- //CONTENT -->
-
-</body>
-
-<script>
-$("#btn_order").click(function(){
-    //로그인 했는지 확인
-    location.href="/order_list";
-});
-
-</script>
+  </body>
+  <script>
+    $("#btn_order").click(function () {
+      location.href = "/order_list";
+    });
+  </script>
 </html>

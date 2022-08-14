@@ -1,81 +1,63 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <%- include ('../views/head') %>
-    <link type="text/css" rel="stylesheet" href="/public/css/index.css"> 
+  <head>
+    <%- include ("head") %>
+    <link type="text/css" rel="stylesheet" href="/public/css/index.css" />
     <title>MacaronTree</title>
-</head>
-<body style="height: 100%; overflow-y: auto; z-index: 999">
-   <!-- WRAP -->
+  </head>
+  <body style="height: 100%; overflow-y: auto; z-index: 999">
     <div id="wrap">
-       <!-- HEADER -->
-       <%- include ('../views/header') %>
-        <!-- //HEADER -->
-        
-        <!-- BANNER -->
-        <div id="banner">
-            <div>
-                <img class="img_box" src="/public/images/banner1.png" style="display: none">
-                <img class="img_box" src="/public/images/banner2.png" style="display: block">
-                <img class="img_box" src="/public/images/banner3.png" style="display: none">
-            </div>
-            <div class="main_center">
-                <div class="a_box">
-                    <a id="black" style="display: none;" href="#"></a>
-                    <a id="black" style="display: none;" href="#"></a>
-                    <a id="black" style="display: none;" href="#"></a>
-                </div>
-                <input type="hidden" id="bannerIndex" value="0">
-                <input type="hidden" id="find" value="0">
-            </div>
+      <%- include ("header") %>
+      <div id="banner">
+        <div>
+          <img class="img_box" src="/public/images/banner1.png" style="display: none" />
+          <img class="img_box" src="/public/images/banner2.png" style="display: block" />
+          <img class="img_box" src="/public/images/banner3.png" style="display: none" />
         </div>
-        <script>changeBanner();</script>
-        <!-- //BANNER -->
-        
-        <!-- CONTENTS -->
-        <div id="contents-main">
-            <!-- BEST 상품 최대 4개까지 노출 -->
-            <div class="contents-container">
-                <div class="contents-title">Best</div>
-                
-                <div class="contents-group">
-                    <% for(var data of product) { %>
-                    <div class="contents-item">
-                        <div class="contents-img">
-                            <img src="<%= data.prd_img %>" alt="">
-                        </div>
-                        <div class="name-kor"><%= data.prd_kor %></div>
-                        <div class="name-eng"><%= data.prd_eng %></div>
-                    </div>
-                    <% } %>
-                </div>
-            </div>
-            <!-- //BEST -->
-            
-            <!-- CONTEST 후기 최신순으로 최대 4개까지 노출 -->
-            <div class="contents-container">
-                <div class="contents-title">Contest</div>
-                
-                <div class="contents-group">
-                    <% for(var data of contest) { %>
-                    <div class="contents-item">
-                        <div class="contents-img">
-                            <img src="<%= data.cont_img %>" alt="">
-                        </div>
-                        <div class="name-kor"><%= data.cont_title %></div>
-                        <div class="contest-review"><%= data.cont_review %></div>
-                    </div>
-                    <% } %>
-                </div>
-            </div>
-            <!-- //CONTEST 후기 -->
+        <div class="main_center">
+          <div class="a_box">
+            <a id="black" style="display: none" href="#"></a>
+            <a id="black" style="display: none" href="#"></a>
+            <a id="black" style="display: none" href="#"></a>
+          </div>
+          <input type="hidden" id="bannerIndex" value="0" />
+          <input type="hidden" id="find" value="0" />
         </div>
-        <!-- //CONTENTS -->
-        
-        <!-- Footer -->
-        <%- include ('../views/footer') %>
-        <!-- //Footer -->
+      </div>
+      <script>
+        changeBanner();
+      </script>
+      <div id="contents-main">
+        <div class="contents-container">
+          <div class="contents-title">Best</div>
+          <div class="contents-group">
+            <% for(var data of product) { %>
+            <div class="contents-item">
+              <div class="contents-img">
+                <img src="<%= data.prd_img %>" alt="" />
+              </div>
+              <div class="name-kor"><%= data.prd_kor %></div>
+              <div class="name-eng"><%= data.prd_eng %></div>
+            </div>
+            <% } %>
+          </div>
+        </div>
+        <div class="contents-container">
+          <div class="contents-title">Contest</div>
+          <div class="contents-group">
+            <% for(var data of contest) { %>
+            <div class="contents-item">
+              <div class="contents-img">
+                <img src="<%= data.cont_img %>" alt="" />
+              </div>
+              <div class="name-kor"><%= data.cont_title %></div>
+              <div class="contest-review"><%= data.cont_review %></div>
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <%- include ("footer") %>
     </div>
-    <!-- //WRAP -->
-</body>
+  </body>
 </html>
