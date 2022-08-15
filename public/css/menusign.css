@@ -1,28 +1,28 @@
 /* 소개 간판 */
 .sign_text {
-    width: 100% - 100px;
-    display: block;
-    box-sizing:border-box;
-    border:3px solid #ccc;
-    border-radius: 10px;
-    margin: 50px;
+  width: 100% - 100px;
+  display: block;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  border-radius: 10px;
+  margin: 50px;
 }
 
 .sign_text .title {
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
-    color: #004771;
-    letter-spacing: 2px;
-    margin: 40px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  color: #004771;
+  letter-spacing: 2px;
+  margin: 40px;
 }
 
 .sign_text .text {
-    margin: auto 30px;
-    font-size: 18px;
-    text-align: center;
-    color: #5f656b;
-    letter-spacing: 0px;
-    line-height: 24px;
-    margin-bottom: 40px;
+  margin: auto 30px;
+  font-size: 18px;
+  text-align: center;
+  color: #5f656b;
+  letter-spacing: 0px;
+  line-height: 24px;
+  margin-bottom: 40px;
 }

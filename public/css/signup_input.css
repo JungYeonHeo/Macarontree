@@ -1,157 +1,152 @@
 @charset "utf-8";
 
-/* 회원가입 절차 설명 */
 .menu {
-    width: 100%; 
-    background: #f4f4f4; 
+  width: 100%;
+  background: #f4f4f4;
 }
 
 .menu-bg {
-    height: 60px;
-    background: #f4f4f4;
+  height: 60px;
+  background: #f4f4f4;
 }
 
 p {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .signtxt {
-    font-size: 24pt;
-    color:#555557;
-    height: 60px;
-    padding: 15px 0 10px 0;
-    text-align: right;
+  font-size: 24pt;
+  color: #555557;
+  height: 60px;
+  padding: 15px 0 10px 0;
+  text-align: right;
 }
 
 .sign-num {
-    height: 60px;
-    padding: 15px 0 10px 0;
-    text-align: right;
+  height: 60px;
+  padding: 15px 0 10px 0;
+  text-align: right;
 }
 
 .point {
-    color: #004771; 
-    vertical-align: middle;
+  color: #004771;
+  vertical-align: middle;
 }
 
 .point2 {
-    color:#555555;
-    vertical-align: middle;
+  color: #555555;
+  vertical-align: middle;
 }
 
 .menu-txt {
-    color: #8e8e8e;
-    vertical-align: middle;
+  color: #8e8e8e;
+  vertical-align: middle;
 }
 
 .div-align {
-    width: 100%;
+  width: 100%;
 }
 
 .div-agree {
-    width: 500px; 
-    padding-top: 20px;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%);
+  width: 500px;
+  padding-top: 20px;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .align {
-    display: inline;
-    width: 100%;
+  display: inline;
+  width: 100%;
 }
 
 .inputValue {
-    width: 100%; 
-    height: 40px; 
-    margin-bottom: 20px; 
-    font-size: 12pt
+  width: 100%;
+  height: 40px;
+  margin-bottom: 20px;
+  font-size: 12pt;
 }
 
 .inputValue-btn {
-    width: 70%; 
-    height: 40px; 
-    margin-bottom: 20px; 
-    font-size: 12pt
+  width: 70%;
+  height: 40px;
+  margin-bottom: 20px;
+  font-size: 12pt;
 }
 
 .btn-check {
-    width: 20%; 
-    height: 43px; 
-    font-size: 12pt;
-    color: #a09c9c;
-    background-color: #fff;
-    border: 1px solid #a09c9c;
-    border-radius: 5px;
-    float: right
+  width: 25%;
+  height: 43px;
+  font-size: 12pt;
+  color: #a09c9c;
+  background-color: #fff;
+  border: 1px solid #a09c9c;
+  border-radius: 5px;
+  float: right;
 }
 
 .p-warning {
-    color: red;
-    margin-bottom: 20px;
-    display: none;
+  color: red;
+  margin-bottom: 20px;
+  display: none;
 }
 
-#btn_signup { 
-    width: 100%; 
-    height: auto !important;
-    background-color: #004771;
-    font-size: 18px;
-    padding: 15px 32px;
-    border: 2px solid #004771;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    margin: 30px 0;
+#btn_signup {
+  width: 100%;
+  height: auto !important;
+  background-color: #004771;
+  font-size: 18px;
+  padding: 15px 32px;
+  border: 2px solid #004771;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  margin: 30px 0;
 }
 
 /* 테블릿 css */
-@media all and (max-width:550px) {
-       
-    .sign-num {
-        display: none;
-    }
+@media all and (max-width: 550px) {
+  .sign-num {
+    display: none;
+  }
 
-    .signtxt { 
-        font-size: 20px;
-        width: 100%;
-        margin-bottom: 10px;
-        text-align: center;
-    }
-    
-    .div-agree {
-        width: 90%;
-    }
+  .signtxt {
+    font-size: 20px;
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: center;
+  }
 
-    .btn_check {
-        width: 22%; 
-        height: 43px; 
-        font-size: 12pt;
-        color: red;
-        background-color: #fff;
-        border: 1px solid red;
-        border-radius: 5px;
-    }
+  .div-agree {
+    width: 90%;
+  }
 
+  .btn_check {
+    width: 22%;
+    height: 43px;
+    font-size: 12pt;
+    color: red;
+    background-color: #fff;
+    border: 1px solid red;
+    border-radius: 5px;
+  }
 }
 
 /* 모바일 css */
-@media all and (max-width:300px) {  
+@media all and (max-width: 300px) {
+  .menu-bg {
+    height: 40px;
+  }
 
-    .menu-bg {
-        height: 40px;
-    }
-    
-    .text {
-        font-size: 12px;
-    }
-    
-    .ptxt2 {
-        font-size: 12px;
-    }
+  .text {
+    font-size: 12px;
+  }
 
-    #btn_signup { 
-        margin: 10px 0;
-    }
-    
+  .ptxt2 {
+    font-size: 12px;
+  }
+
+  #btn_signup {
+    margin: 10px 0;
+  }
 }

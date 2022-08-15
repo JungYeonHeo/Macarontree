@@ -1,71 +1,57 @@
 ﻿<!DOCTYPE HTML>
 <html lang="ko">
 	<head>
+		<%- include("head") %>
 		<title>로그인</title>
-		<link rel="shortcut icon" href="/public/images/logo.png">
 		<link type="text/css" rel="stylesheet" href="/public/css/login.css">
 	</head>
-	<body style="background:#f9f9fb;">
-		<div class="div-logo" width="350px">
-			<div style="margin: 0 auto; width: 350px;">
-				<img class="img-logo" src="/public/images/logo.png" />
-				<p class="p-logo">Macaron Tree</p>
-				<input id="id" class="inputValue" name="id" autofocus required placeholder="이메일 아이디" /> <br>
-				<input id="password" class="inputValue" name="password" type="password" autofocus required
-					placeholder="비밀번호" /><br>
-				<p id="p-warning"></p>
-				<button id="btn_login" type="button">확인</button><br>
-				<div>
-					<p style="color:#a8a8aa;">아이디 찾기 | 비밀번호 찾기 |
-						<a href="/signup_agree" style="color:#a8a8aa;">회원가입</a>
-					</p>
-				</div>
-				<div>
-					<hr>
-				</div>
-				<div>
-					<p>SNS아이디로 간편하게 로그인하세요</p>
-				</div>
-				<div>
-					<a href="http://www.kakao.com/talk"><img class="img-kakao" src="/public/images/kakao.png" /></a>
-					<a href="http://www.naver.com/"><img class="img-naver" src="/public/images/naver.png" /></a>
-					<a href="https://www.facebook.com/"><img class="img-face" src="/public/images/facebook.png" /></a>
-				</div>
-			</div>
+	<body>
+		<div class="div-logo">
+			<p><img class="img-logo" src="/public/images/logo.png" /></p>
+			<p><a id="main-logo" href="/">Macaron Tree</a></p>
+			<input id="id" name="id" autofocus required placeholder="이메일 아이디"/>
+			<input id="password" name="password" type="password" autofocus required placeholder="비밀번호" />
+			<p id="p-warning"></p>
+			<button id="btn_login" type="button">로그인</button>
+			<p class="text grey">아이디 찾기 | 비밀번호 찾기 |
+				<a href="/user/signup_agree" style="color:#a8a8aa;">회원가입</a>
+			</p>
+			<hr>
+			<p class="text">SNS아이디로 간편하게 로그인하세요</p>
+			<p>
+				<a href="http://www.kakao.com/talk"><img class="img-kakao" src="/public/images/kakao.png" /></a>
+				<a href="http://www.naver.com/"><img class="img-naver" src="/public/images/naver.png" /></a>
+				<a href="https://www.facebook.com/"><img class="img-face" src="/public/images/facebook.png" /></a>
+			</p>
+		</div>
 	</body>
 	<script>
-		// 로그인 비동기 처리 Ajax
 		$("#btn_login").click(function () {
-			var id = $('input[name=id]').val();
-			var pw = $('input[name=password]').val();
+			const id = $("input[name=id]").val().trim();
+			const pw = $("input[name=password]").val().trim();
 			if (id == "" || pw == "") {
-				jQuery('#p-warning').text('입력칸을 모두 채워주세요.');
-				jQuery('#p-warning').css("display", "block");
+				$("#p-warning").text("입력칸을 모두 채워주세요.");
+				$("#p-warning").css("display", "block");
 			} else {
-				var data = { "id": id, "password": pw };
+				const data = { id: id, pw: pw };
 				$.ajax({
-					type: 'post',
-					url: '/login_check',
-					datatype: 'json',
+					type: "post",
+					url: "/user/login_check",
+					datatype: "json",
 					contentType: "application/x-www-form-urlencoded; charset=utf-8",
-					data: data
-				})
-				.success(function (data) {
-					if (data.result == 1) {
-						jQuery('#p-warning').css("display", "none");
-						alert(data.msg);
-						history.go(-1);
-					} else {
-						jQuery('#p-warning').text(data.msg);
-						jQuery('#p-warning').css("display", "block");
+					data: data,
+					success: function(data) { 
+						if (data.status == 200) {
+							$("#p-warning").css("display", "none");
+							alert(data.message);
+							history.go(-1);
+						} else {
+							$("#p-warning").text(data.message);
+							$("#p-warning").css("display", "block");
+						}
 					}
-
-				});
+				})
 			}
-		});
-
-		$(".img-naver").click(function () {
-			location.href = '/login_naver';
 		});
 	</script>
 </html>

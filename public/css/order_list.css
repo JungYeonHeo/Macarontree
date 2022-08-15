@@ -1,69 +1,68 @@
 @charset "utf-8";
 
 #table {
-    display: grid;  
-    width: 100%; 
-    grid-template-columns: 60% 20% 20%; 
+  display: grid;
+  width: 100%;
+  grid-template-columns: 60% 20% 20%;
 }
 
-.col { 
-    background-color: #e8e8e8; 
-    font-weight: bolder; 
-    vertical-align: middle; 
-    padding-top: 13px;
+.col {
+  background-color: #e8e8e8;
+  font-weight: bolder;
+  vertical-align: middle;
+  padding-top: 13px;
 }
 
 #table > div {
-    padding: 15px;
-    border-bottom: 1px solid #ccc;
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
 }
-  
+
 .order {
-    background-color: #555555;
-    color: #ffffff;
+  background-color: #555555;
+  color: #ffffff;
 }
 
 .order-list-empty-box {
-    text-align: center;
-    background-color: #ECE6CC;
-    padding: 10px;
-    margin-top: 30px;
-    margin-bottom: 120px;
+  text-align: center;
+  background-color: #ece6cc;
+  padding: 10px;
+  margin-top: 30px;
+  margin-bottom: 120px;
 }
 
 .order-list-empty-message {
-    font-weight: bold;
-    font-size: 30pt;
-    margin-top: 50px;
-    margin-bottom: 50px;
+  font-weight: bold;
+  font-size: 30pt;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 #btn_basic {
-    width: 300px;
-    height: 50px;
+  width: 300px;
+  height: 50px;
+  background: #004771;
+  color: #fff;
+  border: 2px solid #004771;
+  margin-bottom: 30px;
+}
+
+/* 테블릿 css */
+@media all and (max-width: 500px) {
+  .order-list-empty-message {
+    font-weight: bold;
+    font-size: 12pt;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  #btn_basic {
+    width: 200px;
+    height: 40px;
+    font-size: 10pt;
     background: #004771;
     color: #fff;
     border: 2px solid #004771;
     margin-bottom: 30px;
-}
-
-/* 테블릿 css */
-@media all and (max-width:500px) {
-       
-    .order-list-empty-message {
-        font-weight: bold;
-        font-size: 12pt;
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
-
-    #btn_basic {
-        width: 200px;
-        height: 40px;
-        font-size: 10pt;
-        background: #004771;
-        color: #fff;
-        border: 2px solid #004771;
-        margin-bottom: 30px;
-    }
+  }
 }

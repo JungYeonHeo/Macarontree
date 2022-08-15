@@ -355,24 +355,25 @@
 
         $.ajax({
           type: "post",
-          url: "/order",
+          url: "/macaron/order",
           dataType: "json",
           contentType: "application/x-www-form-urlencoded; charset=utf-8",
           data: jsonData,
-        }).success(function (data) {
-          // 주문 성공, 주문 완료 페이지로 이동
-          if (data.result == 0) {
-            location.href = "/order_done";
-          } else if (data.result == 1) {
-            // 주문하기전 로그인 여부 확인
-            alert(data.msg);
-            location.href = "/login";
-          } else {
-            // 주문 실패
-            $("#btn_order").prop("disabled", false);
-            alert(data.msg);
+          success: function(data) { 
+            // 주문 성공, 주문 완료 페이지로 이동
+            if (data.status == 201) {
+              location.href = "/macaron/order_done";
+            } else if (data.status == 403) {
+              // 주문하기전 로그인 여부 확인
+              alert(data.message);
+              location.href = "/user/login";
+            } else {
+              // 주문 실패
+              $("#btn_order").prop("disabled", false);
+              alert(data.message);
+            }
           }
-        });
+        })
       }
     });
 

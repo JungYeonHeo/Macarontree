@@ -160,33 +160,33 @@
           $("#input_email").css("margin-bottom", "5px");
         }
       } else {
-        var regNumber = /[^0-9]/g;
+        const regNumber = /[^0-9]/g;
         tel = tel.replace(regNumber, "");
         addr = addr + " " + addr_detail;
 
-        var data = { id: id, pw: pw, name: name, tel: tel, addr: addr };
+        const data = { id: id, pw: pw, name: name, tel: tel, addr: addr };
         $.ajax({
           type: "post",
-          url: "/signup_add",
+          url: "/user/signup_add",
           datatype: "json",
           contentType: "application/x-www-form-urlencoded; charset=utf-8",
           data: data,
-        }).success(function (data) {
-          if (data.result == 4) {
-            $(".p-warning").css("display", "none");
-            alert("회원가입 되었습니다.");
-            location.href = "/login";
-          } else {
-            $("#warning").text(data.msg);
-            $("#warning").css("display", "block");
+          success: function(data) { 
+            if (data.status == 200) {
+              $(".p-warning").css("display", "none");
+              alert(data.message);
+              location.href = "/user/login";
+            } else {
+              $("#warning").text(data.message);
+              $("#warning").css("display", "block");
+            }
           }
-        });
+        })
       }
     });
 
-    $(document).on("click", "input[name=input]", function () {
+    $(document).on("click focus", "input[name=input]", function () {
       var num = $("input[name=input]").index(this);
-
       var id = $("#input_email").val().trim();
       var pw = $("#input_pw").val().trim();
       var pw2 = $("#input_pw2").val().trim();
@@ -257,7 +257,7 @@
       } else if (num == 2) {
         var pw = $("#input_pw").val().trim();
         var pw2 = $("#input_pw2").val().trim();
-        if (pw == pw2) {
+        if (pw == pw2 && pw != "") {
           $("#warning_pw2").text("비밀번호: 일치");
           $("#warning_pw2").css("color", "green");
           pw_equal = true;
@@ -304,25 +304,24 @@
 
       $.ajax({
         type: "post",
-        url: "/signup_id_check",
+        url: "/user/signup_id_check",
         datatype: "json",
         contentType: "application/x-www-form-urlencoded; charset=utf-8",
         data: data,
-      }).success(function (data) {
-        if (data.result == 1) {
-          // 아이디 중복
-          $("#warning_email").text("아이디가 중복됩니다.");
-          $("#btn_id_check").attr("disabled", false);
-        } else if (data.result == 2) {
-          // 아이디 중복 X
-          $("#warning_email").text("사용가능한 이메일입니다.");
-          $("#warning_email").css("color", "green");
-          $("#btn_id_check").css("color", "green");
-          $("#btn_id_check").css("border", "1px solid green");
-          $("#btn_id_check").text("확인완료");
-          id_duplication = true;
+        success: function(data) {
+          if (data.status == 200) {
+            $("#warning_email").text(data.message);
+            $("#warning_email").css("color", "green");
+            $("#btn_id_check").css("color", "green");
+            $("#btn_id_check").css("border", "1px solid green");
+            $("#btn_id_check").text("확인완료");
+            id_duplication = true;
+          } else {
+            $("#warning_email").text(data.message);
+            $("#btn_id_check").attr("disabled", false);
+          }
         }
-      });
+      })
     });
 
     $("#input_tel").focusout(function () {
@@ -335,11 +334,8 @@
     // 주소검색 (카카오 api 사용)
     window.onload = function () {
       document.getElementById("input_addr").addEventListener("click", function () {
-        // 주소입력칸을 클릭하면
-        //카카오 지도 발생
         new daum.Postcode({
           oncomplete: function (data) {
-            // 선택시 입력값 세팅
             document.getElementById("input_addr").value = data.address; // 주소 넣기
             document.querySelector("#input_addr_detail").focus(); // 상세입력 포커싱
           },

@@ -115,9 +115,9 @@
     });
 
     function move_signup_input() {
-      var form = document.createElement("form");
+      let form = document.createElement("form");
       form.setAttribute("method", "post");
-      form.setAttribute("action", "/signup_input");
+      form.setAttribute("action", "/user/signup_input");
       document.body.appendChild(form);
       form.submit();
     }

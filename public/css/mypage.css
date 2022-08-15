@@ -1,182 +1,187 @@
 @charset "utf-8";
 
 * {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 #wrap {
-    width: 100%; 
-    height: 100%; 
-    position: relative; 
-    display: flex; 
-    flex-flow: column nowrap;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 .mypage {
-    width: 100%;
-    text-align: center;
-    margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .logo-mypage {
-    text-align: center; 
-    font-size: 25pt;
-    font-weight: bold; 
-    margin: 30px; 
-    color: #004771;
+  text-align: center;
+  font-size: 25pt;
+  font-weight: bold;
+  margin: 30px;
+  color: #004771;
 }
 
 .align {
-    width: 90%;
-    margin: 0 auto;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
 }
 
 /* 왼쪽 메뉴*/
 .fL {
-    float: left;
+  float: left;
 }
 
 div.myPageLeftMenu {
-    width: 200px;
-    margin: 50px 60px 0 0;
-    color: #010101;
-    font-size: 14px;
+  width: 200px;
+  margin: 50px 60px 0 0;
+  color: #010101;
+  font-size: 14px;
 }
 
 .myPageSubMenu {
-    list-style: none;
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
+  list-style: none;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
 }
 
 .mobilemenu {
-    display: none;
+  display: none;
 }
 
-.order, .like, .user {
-    display: block;
-    height: 30px;
-    width: 130px;
-    padding: 15px 0 10px 0;
-    font-weight: bold;
-    background: #f9f9fa;
+.order,
+.like,
+.user {
+  display: block;
+  height: 30px;
+  width: 130px;
+  padding: 15px 0 10px 0;
+  font-weight: bold;
+  background: #f9f9fa;
 }
 
 /* 메뉴 */
-#order-list, #like-list, #user-update {
-    width: 70%;
-    display: block;
-    float: left;
-    text-align: center;
-    margin-bottom: 50px;
+#order-list,
+#like-list,
+#user-update {
+  width: 70%;
+  display: block;
+  float: left;
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 .div-sub {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .page-name {
-    float: left;
-    font-weight: bold; 
-    font-size: 20px;
+  float: left;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .page-location {
-    float: right;
-    font-size: 10pt; 
-    margin: 0;
+  float: right;
+  font-size: 10pt;
+  margin: 0;
 }
 
 .line {
-    width: 100%;
-    height: 2px; 
-    background: #000000; 
-    display: inline-block; 
-    margin: 0;
+  width: 100%;
+  height: 2px;
+  background: #000000;
+  display: inline-block;
+  margin: 0;
 }
 
 .mypage-home-image {
-    position: relative;
-    top: 5px;
-    width: 20px;
-    height:20px;
-    padding-right: 10px;
+  position: relative;
+  top: 5px;
+  width: 20px;
+  height: 20px;
+  padding-right: 10px;
 }
 
-
 /* 테블릿 css */
-@media all and (max-width:1200px) {
+@media all and (max-width: 1200px) {
+  .mypage {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+  }
 
-    .mypage {
-        display: block;
-        margin: 0 auto;
-        text-align: center;
-    }
+  .align {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+  }
 
-    .align {
-        width: 90%;
-        margin: 0 auto;
-        text-align: center;
-        display: block;
-    }
+  .myPageLeftMenu {
+    display: none;
+  }
 
-    .myPageLeftMenu {
-        display: none;
-    }
+  .fL {
+    float: none;
+  }
 
-    .fL {
-        float: none;
-    }
+  .mobilemenu {
+    display: block;
+    width: auto;
+    margin: 0 auto;
+    text-align: center;
+  }
 
-    .mobilemenu {
-        display: block;
-        width: auto;
-        margin: 0 auto;
-        text-align: center;
-    }
+  .order,
+  .like,
+  .user {
+    display: inline-block;
+    height: 30px;
+    text-align: center;
+    font-weight: bold;
+    background: #ffffff;
+    border: none;
+    font-size: 10pt;
+    color: #bbb;
+    padding: 12px 0 4px 0;
+  }
 
-    .order, .like, .user {
-        display: inline-block;
-        height: 30px;
-        text-align: center;
-        font-weight: bold;
-        background: #ffffff;
-        border: none;
-        font-size: 10pt;
-        color: #bbb;
-        padding: 12px 0 4px 0;
-    }
-
-    #order-list, #like-list, #user-update {
-        width: 100%;
-        display: block;
-        margin: 0 auto;
-        float: none;
-        text-align: center;
-    }
-
+  #order-list,
+  #like-list,
+  #user-update {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    float: none;
+    text-align: center;
+  }
 }
 
 /* 모바일 */
-@media all and (max-width:500px) {
+@media all and (max-width: 500px) {
+  .order,
+  .like,
+  .user {
+    width: 30%;
+    height: 20px;
+    padding: 10px 0 10px 0;
+  }
 
-    .order, .like, .user {
-        width: 30%;
-        height: 20px;
-        padding: 10px 0 10px 0;
-    }
-
-    .logo-mypage {
-        font-size: 20pt;
-    }
-
+  .logo-mypage {
+    font-size: 20pt;
+  }
 }

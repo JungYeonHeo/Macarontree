@@ -1,69 +1,81 @@
 @charset "utf-8";
 
-a:link			{ color:#000; text-decoration:none; }
-a:visited 		{ color:#000; text-decoration:none; }
-a:active 		{ color:#999; text-decoration:none; }
-a:hover 		{ color:#999; text-decoration:none;}
+body {
+  background:#f9f9fb;
+}
 
 .div-logo {
-    display: block; 
-    align-items: center; 
-    padding-top: 60px;
+  width: 400px;
+  margin: 0 auto;
+  display: block;
+  align-items: center;
+  padding-top: 60px;
 }
 
-/* 로고 */
-.p-logo {
-    margin:10px 0 30px 0; color:#004771; 
-    font-size:40px; font-weight: bold;
+.img-logo {
+  margin: 20px;
 }
 
-/* 경고 메시지 */
-#p-warning {
-    color:red; 
-    font-size:12pt;
-    line-height:15px; 
-    display: none;
-    font-weight: bold;
+#main-logo {
+  color: #004771;
+  font-size: 40px;
+  font-weight: bold;
 }
 
-/* 버튼 */
-button {
-    width:350px; height:60px; 
-    background-color: #004771; font-size: 18px; 
-    color:#ffffff; padding: 15px 32px;
-    border: 2px solid #004771;
-}
-
-/* 글자  */
-p {
-    font-size: 10pt;
-    line-height: 15px;
-}
-
-#p-warning {
-    width: 350px;
-    text-align: left;
-}
-
-/* 이미지 크기  */
-.img-logo, .img-naver, .img-face, .img-kakao {
-    width: 50px; height: 50px;
-}
-
-/* 입력하는 곳 */
-.inputValue {
-    width:350px; 
-    height:40px; 
-    margin-bottom: 20px; 
-    font-size:12pt
-}
-
-/* 정렬 */
 div {
-    text-align: center;
+  text-align: center;
 }
 
-/* 선 */
+input {
+  width: 99%;
+  height: 40px;
+  margin-top: 20px;
+  font-size: 12pt;
+}
+
+#p-warning {
+  color: red;
+  font-size: 12pt;
+  margin-top: 10px;
+  line-height: 25px;
+  display: none;
+  font-weight: bold;
+}
+
+button {
+  width: 100%;
+  height: 60px;
+  background-color: #004771;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-top: 20px;
+  border: 0;
+}
+
+.text {
+  font-size: 12pt;
+  line-height: 40px;
+  margin: 10px;
+}
+
+.grey {
+  color:#a8a8aa;
+}
+
+#p-warning {
+  width: 100%;
+  text-align: left;
+}
+
+.img-logo, .img-naver, .img-face, .img-kakao {
+  width: 50px;
+  height: 50px;
+}
+
 hr {
-    width:350px; align-items:center; color:e0e0e2; line-height: 30px;
+  width: 100%;
+  align-items: center;
+  color: e0e0e2;
+  line-height: 30px;
 }

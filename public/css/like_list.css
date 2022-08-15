@@ -1,142 +1,136 @@
 @charset "utf-8";
 
 #table {
-    display: grid;  
-    width: 100%; 
-    grid-template-columns: 12% 20% 24% 24% 20%; 
-    border-top: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    margin-bottom: 50px;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 12% 20% 24% 24% 20%;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  margin-bottom: 50px;
 }
 
-.col 
-{ 
-    background-color: #e8e8e8; 
-    font-weight: bolder; 
-    vertical-align: middle; 
-    padding-top: 13px;
+.col {
+  background-color: #e8e8e8;
+  font-weight: bolder;
+  vertical-align: middle;
+  padding-top: 13px;
 }
 
 #table > div {
-    padding: 15px;
-    border-bottom: 1px solid #ccc;
-    border-right: 1px solid #ccc;
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
 }
 
 .like {
-    background-color: #555555;
-    color: #ffffff;
+  background-color: #555555;
+  color: #ffffff;
 }
 
-input[type=checkbox] {
-    zoom: 1.5;
+input[type="checkbox"] {
+  zoom: 1.5;
 }
 
 .like-list-image {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
 }
 
 .buttons {
-    margin-bottom: 120px;
+  margin-bottom: 120px;
 }
 
 .btn-list-delete {
-    background-color: #555555;
-    color: #ffffff;
-    padding: 15px;
-    font-weight: bold;
-    border-radius: 5px;
-    width: 150px;
-    height: 50px;
+  background-color: #555555;
+  color: #ffffff;
+  padding: 15px;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 150px;
+  height: 50px;
 }
 
 .btn-list-cart {
-    background-color: #004771;
-    color: #ffffff;
-    padding: 15px;
-    font-weight: bold;
-    border-radius: 5px;
-    width: 150px;
-    height: 50px;
+  background-color: #004771;
+  color: #ffffff;
+  padding: 15px;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 150px;
+  height: 50px;
 }
 
 .like-list-empty-box {
-    text-align: center;
-    background-color: #ECE6CC;
-    padding: 10px;
-    margin-top: 30px;
-    margin-bottom: 120px;
+  text-align: center;
+  background-color: #ece6cc;
+  padding: 10px;
+  margin-top: 30px;
+  margin-bottom: 120px;
 }
 
 .like-list-empty-message {
-    font-weight: bold;
-    font-size: 30pt;
-    margin-top: 50px;
-    margin-bottom: 50px;
+  font-weight: bold;
+  font-size: 30pt;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 #btn_basic {
-    width: 300px;
-    height: 50px;
+  width: 300px;
+  height: 50px;
+  background: #004771;
+  color: #fff;
+  border: 2px solid #004771;
+  margin-bottom: 30px;
+}
+
+/* 테블릿 css */
+@media all and (max-width: 500px) {
+  .like-list-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .btn-list-delete {
+    width: 100px;
+    height: 40px;
+  }
+
+  .btn-list-cart {
+    width: 100px;
+    height: 40px;
+  }
+
+  .like-list-empty-message {
+    font-weight: bold;
+    font-size: 12pt;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  #btn_basic {
+    width: 200px;
+    height: 40px;
+    font-size: 10pt;
     background: #004771;
     color: #fff;
     border: 2px solid #004771;
     margin-bottom: 30px;
-}
-
-/* 테블릿 css */
-@media all and (max-width:500px) {
-
-    .like-list-image {
-        width: 40px;
-        height: 40px;
-    }
-
-    .btn-list-delete {
-        width: 100px;
-        height: 40px;
-    }
-    
-    .btn-list-cart {
-        width: 100px;
-        height: 40px;
-    }
-
-    .like-list-empty-message {
-        font-weight: bold;
-        font-size: 12pt;
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
-
-    #btn_basic {
-        width: 200px;
-        height: 40px;
-        font-size: 10pt;
-        background: #004771;
-        color: #fff;
-        border: 2px solid #004771;
-        margin-bottom: 30px;
-    }
-
+  }
 }
 
 /* 갤럭시 폴드같이 가로 280인 경우를 위해 */
-@media all and (max-width:300px) {
+@media all and (max-width: 300px) {
+  .like-list-image {
+    width: 30px;
+    height: 30px;
+  }
 
-    .like-list-image {
-        width: 30px;
-        height: 30px;
-    }
+  #table > div {
+    padding: 5px 0 5px 0;
+  }
 
-    #table > div {
-        padding: 5px 0 5px 0;
-    }
-
-    input[type=checkbox] {
-        zoom: 1.0;
-    }
-
+  input[type="checkbox"] {
+    zoom: 1;
+  }
 }
-

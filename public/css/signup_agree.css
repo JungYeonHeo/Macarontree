@@ -2,162 +2,157 @@
 
 /* 회원가입 절차 설명 */
 .menu {
-    width:100%; 
-    background: #f4f4f4; 
+  width: 100%;
+  background: #f4f4f4;
 }
 
 .menu-bg {
-    height: 60px;
-    background: #f4f4f4;
+  height: 60px;
+  background: #f4f4f4;
 }
 
 p {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 /* 회원가입 절차 글자 */
 .signtxt {
-    font-size:24pt;
-    color:#555557;
-    height: 60px;
-    padding: 15px 0 10px 0;
-    text-align: right;
+  font-size: 24pt;
+  color: #555557;
+  height: 60px;
+  padding: 15px 0 10px 0;
+  text-align: right;
 }
 
 .sign_num {
-    height: 60px;
-    padding: 15px 0 10px 0;
-    text-align: right;
+  height: 60px;
+  padding: 15px 0 10px 0;
+  text-align: right;
 }
 
 .point {
-    color: #004771; 
-    vertical-align: middle;
+  color: #004771;
+  vertical-align: middle;
 }
 
 .point2 {
-    color:#555555;
-    vertical-align: middle;
+  color: #555555;
+  vertical-align: middle;
 }
 
 /* 약관 동의 */
 form {
-    align-items: center;
+  align-items: center;
 }
 
 .div-align {
-    width: 100%;
+  width: 100%;
 }
 
 .div-agree {
-    width: 500px; 
-    padding-top: 20px;
-    margin: 0 auto;
+  width: 500px;
+  padding-top: 20px;
+  margin: 0 auto;
 }
 
 .menu-txt {
-    color: #8e8e8e;
-    vertical-align: middle;
+  color: #8e8e8e;
+  vertical-align: middle;
 }
 
 label {
-    color:#555555;
-    font-size:12pt;
+  color: #555555;
+  font-size: 12pt;
 }
 
 p {
-    color:#555555;
+  color: #555555;
 }
 
 .ptxt1 {
-    font-size:12pt;
-    padding-top:10px;
+  font-size: 12pt;
+  padding-top: 10px;
 }
 
 .ptxt2 {
-    font-size:10pt;
+  font-size: 10pt;
 }
 
 #p-warning {
-    color: red;
-    line-height: 30px;
-    display: none;
+  color: red;
+  line-height: 30px;
+  display: none;
 }
 
 /* 버튼 */
 button {
-      color: white;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .btn-content {
-    width: 130px; 
-    height: 30px;
-    border: 2px solid;
-    float: right;
+  width: 130px;
+  height: 30px;
+  border: 2px solid;
+  float: right;
 }
 
 button:hover {
-    background: #555555;
-    border: 2px solid #555555;
+  background: #555555;
+  border: 2px solid #555555;
 }
 
-#btn_ok { 
-    width: 100%; 
-    height: auto !important;
-    background-color: #004771;
-    font-size: 18px;
-    padding: 15px 32px;
-    border: 2px solid #004771;
+#btn_ok {
+  width: 100%;
+  height: auto !important;
+  background-color: #004771;
+  font-size: 18px;
+  padding: 15px 32px;
+  border: 2px solid #004771;
 }
-
 
 /* 테블릿 css */
-@media all and (max-width:768px) {
-       
-    .sign_num {
-        width: 0%;
-        display: none;
-    }
-    
-    .div-agree {
-        width: 400px;
-    }
-    
-    .signtxt { 
-        font-size: 30px;
-        width: 500px;
-        margin-bottom: 10px;
-        text-align: center;
-    }
+@media all and (max-width: 768px) {
+  .sign_num {
+    width: 0%;
+    display: none;
+  }
 
+  .div-agree {
+    width: 400px;
+  }
+
+  .signtxt {
+    font-size: 30px;
+    width: 500px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
 }
 
 /* 모바일 css */
-@media all and (max-width:500px) {  
+@media all and (max-width: 500px) {
+  .menu-bg {
+    height: 40px;
+  }
 
-    .menu-bg {
-        height: 40px;
-    }
-    
-    .signtxt {
-        font-size: 20px;
-    }
-    
-    .btn-content {
-        width: 120px;
-        height: 25px;
-        font-size: 12px;
-    }
-    
-    .text {
-        font-size: 12px;
-    }
-    
-    .ptxt2 {
-        font-size: 12px;
-    }
-    
+  .signtxt {
+    font-size: 20px;
+  }
+
+  .btn-content {
+    width: 120px;
+    height: 25px;
+    font-size: 12px;
+  }
+
+  .text {
+    font-size: 12px;
+  }
+
+  .ptxt2 {
+    font-size: 12px;
+  }
 }

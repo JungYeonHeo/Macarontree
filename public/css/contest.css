@@ -1,152 +1,121 @@
 #wrap {
-    width: 100%; 
-    height: 100%; 
-    position: relative; 
-    display: flex; 
-    flex-flow: column nowrap;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 /* 후기 등록 Form - grid 사용 */
 .review_upload > form {
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    margin: 0 50px 50px 50px;
-    display: grid;
-    grid-template-rows: 50px 150px 50px; 
-    grid-template-columns: 5fr 1fr 1fr;
-    grid-template-areas: 
-        "a a a"
-        "b b b"
-        "c . d";
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  margin: 0 50px 50px 50px;
+  display: grid;
+  grid-template-rows: 50px 150px 50px;
+  grid-template-columns: 5fr 1fr 1fr;
+  grid-template-areas:
+    "a a a"
+    "b b b"
+    "c . d";
 }
 
 .review_upload .title {
-    grid-area: a;
-    margin: 20px 20px 0 20px;
-    border-radius: 5px;
+  grid-area: a;
+  margin: 20px 20px 0 20px;
+  border-radius: 5px;
 }
 
 .review_upload .review {
-    grid-area: b;
-    margin: 20px;
-    border-radius: 5px;
-    word-break: break-all;
-    white-space: pre-wrap;
+  grid-area: b;
+  margin: 20px;
+  border-radius: 5px;
+  word-break: break-all;
+  white-space: pre-wrap;
 }
 
 .review_upload .photo {
-    grid-area: c;
-    margin-top: 5px;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    padding-top: 3px;
-    border: none;
-    cursor: pointer;
+  grid-area: c;
+  margin-top: 5px;
+  margin-left: 20px;
+  padding-top: 3px;
+  border: none;
+  cursor: pointer;
 }
 
 .review_upload .submit {
-    grid-area: d;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    padding: 10px 0 -10px 0;
-    border: none;
-    border-radius: 5px;
-    background-color: #004771;
-    color: #FDB7A0;
-    text-align: center;
-    cursor: pointer;
+  grid-area: d;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 10px 0 -10px 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #004771;
+  color: #fdb7a0;
+  text-align: center;
+  cursor: pointer;
 }
 
 /* 작성된 후기 - flex 사용 */
 .review-container {
-    
-    width: 100% - 50px;
-    margin: 20px 50px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    margin: 0 50px 30px 50px;
+  width: 100% - 50px;
+  margin: 20px 50px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  margin: 0 50px 30px 50px;
 }
 
 .review-container .review-top {
-    width: 100%;
-    height: 40px;
-    margin: 0;
-    background-color: #004771;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    display: flex;
-    justify-content: space-between;
+  width: 100%;
+  height: 40px;
+  margin: 0;
+  background-color: #004771;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .review-container .review-top .macaron-name {
-    width: auto;
-    margin: 8px 40px;
-    color: white;
-    letter-spacing: 1px;
+  width: auto;
+  margin: 8px 40px;
+  color: white;
+  letter-spacing: 1px;
 }
 
 .review-container .review-top img {
-    display: none;
-    width: 24px;
-    height: 24px;
-    margin: 8px 12px;
+  display: none;
+  width: 24px;
+  height: 24px;
+  margin: 8px 12px;
 }
 
 .review-container .review-top .user_id {
-    width: auto;
-    margin: 8px 0;
-    color: #FDB7A0;
-    letter-spacing: 0;
-    padding-right: 40px;
+  width: auto;
+  margin: 8px 0;
+  color: #fdb7a0;
+  letter-spacing: 0;
+  padding-right: 40px;
 }
 
 .review-container .review-contents {
-    margin: 20px;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
+  margin: 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
 }
 
 .review-container .review-contents img {
-    width: 100px;
-    height: 100px;
-    margin-right: 20px;
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
 }
 
 .review-container .review-contents .review {
-    display: block;
-    margin: 0;
-    word-break: break-all;
-    white-space: pre-line;
+  display: block;
+  margin: 0;
+  word-break: break-all;
+  white-space: pre-line;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

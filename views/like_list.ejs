@@ -32,7 +32,7 @@
               <div class="page-location"><img src="/public/images/home.png" class="mypage-home-image" /> 메뉴 > 마이페이지 > 찜한 상품</div>
               <div class="line"></div>
             </div>
-            <% if (like != null) { %>
+            <% if (like.length != 0) { %>
             <div id="table">
               <div class="col"><input class="option-all-checkbox" type="checkbox" value="모두 선택" /></div>
               <div class="col">상품</div>
@@ -42,7 +42,7 @@
               <script>
                 var likes = new Array(0);
               </script>
-              <% for (data of like) { %>
+              <% for (const data of like) { %>
               <script>
                 likes.push("<%= data.prd_id %>");
               </script>
@@ -75,18 +75,18 @@
   <script>
     // 왼쪽 메뉴에 따른 페이지 전환
     $(".order").click(function () {
-      location.href = "/order_list";
+      location.href = "/user/order_list";
     });
     $(".like").click(function () {
-      location.href = "/like_list";
+      location.href = "/user/like_list";
     });
     $(".user").click(function () {
-      location.href = "/user_update";
+      location.href = "/user/user_update";
     });
 
     // 찜한 상품이 없을 때 basic 페이지로 이동
     $("#btn_basic").click(function () {
-      location.href = "/basic";
+      location.href = "/macaron/basic";
     });
 
     // 모두 선택 체크 박스
@@ -127,23 +127,24 @@
           };
 
           $.ajax({
-            type: "post",
-            url: "/like_list_delete",
+            type: "put",
+            url: "/user/like_list_delete",
             dataType: "json",
             contentType: "application/x-www-form-urlencoded; charset=utf-8",
             data: deleteListJson,
-          }).success(function (data) {
-            if (data.result == 0) {
-              // 삭제 성공
-              $(".btn-list-delete").prop("disabled", false);
-              alert(data.msg);
-              location.reload();
-            } else if (data.result == 1) {
-              // 삭제 실패
-              $(".btn-list-delete").prop("disabled", false);
-              alert(data.msg);
+            success: function(data) { 
+              if (data.status == 200) {
+                // 삭제 성공
+                $(".btn-list-delete").prop("disabled", false);
+                alert(data.message);
+                location.reload();
+              } else {
+                // 삭제 실패
+                $(".btn-list-delete").prop("disabled", false);
+                alert(data.message);
+              }
             }
-          });
+          })
         } else {
           // 선택 삭제
           var is_checked = true;
@@ -166,23 +167,24 @@
           };
 
           $.ajax({
-            type: "post",
-            url: "/like_list_delete",
+            type: "put",
+            url: "/user/like_list_delete",
             dataType: "json",
             contentType: "application/x-www-form-urlencoded; charset=utf-8",
             data: deleteListJson,
-          }).success(function (data) {
-            if (data.result == 0) {
-              // 삭제 성공
-              $(".btn-list-delete").prop("disabled", false);
-              alert(data.msg);
-              location.reload();
-            } else if (data.result == 1) {
-              // 삭제 실패
-              $(".btn-list-delete").prop("disabled", false);
-              alert(data.msg);
+            success: function(data) { 
+              if (data.status == 200) {
+                // 삭제 성공
+                $(".btn-list-delete").prop("disabled", false);
+                alert(data.message);
+                location.reload();
+              } else {
+                // 삭제 실패
+                $(".btn-list-delete").prop("disabled", false);
+                alert(data.message);
+              }
             }
-          });
+          })
         }
       }
     });

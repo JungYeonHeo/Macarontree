@@ -34,7 +34,7 @@
               <div class="page-location"><img src="/public/images/home.png" class="mypage-home-image" /> 메뉴 > 마이페이지 > 주문 내역</div>
               <div class="line"></div>
             </div>
-            <% if (order != null) { %>
+            <% if (order.length != 0) { %>
             <div style="padding-bottom: 50px; margin-top: 20px">
               <% for (var i = 0; i < order.length; i++) { var obj = JSON.parse(order[i].ord_content.product); %>
               <div style="margin-bottom: 20px">
@@ -70,18 +70,18 @@
   <script>
     // 왼쪽 메뉴에 따른 페이지 전환
     $(".order").click(function () {
-      location.href = "/order_list";
+      location.href = "/user/order_list";
     });
     $(".like").click(function () {
-      location.href = "/like_list";
+      location.href = "/user/like_list";
     });
     $(".user").click(function () {
-      location.href = "/user_update";
+      location.href = "/user/user_update";
     });
 
     // 주문 상품이 없을 때 basic 페이지로 이동
     $("#btn_basic").click(function () {
-      location.href = "/basic";
+      location.href = "/macaron/basic";
     });
   </script>
 </html>
