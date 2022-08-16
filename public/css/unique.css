@@ -100,7 +100,7 @@
 }
 
 .custom-contents .coque-color {
-  min-width: 200px;
+  min-width: 50px;
   border-radius: 5px;
   font-size: 14px;
   margin-left: 30px;
@@ -203,6 +203,7 @@
   font-size: 40px;
   font-weight: bold;
   margin: 30px;
+  line-height: initial;
 }
 
 .option-all {
@@ -248,6 +249,7 @@ input[class="option-all-checkbox"] {
 .option-contents .price-amount {
   font-size: 25pt;
   font-weight: bold;
+  line-height: initial;
 }
 
 .option-contents .order {

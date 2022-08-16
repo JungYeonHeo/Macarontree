@@ -3,7 +3,6 @@
   <head>
     <%- include ("head") %>
     <link type="text/css" rel="stylesheet" href="/public/css/unique.css" />
-    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <title>Unique</title>
   </head>
   <style>
@@ -34,18 +33,18 @@
               <div class="custom-title"># 나만의 마카롱 레시피</div>
             </div>
             <div class="custom-contents">
-              <form id="custom_form" method="post" enctype="multipart/form-data" action="/unique/custom">
+              <form id="custom_form" method="post" enctype="multipart/form-data">
                 <div class="box-container">
                   <div class="item-container">
                     <!-- 꼬끄 -->
                     <div class="title-container"><span class="list-title"> # 꼬끄 </span></div>
                     <div class="item-align">
-                      <div><input type="radio" name="꼬끄모양" value="원" class="coque" id="shape_circle" /><span class="radio-text"> 원 모양</span></div>
-                      <input type="text" name="꼬끄색" placeholder=" ex) 색상 - 파랑, #0000FF" value="" class="coque coque-color" />
+                      <div><input type="radio" name="꼬끄모양" value="원" class="coque" id="shape_circle" checked/><span class="radio-text"> 원 모양</span></div>
+                      <input type="color" name="꼬끄색" class="coque coque-color" />
                     </div>
                     <div class="item-align">
                       <div><input type="radio" name="꼬끄모양" value="캐릭터" class="coque" id="shape_etc" /><span class="radio-text"> 캐릭터 모양</span></div>
-                      <input type="file" name="첨부파일" class="coque coque-character" />
+                      <input type="file" name="첨부파일" class="coque coque-character" disabled />
                     </div>
                   </div>
                   <!-- 크림 -->
@@ -54,13 +53,13 @@
                     <div class="item-align">
                       <div class="cream-title"><span>색상</span></div>
 
-                      <div><input type="text" name="크림색" placeholder=" ex) 파랑, #0000FF" value="" class="cream cream-color" /></div>
+                      <div><input type="color" name="크림색" class="cream cream-color" /></div>
                     </div>
                     <div class="div"></div>
 
                     <div class="cream-title"><span>모양</span></div>
                     <div class="item-align">
-                      <div><input type="radio" name="크림모양" value="단층" class="cream" /><span class="radio-text"> 단층</span></div>
+                      <div><input type="radio" name="크림모양" value="단층" class="cream" checked/><span class="radio-text"> 단층</span></div>
                       <div><input type="radio" name="크림모양" value="이층" class="cream" /><span class="radio-text"> 이층</span></div>
                       <div><input type="radio" name="크림모양" value="회오리" class="cream" /><span class="radio-text"> 회오리</span></div>
                     </div>
@@ -68,6 +67,7 @@
 
                     <div class="cream-title"><span>잼</span></div>
                     <div class="item-align">
+                      <div><input type="radio" name="잼" value="선택안함" class="cream" checked/><span class="radio-text"> 선택안함</span></div>
                       <div><input type="radio" name="잼" value="딸기" class="cream" /><span class="radio-text"> 딸기</span></div>
                       <div><input type="radio" name="잼" value="블루베리" class="cream" /><span class="radio-text"> 블루베리</span></div>
                       <div><input type="radio" name="잼" value="사과" class="cream" /><span class="radio-text"> 사과</span></div>
@@ -75,7 +75,6 @@
                       <div><input type="radio" name="잼" value="초코" class="cream" /><span class="radio-text"> 초코</span></div>
                       <div><input type="radio" name="잼" value="무화과" class="cream" /><span class="radio-text"> 무화과</span></div>
                       <div><input type="radio" name="잼" value="유자" class="cream" /><span class="radio-text"> 유자</span></div>
-                      <div><input type="radio" name="잼" value="선택안함" class="cream" /><span class="radio-text"> 선택안함</span></div>
                     </div>
                     <div class="div"></div>
                   </div>
@@ -115,7 +114,6 @@
       <%- include ("footer") %>
     </div>
   </body>
-
   <script>
     // 입력 받은 데이터를 json 형태로 변수에 저장
     var data = new Array();
@@ -132,17 +130,20 @@
     // 꼬끄 모양 택 1
     $("#shape_circle").click(function () {
       $("#shape_etc").prop("checked", false);
+      $(".coque-color").attr("disabled", false);
       $(".coque-character").prop("disabled", true);
     });
 
     $("#shape_etc").click(function () {
       $("#shape_circle").prop("checked", false);
+      $(".coque-color").attr("disabled", true);
       $(".coque-character").prop("disabled", false);
     });
 
     // 옵션 추가하기
     $("#btn_option").click(function () {
       inputData = $("form").serializeArray();
+      console.log(inputData)
       obj = new Object();
 
       for (var i = 0; i < inputData.length; i++) {
